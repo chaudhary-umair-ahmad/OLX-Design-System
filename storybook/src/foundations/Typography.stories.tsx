@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import tokens from '../../tokens/tokens.json';
+import tokens from '../../../tokens/tokens.json';
 
 const meta: Meta = { title: 'Foundations/Typography', tags: ['autodocs'] };
 export default meta;

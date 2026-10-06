@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react';
-import '../css/olx.css';
+import '../../css/olx.css';
 
 const preview: Preview = {
   parameters: {

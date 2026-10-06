@@ -1,7 +1,12 @@
-# OLX Design System
+# OLX Design System — Storybook
 
 The design system and the real product, in one Storybook: tokens, components, and frozen captures
 of every page flow across **OLX Classifieds**, **OLX Property** and **OLX Motors**.
+
+Tokens and CSS are **not** kept here. `../tokens/tokens.json` and `../css/` at the repo root are
+the one source of truth; this Storybook renders them (`.storybook/main.ts` serves them at
+`/css` and `/tokens`, `preview.ts` imports `../../css/olx.css`). To change a token or a
+component, edit it at the root and run `npm run build` there.
 
 ```bash
 npm install
@@ -13,8 +18,8 @@ npm run dev       # Storybook on http://localhost:6006
 | Section | What it is | Source |
 |---|---|---|
 | Overview | Index of everything, plus a table of every captured page | — |
-| Foundations | Colour, type and spacing | `tokens/tokens.json` |
-| Components | The `olx-*` classes — buttons, cards, filters, galleries, footer… | `css/components.css` |
+| Foundations | Colour, type and spacing | `../tokens/tokens.json` |
+| Components | The `olx-*` classes — buttons, cards, filters, galleries, footer… | `../css/components.css` |
 | Pages | 48 captured pages, rendered exactly as they ship | `design-kit/templates/` |
 | Flows | 8 end-to-end journeys through those pages | `design-kit/sites.json` |
 
@@ -48,7 +53,7 @@ them to `www.olx.com.pk`; left remote, the pages would silently fall back to a s
 | `npm run capture:sites` | Re-render classifieds + property from the live site (Chrome, GET only) |
 | `npm run capture:motors` | Re-fetch the Motors server HTML |
 | `npm run build:kit` | Rebuild templates, localise assets, regenerate stories |
-| `npm run build:tokens` | Rebuild `css/tokens.css` and `dist/tokens.js` from `tokens/tokens.json` |
+| `npm run build` (at the repo root) | Rebuild `css/tokens.css` and `dist/tokens.js` from `tokens/tokens.json` |
 | `npm run build:storybook` | Static build into `storybook-static/` |
 
 Capturing only ever navigates and scrolls — it never clicks, types or submits, and pages that

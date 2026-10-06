@@ -127,7 +127,9 @@ Scripts, ad slots and iframes are removed, links are made inert, and personal da
 
 ## Storybook and design kit (`storybook/`)
 
-`storybook/` is the design kit built on the Mac and imported from the `local-build` branch: tokens and `olx-*` CSS components, React wrappers, and 48 captured pages (Classifieds 9, Property 10, Motors 29) on desktop and mobile with 8 flows, plus the raw Motors server HTML in `storybook/motors-html/`. See `storybook/MERGE.md`.
+`storybook/` is the design kit built on the Mac and imported from the `local-build` branch: React wrappers for the `olx-*` components, and 48 captured pages (Classifieds 9, Property 10, Motors 29) on desktop and mobile with 8 flows, plus the raw Motors server HTML in `storybook/motors-html/`.
+
+It has its own `package.json` so the root install stays free of React and Storybook, but it keeps **no copy of the design system**: `.storybook/main.ts` serves this directory's `css/` and `tokens/`, and `preview.ts` imports `../../css/olx.css`. Edit a token or a component here at the root, run `npm run build`, and the Storybook picks it up.
 
 ```sh
 cd storybook

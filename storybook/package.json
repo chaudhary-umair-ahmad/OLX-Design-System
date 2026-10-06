@@ -1,25 +1,11 @@
 {
-  "name": "olx-design-system",
+  "name": "olx-design-system-storybook",
   "version": "0.1.0",
-  "description": "Design tokens, CSS components and a Storybook for the OLX Design System.",
+  "private": true,
+  "description": "Storybook for the OLX Design System: foundations, components and the captured page templates. Tokens and CSS come from the repo root.",
   "type": "module",
-  "main": "dist/tokens.js",
-  "exports": {
-    ".": "./dist/tokens.js",
-    "./tokens.json": "./tokens/tokens.json",
-    "./css/tokens.css": "./css/tokens.css",
-    "./css/base.css": "./css/base.css",
-    "./css/components.css": "./css/components.css",
-    "./css/olx.css": "./css/olx.css"
-  },
-  "files": [
-    "tokens",
-    "css",
-    "dist"
-  ],
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build:tokens": "node scripts/build-tokens.mjs",
     "build:storybook": "storybook build",
     "typecheck": "tsc --noEmit",
     "capture:sites": "node scripts/capture-site.mjs",
