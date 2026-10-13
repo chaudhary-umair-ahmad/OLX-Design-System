@@ -1,0 +1,30 @@
+{
+  "category": "classifieds",
+  "guide": "classifieds.md",
+  "arc": [
+    {
+      "label": "HERO · WHAT IT IS",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "SELL",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "SEARCH",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "CHAT",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "TRUST & SAFETY",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "EVERYTHING ELSE",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    }
+  ]
+}

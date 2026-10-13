@@ -1,0 +1,46 @@
+{
+  "id": "olx-pk",
+  "name": "OLX Pakistan",
+  "shortName": "OLX",
+  "status": "unverified",
+  "source": "OLX-Design-System repo: css/tokens.css (--olx-color-petrol-900 #002f34, --olx-bg #ffffff), measured from olx.com.pk on 7 Oct 2026. Not yet compared with the shipping store icon.",
+  "markSource": "assets/icons/logo-olx.svg (captured from the olx.com.pk header), re-saved with a solid fill as handoff/brand/olx-logo-petrol.svg and olx-logo-white.svg",
+  "approvedBy": null,
+  "targets": ["web", "ios", "android", "social"],
+  "marks": {
+    "mark": "handoff/brand/olx-logo-petrol.svg",
+    "favicon": null,
+    "monochrome": null,
+    "dark": "handoff/brand/olx-logo-white.svg",
+    "tinted": null,
+    "social": "handoff/brand/olx-logo-petrol.svg"
+  },
+  "background": { "color": "#FFFFFF" },
+  "web": {
+    "faviconStyle": "transparent",
+    "faviconDarkMark": "handoff/brand/olx-logo-white.svg",
+    "themeColor": "#FFFFFF",
+    "display": "standalone",
+    "startUrl": "/"
+  },
+  "ios": {
+    "mode": "single",
+    "fill": 0.6,
+    "appearances": ["dark", "tinted"],
+    "darkBackground": "#002F34",
+    "darkTransparent": false,
+    "iconComposerLayers": true
+  },
+  "android": {
+    "fill": 0.92,
+    "legacy": true,
+    "round": true,
+    "monochrome": true,
+    "notification": true,
+    "notificationName": "ic_stat_notify",
+    "splash": true
+  },
+  "social": { "background": { "color": "#FFFFFF" }, "alt": "OLX Pakistan" },
+  "environments": [],
+  "badgeFont": null
+}

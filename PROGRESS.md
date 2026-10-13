@@ -1,6 +1,6 @@
 # OLX Design System — progress and hand-over
 
-Status as of **9 Oct 2026**. Written for whoever picks this up next, in another account or
+Status as of **13 Oct 2026**. Written for whoever picks this up next, in another account or
 another Claude session. Read this first, then `README.md`.
 
 **Keep this file current.** Every change to the repo adds a dated entry at the top of the
@@ -40,6 +40,14 @@ Every push to `main` rebuilds and redeploys the site (`.github/workflows/pages.y
 - **Claude skill.** `.claude/skills/olx-design-system/SKILL.md` gives the rules (look at the live screen first, tokens only, `olx-*` components first, both viewports, accessibility), plus a token and markup quick reference, OLX content conventions and where everything is.
   - Claude Code loads it automatically in this repo.
   - For claude.ai, upload the `olx-design-system` folder as a skill.
+- **Design hand-off skill.** `.claude/skills/olx-design-handoff/` runs a design job end to end, with a gate between stages: intake → plan approval → design → review → tracking → QA → hand-off → summary.
+  - **QA gate:** `npm run qa -- --scope <feature>`. Static checks (states, tokens, Geomanist weights, copy, flows, parity, tracking) and render checks in Chromium at 1280/1440 and 360/390 (overflow, a 200-character string in user text, alt, labels, hit targets, AA contrast, rendered fonts). Writes `handoff/<feature>/qa/report.{json,html}`.
+  - **Hand-off:** `npm run handoff -- --feature <feature>` builds one offline HTML file (clickable prototype, every state, specs mapped to tokens, rules with tests, copy deck, tracking, QA, open questions, sign-off). Internal only, since it embeds Geomanist; `handoff/*/dist/` is git-ignored.
+  - **Real content:** `npm run fixtures` → `handoff/content/fixtures.json`, 864 listings from the captures.
+  - **Analytics:** `handoff/analytics/event-catalog.json`, with 7 live events observed in `dataLayer` (read-only, no clicks) and 5 proposed ones.
+  - **19 specialist guides** written for OLX (review, copy, forms, grid, type, interaction, motion, icons, imagery, image prompts set in Pakistan, inspiration, charts, token check, tracking, taxonomy, GA4 spec, funnels).
+  - **Store screenshots and app icons:** OLX profiles for the store-screenshot editor (`brands/olx-pk`) and the icon generator (`products/olx-pk`, `npm run app-assets -- --out <folder>`; it needs `pip install pillow cairosvg`). Both kits were adapted from the uploaded Dubizzle hand-off skill (MIT upstream licences kept).
+  - **Worked example:** `handoff/favourites/` (screens, flows, tracking, deliverable, QA: PASS WITH WARNINGS).
 - **Manifest for Claude Design and other tools.** `design-system.json` is one index of tokens (light and dark values), CSS components (classes, modifiers, elements), React wrappers, live components and their states, templates, screens, flows, assets, quality results and known gaps, all with file paths.
   - Generated from the repo with `npm run manifest`.
   - Published at https://iqratahir-8.github.io/OLX-Design-System/design-system.json.
@@ -63,7 +71,12 @@ Every push to `main` rebuilds and redeploys the site (`.github/workflows/pages.y
    - the app banner and delivery card render shorter than live;
    - the desktop sell button times out in the checker.
 3. **Matching with `maple`.** `audit/comparisons/live-vs-repo.md` covers live versus this repo. Reconciling components with the `maple` source is still pending; `docs/inventory.md` marks it "specced".
-4. **Site size.** The published site is about 710 MB, against GitHub Pages' 1 GB limit, because the screenshots now include photos. Shrink the screenshots (WebP, or a lower scale on mobile) before adding much more.
+4. **Hand-off skill follow-ups.**
+   - The GA4 measurement id, GTM container and consent mode for olx.com.pk aren't known (`tenant` in the event catalogue is `null`).
+   - Click events (contact, favourite, post an ad) haven't been observed on live. The 5 proposed names should be checked on the Mac, signed in, in GTM preview.
+   - The OLX icon config is unverified: compare it with the shipping store icon, and get the 1024 px store icon for the screenshot kit.
+   - Store screenshots need captures from the OLX apps; none are in the repo.
+5. **Site size.** The published site is about 710 MB, against GitHub Pages' 1 GB limit, because the screenshots now include photos. Shrink the screenshots (WebP, or a lower scale on mobile) before adding much more.
 
 ## Moving to another account
 
@@ -111,11 +124,20 @@ MASK_PHOTOS=1 npm run verify:pixels      # writes audit/pixel-report.md
 - **Lazy-loaded photos.** OLX puts listing photo URLs in `data-src`. `scripts/lib/capture-lib.mjs` (`freezePage`) copies them into `src`, so static copies show photos. `scripts/fix-lazy-images.mjs` repairs older captures.
 - **Pages sized to the window.** Motors uses `vh` units, so its page height depends on the window height. The pixel check sizes the window from the live screenshot, not from the saved page height.
 - **Pixel check and animations.** The checker jumps animations to their end state. Turning them off would leave fade-in popups invisible and make them look missing.
+- **Python 3.11 in the cloud.** The icon generator used an f-string with nested double quotes, which only Python 3.12+ accepts. It was rewritten; keep scripts 3.11-safe.
+- **Store-screenshot profiles.** Relative paths in `brands/<id>.json` resolve from the profile's own folder, not the repo root (hence `../../../../../../fonts/...`).
 - **Two sessions on one branch.** The Mac session and cloud sessions both pushed to `claude/olx-design-system-setup-1chba1`. Fetch before you push, and never force-push over the other session's work.
 
 ## Change log
 
 Newest first. One entry per change: date, what changed, why, and the PR. "Mac" marks work done in the session on the Mac (`local-build`); the rest was done in cloud sessions.
+
+### 13 Oct 2026
+- **`olx-design-handoff` skill added**, modelled on the uploaded Dubizzle hand-off skill and rebuilt for OLX in Node.
+  - Stages and gates, the QA runner, the single-file deliverable builder, 19 specialist guides, the OLX store-screenshot and app-icon kits, the analytics event catalogue, real-content fixtures, and the worked `favourites` example.
+  - New scripts: `npm run qa`, `handoff`, `fixtures` and `app-assets`.
+  - `README.md` and the `olx-design-system` skill point to it.
+  - Why: so a design job ends in something engineers can build, checked against every state, width and flow.
 
 ### 9 Oct 2026
 - **Geomanist bundled; Bold and Thin dropped** (iqratahir-8/OLX-Design-System#7).

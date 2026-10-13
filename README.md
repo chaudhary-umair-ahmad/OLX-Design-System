@@ -139,6 +139,9 @@ Scripts, ad slots and iframes are removed, links are made inert, and personal da
 - **`.claude/skills/olx-design-system/SKILL.md`** is the Claude skill. It covers how to design and build OLX screens with this system: the rules, a token and markup quick reference, content conventions and where everything is.
   - Claude Code loads it automatically in this repo.
   - On claude.ai, upload the folder as a skill.
+- **`.claude/skills/olx-design-handoff/SKILL.md`** runs a whole design job end to end, with a gate between stages: intake, a plan you approve, design from the captures and tokens, a senior-designer review, an analytics plan, QA, and one self-contained internal hand-off HTML (clickable prototype, every state, specs mapped to tokens, rules with tests, copy deck, tracking, QA result, open questions). It also makes App Store / Google Play screenshots and favicons and app icons for OLX.
+  - `npm run qa -- --scope <feature>` runs the QA gate; `npm run handoff -- --feature <feature>` builds the hand-off; `npm run fixtures` rebuilds the real listing content; `npm run app-assets -- --out <folder>` makes the icon kit.
+  - `handoff/` is its working area; `handoff/favourites/` is a worked example.
 - **`design-system.json`** is the machine-readable index for Claude Design and other tools. It lists tokens with their light and dark values, CSS components, React wrappers, live component captures, templates, screens, flows, assets and quality results, all with file paths.
   - Rebuild it with `npm run manifest` after changing tokens, CSS or captures.
   - Published at https://iqratahir-8.github.io/OLX-Design-System/design-system.json.

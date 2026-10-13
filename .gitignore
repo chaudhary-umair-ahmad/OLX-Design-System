@@ -2,3 +2,6 @@ node_modules/
 .DS_Store
 /dist/
 audit/pixel-diffs/
+
+# Design hand-off build output (single HTML deliverables)
+handoff/*/dist/

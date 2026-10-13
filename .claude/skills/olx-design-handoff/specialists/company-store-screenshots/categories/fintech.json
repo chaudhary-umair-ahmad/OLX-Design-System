@@ -1,0 +1,30 @@
+{
+  "category": "fintech",
+  "guide": "fintech.md",
+  "arc": [
+    {
+      "label": "HERO · THE OUTCOME",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "CORE ACTION",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "CONTROL & INSIGHT",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "SECURITY",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "FEES / PRICING",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "LICENSED & TRUSTED",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    }
+  ]
+}

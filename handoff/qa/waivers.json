@@ -1,0 +1,1 @@
+{ "note": "Decisions to accept a finding: check, screen (optional), reason, owner, expires (YYYY-MM-DD). A waived blocker stays in the report, marked waived.", "waivers": [] }

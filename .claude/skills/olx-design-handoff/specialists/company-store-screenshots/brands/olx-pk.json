@@ -1,0 +1,40 @@
+{
+  "id": "olx-pk",
+  "name": "OLX Pakistan",
+  "categories": ["classifieds", "motors", "real-estate"],
+  "status": "measured",
+  "source": "OLX-Design-System repo: css/tokens.css and tokens/tokens.json, measured from olx.com.pk on 7 Oct 2026 (the website; the apps are not measured)",
+  "appName": "OLX",
+  "locales": ["en"],
+  "theme": {
+    "id": "olx-pk",
+    "name": "OLX Pakistan",
+    "bg": "#FFFFFF",
+    "bgAlt": "#002F34",
+    "fg": "#002F34",
+    "fgAlt": "#FFFFFF",
+    "accent": "#2456D6",
+    "accentAlt": "#23E5DB",
+    "muted": "#406367",
+    "sceneTint": "#FFFFFF"
+  },
+  "surface": "light",
+  "font": {
+    "id": "self-hosted",
+    "importFile": "../../../../../../fonts/Geomanist-Medium.55687bb88819a897b599bb150b1fddcf.woff2",
+    "name": "Geomanist"
+  },
+  "icon": null,
+  "headlineWeight": 600,
+  "maxHeadlineWeight": 600,
+  "accentAsDecoration": false,
+  "claudeDesign": {
+    "folder": "olx-pakistan",
+    "fontStack": "\"Geomanist\", sans-serif",
+    "fonts": [
+      { "family": "Geomanist", "path": "fonts/Geomanist-Regular.a35649b1d4c9738de84be469ebdf3b2e.woff2", "weight": 400 },
+      { "family": "Geomanist", "path": "fonts/Geomanist-Book.5b15bf678f13c8611b01501ea643892e.woff2", "weight": 500 },
+      { "family": "Geomanist", "path": "fonts/Geomanist-Medium.55687bb88819a897b599bb150b1fddcf.woff2", "weight": 600 }
+    ]
+  }
+}

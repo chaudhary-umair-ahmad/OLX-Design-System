@@ -1,0 +1,30 @@
+{
+  "category": "jobs",
+  "guide": "jobs.md",
+  "arc": [
+    {
+      "label": "HERO · FIND WORK",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "SEARCH & ALERTS",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "ONE-TAP APPLY",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "PROFILE / CV",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "EMPLOYERS",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "EVERYTHING ELSE",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    }
+  ]
+}
