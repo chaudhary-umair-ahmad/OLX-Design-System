@@ -2,7 +2,7 @@
  "schema": "olx-design-qa/1",
  "scope": "favourites",
  "feature": "favourites",
- "checked": "2026-10-13T13:32:05.045Z",
+ "checked": "2026-10-14T11:07:07.471Z",
  "verdict": "PASS WITH WARNINGS",
  "counts": {
   "blocker": 0,
