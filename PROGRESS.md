@@ -1,6 +1,6 @@
 # OLX Design System — progress and hand-over
 
-Status as of **13 Oct 2026**. Written for whoever picks this up next, in another account or
+Status as of **14 Oct 2026**. Written for whoever picks this up next, in another account or
 another Claude session. Read this first, then `README.md`.
 
 **Keep this file current.** Every change to the repo adds a dated entry at the top of the
@@ -72,8 +72,8 @@ Every push to `main` rebuilds and redeploys the site (`.github/workflows/pages.y
    - the desktop sell button times out in the checker.
 3. **Matching with `maple`.** `audit/comparisons/live-vs-repo.md` covers live versus this repo. Reconciling components with the `maple` source is still pending; `docs/inventory.md` marks it "specced".
 4. **Hand-off skill follow-ups.**
-   - The GA4 measurement id, GTM container and consent mode for olx.com.pk aren't known (`tenant` in the event catalogue is `null`).
-   - Click events (contact, favourite, post an ad) haven't been observed on live. The 5 proposed names should be checked on the Mac, signed in, in GTM preview.
+   - **GA4:** the IDs and the live event names are now known from the public tag container (`GTM-W6NPB7W`, `G-YP1ZBNYRVD`; see `handoff/analytics/gtm-container.md`), but **not yet applied** to `event-catalog.json`. Apply them: put the IDs in `tenant`, replace the 5 proposed names with the live ones (`favourite_toggle`, `chat_lead`, `phone_view`, `publish_ad`…), switch the favourites example to `favourite_toggle`, and re-run QA.
+   - Still needs the analytics owner: confirm the production property, consent defaults, key events, custom dimensions. Click-event parameters need observing in GTM Preview on the Mac, signed in.
    - The OLX icon config is unverified: compare it with the shipping store icon, and get the 1024 px store icon for the screenshot kit.
    - Store screenshots need captures from the OLX apps; none are in the repo.
 5. **Site size.** The published site is about 710 MB, against GitHub Pages' 1 GB limit, because the screenshots now include photos. Shrink the screenshots (WebP, or a lower scale on mobile) before adding much more.
@@ -131,6 +131,10 @@ MASK_PHOTOS=1 npm run verify:pixels      # writes audit/pixel-report.md
 ## Change log
 
 Newest first. One entry per change: date, what changed, why, and the PR. "Mac" marks work done in the session on the Mac (`local-build`); the rest was done in cloud sessions.
+
+### 14 Oct 2026
+- **GA4 setup found and recorded** (`handoff/analytics/gtm-container.md`). Read-only from the home page source and the public GTM script: container `GTM-W6NPB7W`, GA4 `G-YP1ZBNYRVD`, consent mode referenced, and about 60 event names the container listens for. Five of the catalogue's proposed names don't match live (e.g. favourites is `favourite_toggle`, contact is `chat_lead` / `phone_view`). Not applied to the catalogue yet.
+- **Repo being transferred to another GitHub account.** The 13 and 14 Oct work is on the branch `claude/olx-design-system-setup-1chba1` and **not yet merged to `main`** (no PR opened). Open a PR from that branch and merge it in the new account.
 
 ### 13 Oct 2026
 - **`olx-design-handoff` skill added**, modelled on the uploaded Dubizzle hand-off skill and rebuilt for OLX in Node.
