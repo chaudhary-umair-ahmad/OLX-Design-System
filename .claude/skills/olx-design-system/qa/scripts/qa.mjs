@@ -2,7 +2,7 @@
 // and write report.json + report.html. A gate, not a fixer: blockers stop the hand-off.
 //
 // Run from the repo root (it needs handoff/, css/tokens.css and node_modules/playwright):
-//   node .claude/skills/olx-design-handoff/qa/scripts/qa.mjs --scope <feature|screen-id|all> [--matrix] [--checks cov,tok,…]
+//   node .claude/skills/olx-design-system/qa/scripts/qa.mjs --scope <feature|screen-id|all> [--matrix] [--checks cov,tok,…]
 //   npm run qa -- --scope favourites
 //
 // Inputs:  handoff/registry.json (screens + features), the screen HTML files, css/tokens.css,

@@ -2,7 +2,7 @@
 
 This is the OLX Pakistan design system. Read `PROGRESS.md` first: it has the current
 status, open work, how to run things and the pitfalls already hit. Use the
-`olx-design-system` skill (`.claude/skills/olx-design-system/SKILL.md`) for any OLX design
+`olx-design-system` skill (`.claude/skills/olx-design-system/`: `foundations.md` for quick questions, `SKILL.md` for a full design job) for any OLX design
 or front-end work.
 
 ## Keep PROGRESS.md as the log

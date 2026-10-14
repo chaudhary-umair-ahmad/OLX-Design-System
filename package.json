@@ -34,10 +34,10 @@
     "catalog": "node scripts/build-catalog.mjs",
     "verify:pixels": "node scripts/verify-pixels.mjs",
     "manifest": "node scripts/build-manifest.mjs",
-    "qa": "node .claude/skills/olx-design-handoff/qa/scripts/qa.mjs",
-    "handoff": "node .claude/skills/olx-design-handoff/deliverables/scripts/build.mjs",
+    "qa": "node .claude/skills/olx-design-system/qa/scripts/qa.mjs",
+    "handoff": "node .claude/skills/olx-design-system/deliverables/scripts/build.mjs",
     "fixtures": "node scripts/build-fixtures.mjs",
-    "app-assets": "python3 .claude/skills/olx-design-handoff/specialists/company-web-app-assets/scripts/generate_assets.py --config .claude/skills/olx-design-handoff/specialists/company-web-app-assets/products/olx-pk.json --root ."
+    "app-assets": "python3 .claude/skills/olx-design-system/specialists/company-web-app-assets/scripts/generate_assets.py --config .claude/skills/olx-design-system/specialists/company-web-app-assets/products/olx-pk.json --root ."
   },
   "license": "UNLICENSED",
   "devDependencies": {

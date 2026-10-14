@@ -1,4 +1,4 @@
-> **OLX Pakistan web and app icons (inside olx-design-handoff).** This is the company-web-app-assets kit with only the
+> **OLX Pakistan web and app icons (inside olx-design-system).** This is the company-web-app-assets kit with only the
 > OLX Pakistan config (plus the blank `_new-product.json`). Paths below are inside this skill's folder. Run the
 > generator from the **OLX-Design-System repo root**: the config points at `handoff/brand/olx-logo-*.svg`.
 
@@ -15,7 +15,7 @@
 
 Needs Python 3 with Pillow and CairoSVG (`pip install pillow cairosvg`; `scripts/check_dependencies.py` checks).
 
-Run: `python3 .claude/skills/olx-design-handoff/specialists/company-web-app-assets/scripts/generate_assets.py --config .claude/skills/olx-design-handoff/specialists/company-web-app-assets/products/olx-pk.json --root . --out <folder>`
+Run: `python3 .claude/skills/olx-design-system/specialists/company-web-app-assets/scripts/generate_assets.py --config .claude/skills/olx-design-system/specialists/company-web-app-assets/products/olx-pk.json --root . --out <folder>`
 (or `npm run app-assets -- --out <folder>`).
 
 ---
