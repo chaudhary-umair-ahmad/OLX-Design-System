@@ -1,0 +1,30 @@
+{
+  "category": "real-estate",
+  "guide": "real-estate.md",
+  "arc": [
+    {
+      "label": "HERO · FIND A HOME",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "SEARCH & MAP",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "LISTING DETAIL",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "PROJECTS / NEW HOMES",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "AGENTS & VERIFIED",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "TOOLS",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    }
+  ]
+}

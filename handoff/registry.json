@@ -1,0 +1,23 @@
+{
+ "note": "Screens designed with the olx-design-handoff skill. Live captures (site/pages) are not listed here; QA reaches them as <page>~desktop / <page>~mobile and caps their findings at note.",
+ "features": {
+  "favourites": {
+   "title": "Favourites (worked example)",
+   "flows": "handoff/favourites/flows.json",
+   "deliverable": "handoff/favourites/deliverable.json",
+   "tracking": "handoff/favourites/tracking.json"
+  }
+ },
+ "screens": [
+  {
+   "id": "favourites-desktop", "feature": "favourites", "platform": "web-desktop", "origin": "authored",
+   "based_on": "home~desktop", "file": "handoff/favourites/screens/favourites-desktop.html",
+   "states": ["default", "empty", "loading", "error"], "pair": "favourites-mobile"
+  },
+  {
+   "id": "favourites-mobile", "feature": "favourites", "platform": "web-mobile", "origin": "authored",
+   "based_on": "home~mobile", "file": "handoff/favourites/screens/favourites-mobile.html",
+   "states": ["default", "empty", "loading", "error"], "pair": "favourites-desktop"
+  }
+ ]
+}

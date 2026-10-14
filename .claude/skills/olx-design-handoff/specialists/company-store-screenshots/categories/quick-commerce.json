@@ -1,0 +1,30 @@
+{
+  "category": "quick-commerce",
+  "guide": "quick-commerce.md",
+  "arc": [
+    {
+      "label": "HERO · DELIVERY PROMISE",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "AISLES / RANGE",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "REORDER",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "LIVE TRACKING",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "PAY YOUR WAY",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "OFFERS",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    }
+  ]
+}

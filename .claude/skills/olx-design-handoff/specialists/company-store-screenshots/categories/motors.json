@@ -1,0 +1,30 @@
+{
+  "category": "motors",
+  "guide": "motors.md",
+  "arc": [
+    {
+      "label": "HERO · FIND A CAR",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "FILTERS",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "CAR DETAILS",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "DEALERS & VERIFIED",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "SELL YOUR CAR",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "EVERYTHING ELSE",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    }
+  ]
+}

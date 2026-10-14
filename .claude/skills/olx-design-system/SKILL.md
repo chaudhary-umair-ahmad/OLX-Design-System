@@ -128,6 +128,13 @@ Listing cards use `olx-listing` (variants `--featured` and `--row`) with these e
 | How it matches live | `audit/pixel-report.md` |
 | Status and open gaps | `PROGRESS.md` |
 
+## Taking a design all the way to hand-off
+
+For a feature, revamp or flow that should end in something engineers build, use the **`olx-design-handoff`** skill
+(`.claude/skills/olx-design-handoff/SKILL.md`). It adds plan approval, a design review, analytics, a QA gate
+(`npm run qa`) and a single-file hand-off (`npm run handoff`), plus store screenshots and app icons. This skill stays
+the reference for tokens, components and conventions.
+
 ## Checking your work
 
 - **Compare with live.** Put your screen next to the matching `site/pages/<id>/<viewport>.png`. Check both viewports.

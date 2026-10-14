@@ -1,0 +1,47 @@
+{
+  "id": "<product-id>",
+  "name": "<Product name>",
+  "categories": [
+    "<one or more of: classifieds, motors, jobs, real-estate, rentals, e-commerce, quick-commerce, fintech, saas>"
+  ],
+  "status": "<measured | from <named source> | unknown>",
+  "source": "<where every value below was read, with date>",
+  "appName": "<name as on the store>",
+  "locales": [
+    "en"
+  ],
+  "theme": {
+    "id": "<product-id>",
+    "name": "<Product name>",
+    "bg": "#RRGGBB",
+    "bgAlt": "#RRGGBB",
+    "fg": "#RRGGBB",
+    "fgAlt": "#RRGGBB",
+    "accent": "#RRGGBB",
+    "accentAlt": "#RRGGBB",
+    "muted": "#RRGGBB",
+    "sceneTint": "#RRGGBB (optional: backdrop light and glow colour if the accent may not be decoration; delete otherwise)"
+  },
+  "surface": "<light | dark: is theme.bg a light or dark surface>",
+  "font": {
+    "id": "self-hosted",
+    "importFile": "<path to ONE licensed .woff2/.woff/.ttf/.otf, headline weight>",
+    "name": "<Font name>"
+  },
+  "icon": "<path to the 1024x1024 store icon PNG, or null>",
+  "headlineWeight": 700,
+  "maxHeadlineWeight": 900,
+  "accentAsDecoration": "<true | false: may the accent colour be used as decoration (glows, blobs)?>",
+  "claudeDesign": {
+    "designSystem": "<optional: https://claude.ai/artifact/<id> of the product's Design System artifact>",
+    "folder": "<short-name>",
+    "fontStack": "<\"Brand Font\", sans-serif>",
+    "fonts": [
+      {
+        "family": "<Brand Font>",
+        "path": "<fonts/File-Bold.woff2 inside that system>",
+        "weight": 700
+      }
+    ]
+  }
+}

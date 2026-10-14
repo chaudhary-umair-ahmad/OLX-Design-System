@@ -1,0 +1,628 @@
+{
+  "modes": {
+    "brand": "Brand only: brand theme and fonts, restrained scene (default)",
+    "brand-style": "Brand + style: the style's composition, scene and rhythm; brand colours and fonts",
+    "full": "Full style: the style's own palette and fonts (campaign / sub-brand decks, needs brand-owner sign-off)"
+  },
+  "recommended": {
+    "classifieds": [
+      "bento-keynote-grid",
+      "panoramic-story-strip",
+      "map-led-local",
+      "color-coded-suite",
+      "swiss-grid-bold"
+    ],
+    "motors": [
+      "neon-athletic-night",
+      "midnight-glow-pro",
+      "swiss-grid-bold",
+      "lifestyle-photo-hero",
+      "map-led-local"
+    ],
+    "jobs": [
+      "swiss-grid-bold",
+      "hand-drawn-editorial-tasks",
+      "bento-keynote-grid",
+      "floating-card-stack"
+    ],
+    "real-estate": [
+      "map-led-local",
+      "lifestyle-photo-hero",
+      "magazine-cover-editorial",
+      "swiss-grid-bold",
+      "liquid-glass-aurora",
+      "trust-ledger"
+    ],
+    "rentals": [
+      "lifestyle-photo-hero",
+      "map-led-local",
+      "magazine-cover-editorial",
+      "liquid-glass-aurora",
+      "bento-keynote-grid"
+    ],
+    "e-commerce": [
+      "product-cutout-shelf",
+      "floating-card-stack",
+      "bento-keynote-grid",
+      "candy-pop-social",
+      "magazine-cover-editorial"
+    ],
+    "quick-commerce": [
+      "product-cutout-shelf",
+      "color-coded-suite",
+      "map-led-local",
+      "candy-pop-social",
+      "bento-keynote-grid",
+      "neon-athletic-night"
+    ],
+    "fintech": [
+      "trust-ledger",
+      "oversized-ui-crop",
+      "swiss-grid-bold",
+      "midnight-glow-pro",
+      "liquid-glass-aurora",
+      "color-coded-suite"
+    ],
+    "saas": [
+      "oversized-ui-crop",
+      "midnight-glow-pro",
+      "bento-keynote-grid",
+      "swiss-grid-bold",
+      "trust-ledger"
+    ]
+  },
+  "styles": [
+    {
+      "slug": "retro-rubberhose-mascot",
+      "name": "Retro Rubberhose Mascot",
+      "file": "01-retro-rubberhose-mascot.md",
+      "summary": "1930s cartoon mascot, cream + mustard, chunky retro display",
+      "brandFit": "artwork",
+      "artworkNeeded": "a drawn 1930s-style mascot",
+      "dark": false,
+      "scene": {
+        "backdrop": "gradient",
+        "span": false,
+        "decoration": "blobs",
+        "shadow": 35,
+        "glow": 0,
+        "tilt": 4,
+        "headlineWeight": 800,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "auto"
+      }
+    },
+    {
+      "slug": "moody-curated-dating",
+      "name": "Moody Curated Dating",
+      "file": "02-moody-curated-dating.md",
+      "summary": "dim lifestyle photography, white serif with italic emphasis",
+      "brandFit": "artwork",
+      "artworkNeeded": "licensed lifestyle photography",
+      "dark": true,
+      "scene": {
+        "backdrop": "spotlight",
+        "span": false,
+        "decoration": "none",
+        "shadow": 40,
+        "glow": 10,
+        "tilt": 0,
+        "headlineWeight": 400,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "auto"
+      }
+    },
+    {
+      "slug": "paper-sticker-skeuomorphic",
+      "name": "Paper Sticker Skeuomorphic",
+      "file": "03-paper-sticker-skeuomorphic.md",
+      "summary": "cork board, paper cut-outs, marker handwriting, pixel stickers",
+      "brandFit": "artwork",
+      "artworkNeeded": "paper, cork and sticker art",
+      "dark": false,
+      "scene": {
+        "backdrop": "dots",
+        "span": false,
+        "decoration": "none",
+        "shadow": 45,
+        "glow": 0,
+        "tilt": 5,
+        "headlineWeight": 800,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "auto"
+      }
+    },
+    {
+      "slug": "dreamy-pastel-couples",
+      "name": "Dreamy Pastel Couples",
+      "file": "04-dreamy-pastel-couples.md",
+      "summary": "cotton-candy sky, 3D globe, kawaii pets, lilac italic serif",
+      "brandFit": "artwork",
+      "artworkNeeded": "3D globe and kawaii characters",
+      "dark": false,
+      "scene": {
+        "backdrop": "aurora",
+        "span": true,
+        "decoration": "sparkles",
+        "shadow": 30,
+        "glow": 20,
+        "tilt": 0,
+        "headlineWeight": 600,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "auto"
+      }
+    },
+    {
+      "slug": "hand-drawn-editorial-tasks",
+      "name": "Hand-Drawn Editorial",
+      "file": "05-hand-drawn-editorial-tasks.md",
+      "summary": "navy + cream + coral slides, one script word, tilted phones, doodle squiggles",
+      "brandFit": "yes",
+      "artworkNeeded": null,
+      "dark": false,
+      "scene": {
+        "backdrop": "solid",
+        "span": false,
+        "decoration": "none",
+        "shadow": 40,
+        "glow": 0,
+        "tilt": 6,
+        "headlineWeight": 700,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "auto"
+      },
+      "invert": "alternate"
+    },
+    {
+      "slug": "glossy-3d-kbeauty-creator",
+      "name": "Glossy 3D Creator",
+      "file": "06-glossy-3d-kbeauty-creator.md",
+      "summary": "deep purple gradient, chrome 3D numerals, mascot, hashtag chips",
+      "brandFit": "artwork",
+      "artworkNeeded": "chrome 3D numerals and a mascot",
+      "dark": true,
+      "scene": {
+        "backdrop": "aurora",
+        "span": false,
+        "decoration": "sparkles",
+        "shadow": 40,
+        "glow": 40,
+        "tilt": 0,
+        "headlineWeight": 900,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "auto"
+      }
+    },
+    {
+      "slug": "liquid-glass-aurora",
+      "name": "Liquid Glass Aurora",
+      "file": "07-liquid-glass-aurora.md",
+      "summary": "pastel aurora blooms, frosted glass cards, upright phones, one gradient word",
+      "brandFit": "yes",
+      "artworkNeeded": null,
+      "dark": false,
+      "scene": {
+        "backdrop": "aurora",
+        "span": true,
+        "decoration": "none",
+        "shadow": 35,
+        "glow": 25,
+        "tilt": 0,
+        "headlineWeight": 700,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "auto"
+      }
+    },
+    {
+      "slug": "swiss-grid-bold",
+      "name": "Swiss Grid Bold",
+      "file": "08-swiss-grid-bold.md",
+      "summary": "paper/ink slides, visible grid, giant flush-left grotesk, hard-cropped upright phones, one signal block",
+      "brandFit": "yes",
+      "artworkNeeded": null,
+      "dark": false,
+      "scene": {
+        "backdrop": "grid",
+        "span": false,
+        "decoration": "none",
+        "shadow": 25,
+        "glow": 0,
+        "tilt": 0,
+        "headlineWeight": 800,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "left"
+      },
+      "invert": "alternate",
+      "builder": true
+    },
+    {
+      "slug": "neon-athletic-night",
+      "name": "Neon Athletic Night",
+      "file": "09-neon-athletic-night.md",
+      "summary": "near-black stadium light, one volt accent, slanted condensed caps, giant stats",
+      "brandFit": "yes",
+      "artworkNeeded": null,
+      "dark": true,
+      "scene": {
+        "backdrop": "spotlight",
+        "span": false,
+        "decoration": "none",
+        "shadow": 50,
+        "glow": 40,
+        "tilt": 0,
+        "headlineWeight": 800,
+        "headlineScale": 1,
+        "headlineCase": "upper",
+        "captionAlign": "auto"
+      }
+    },
+    {
+      "slug": "magazine-cover-editorial",
+      "name": "Magazine Cover Editorial",
+      "file": "10-magazine-cover-editorial.md",
+      "summary": "paper ground, italic serif cover lines, small-caps masthead, figure captions",
+      "brandFit": "yes",
+      "artworkNeeded": null,
+      "dark": false,
+      "scene": {
+        "backdrop": "lines",
+        "span": false,
+        "decoration": "none",
+        "shadow": 25,
+        "glow": 0,
+        "tilt": 0,
+        "headlineWeight": 500,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "left"
+      },
+      "invert": "alternate"
+    },
+    {
+      "slug": "candy-pop-social",
+      "name": "Candy Pop Social",
+      "file": "11-candy-pop-social.md",
+      "summary": "flat saturated slides, chunky type with a pill word, chat bubbles bursting from tilted phones",
+      "brandFit": "yes",
+      "artworkNeeded": null,
+      "dark": false,
+      "scene": {
+        "backdrop": "solid",
+        "span": false,
+        "decoration": "none",
+        "shadow": 35,
+        "glow": 0,
+        "tilt": 8,
+        "headlineWeight": 800,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "auto"
+      }
+    },
+    {
+      "slug": "soft-clay-wellness",
+      "name": "Soft Clay Wellness",
+      "file": "12-soft-clay-wellness.md",
+      "summary": "clay props, arch-framed phones, soft serif, earthy and slow",
+      "brandFit": "artwork",
+      "artworkNeeded": "sculpted clay props",
+      "dark": false,
+      "scene": {
+        "backdrop": "gradient",
+        "span": false,
+        "decoration": "blobs",
+        "shadow": 30,
+        "glow": 0,
+        "tilt": 0,
+        "headlineWeight": 400,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "auto"
+      }
+    },
+    {
+      "slug": "midnight-glow-pro",
+      "name": "Midnight Glow Pro",
+      "file": "13-midnight-glow-pro.md",
+      "summary": "near-black, one beam on a rim-lit phone, dark glass, keycaps",
+      "brandFit": "yes",
+      "artworkNeeded": null,
+      "dark": true,
+      "scene": {
+        "backdrop": "spotlight",
+        "span": false,
+        "decoration": "none",
+        "shadow": 60,
+        "glow": 45,
+        "tilt": 0,
+        "headlineWeight": 600,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "auto"
+      }
+    },
+    {
+      "slug": "risograph-zine",
+      "name": "Risograph Zine",
+      "file": "14-risograph-zine.md",
+      "summary": "two misregistered inks, halftones, knockout caps, stapled tickets",
+      "brandFit": "partial",
+      "artworkNeeded": "halftone textures (patterns are fine; no drawn figures)",
+      "dark": false,
+      "scene": {
+        "backdrop": "dots",
+        "span": false,
+        "decoration": "none",
+        "shadow": 20,
+        "glow": 0,
+        "tilt": 0,
+        "headlineWeight": 800,
+        "headlineScale": 1,
+        "headlineCase": "upper",
+        "captionAlign": "auto"
+      }
+    },
+    {
+      "slug": "bento-keynote-grid",
+      "name": "Bento Keynote Grid",
+      "file": "15-bento-keynote-grid.md",
+      "summary": "rounded tiles, huge stats, real widgets, tile-cropped hero phone",
+      "brandFit": "yes",
+      "artworkNeeded": null,
+      "dark": false,
+      "scene": {
+        "backdrop": "grid",
+        "span": false,
+        "decoration": "none",
+        "shadow": 25,
+        "glow": 0,
+        "tilt": 0,
+        "headlineWeight": 700,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "auto"
+      },
+      "builder": true
+    },
+    {
+      "slug": "toybox-primary",
+      "name": "Toybox Primary",
+      "file": "16-toybox-primary.md",
+      "summary": "cream and primaries, rounded toy type, 3D ABC cubes and rainbows",
+      "brandFit": "artwork",
+      "artworkNeeded": "3D toy props",
+      "dark": false,
+      "scene": {
+        "backdrop": "solid",
+        "span": false,
+        "decoration": "blobs",
+        "shadow": 35,
+        "glow": 0,
+        "tilt": 6,
+        "headlineWeight": 800,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "auto"
+      }
+    },
+    {
+      "slug": "quiet-japandi",
+      "name": "Quiet Japandi",
+      "file": "17-quiet-japandi.md",
+      "summary": "washi paper, oak shelf, one ceramic cup, vertical word, hanko seal",
+      "brandFit": "artwork",
+      "artworkNeeded": "still-life photography of objects",
+      "dark": false,
+      "scene": {
+        "backdrop": "solid",
+        "span": false,
+        "decoration": "none",
+        "shadow": 20,
+        "glow": 0,
+        "tilt": 0,
+        "headlineWeight": 500,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "auto"
+      }
+    },
+    {
+      "slug": "vintage-travel-poster",
+      "name": "Vintage Travel Poster",
+      "file": "18-vintage-travel-poster.md",
+      "summary": "cream-framed silkscreen landscapes, banded skies, script + giant caps",
+      "brandFit": "artwork",
+      "artworkNeeded": "silkscreen landscape illustration",
+      "dark": false,
+      "scene": {
+        "backdrop": "gradient",
+        "span": false,
+        "decoration": "none",
+        "shadow": 30,
+        "glow": 0,
+        "tilt": 0,
+        "headlineWeight": 800,
+        "headlineScale": 1,
+        "headlineCase": "upper",
+        "captionAlign": "auto"
+      }
+    },
+    {
+      "slug": "panoramic-story-strip",
+      "name": "Panoramic Story Strip",
+      "file": "19-panoramic-story-strip.md",
+      "summary": "one wide strip, a route ribbon across every seam, whole upright phones, left-to-right story",
+      "brandFit": "yes",
+      "artworkNeeded": null,
+      "dark": false,
+      "scene": {
+        "backdrop": "gradient",
+        "span": true,
+        "decoration": "none",
+        "shadow": 30,
+        "glow": 0,
+        "tilt": 0,
+        "headlineWeight": 800,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "left"
+      }
+    },
+    {
+      "slug": "oversized-ui-crop",
+      "name": "Oversized UI Crop",
+      "file": "20-oversized-ui-crop.md",
+      "summary": "frameless 140-180% ui crop bleeding off alternate edges, flat ground, two-tone headline, one accent ring",
+      "brandFit": "yes",
+      "artworkNeeded": null,
+      "dark": false,
+      "scene": {
+        "backdrop": "solid",
+        "span": false,
+        "decoration": "none",
+        "shadow": 0,
+        "glow": 0,
+        "tilt": 0,
+        "headlineWeight": 700,
+        "headlineScale": 1.3,
+        "headlineCase": "as-typed",
+        "captionAlign": "left"
+      }
+    },
+    {
+      "slug": "floating-card-stack",
+      "name": "Floating Card Stack",
+      "file": "21-floating-card-stack.md",
+      "summary": "upright phone, 2–3 real ui crops lifted out at 110–130% with layered shadows, flat soft ground",
+      "brandFit": "yes",
+      "artworkNeeded": null,
+      "dark": false,
+      "scene": {
+        "backdrop": "solid",
+        "span": false,
+        "decoration": "none",
+        "shadow": 35,
+        "glow": 0,
+        "tilt": 0,
+        "headlineWeight": 800,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "auto"
+      }
+    },
+    {
+      "slug": "lifestyle-photo-hero",
+      "name": "Lifestyle Photo Hero",
+      "file": "22-lifestyle-photo-hero.md",
+      "summary": "full-bleed warm lifestyle photo, upright phone over it, top scrim, light/heavy weight-split headline",
+      "brandFit": "artwork",
+      "artworkNeeded": "licensed or shot lifestyle photography (or labelled text-free generated plates)",
+      "dark": false,
+      "scene": {
+        "backdrop": "solid",
+        "span": false,
+        "decoration": "none",
+        "shadow": 45,
+        "glow": 0,
+        "tilt": 0,
+        "headlineWeight": 800,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "left"
+      }
+    },
+    {
+      "slug": "color-coded-suite",
+      "name": "Colour-Coded Suite",
+      "file": "23-color-coded-suite.md",
+      "summary": "one vertical per frame, one sanctioned colour each, identical skeleton, suite frame with colour tiles",
+      "brandFit": "partial",
+      "artworkNeeded": null,
+      "dark": false,
+      "scene": {
+        "backdrop": "solid",
+        "span": false,
+        "decoration": "none",
+        "shadow": 30,
+        "glow": 0,
+        "tilt": 0,
+        "headlineWeight": 800,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "left"
+      }
+    },
+    {
+      "slug": "map-led-local",
+      "name": "Map-Led Local",
+      "file": "24-map-led-local.md",
+      "summary": "quiet drawn vector map continuing across the set, one accent pin + area chip per frame, upright phone",
+      "brandFit": "yes",
+      "artworkNeeded": null,
+      "dark": false,
+      "scene": {
+        "backdrop": "solid",
+        "span": true,
+        "decoration": "none",
+        "shadow": 30,
+        "glow": 0,
+        "tilt": 0,
+        "headlineWeight": 800,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "left"
+      },
+      "builder": true
+    },
+    {
+      "slug": "product-cutout-shelf",
+      "name": "Product Cutout Shelf",
+      "file": "25-product-cutout-shelf.md",
+      "summary": "real catalogue product cutouts on a flat shelf or burst around an upright phone, flat saturated ground",
+      "brandFit": "artwork",
+      "artworkNeeded": "background-removed catalogue product photos the company has marketing rights to (never generated, never user listing photos)",
+      "dark": false,
+      "scene": {
+        "backdrop": "solid",
+        "span": false,
+        "decoration": "none",
+        "shadow": 30,
+        "glow": 0,
+        "tilt": 0,
+        "headlineWeight": 800,
+        "headlineScale": 1.1,
+        "headlineCase": "as-typed",
+        "captionAlign": "center"
+      }
+    },
+    {
+      "slug": "trust-ledger",
+      "name": "Trust Ledger",
+      "file": "26-trust-ledger.md",
+      "summary": "paper ground, ruled fact rows, sourced comparisons, double-ruled serif headline, regulator band on every frame",
+      "brandFit": "yes",
+      "artworkNeeded": null,
+      "dark": false,
+      "scene": {
+        "backdrop": "solid",
+        "span": false,
+        "decoration": "none",
+        "shadow": 20,
+        "glow": 0,
+        "tilt": 0,
+        "headlineWeight": 600,
+        "headlineScale": 1,
+        "headlineCase": "as-typed",
+        "captionAlign": "left"
+      }
+    }
+  ]
+}

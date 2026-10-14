@@ -1,0 +1,30 @@
+{
+  "category": "saas",
+  "guide": "saas.md",
+  "arc": [
+    {
+      "label": "HERO · THE JOB DONE",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "CORE WORKFLOW",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "DASHBOARD / INSIGHT",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "COLLABORATION",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "ON THE GO / NOTIFICATIONS",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "INTEGRATIONS & MORE",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    }
+  ]
+}

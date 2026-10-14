@@ -1,0 +1,5 @@
+{
+  "note": "Per-platform QA settings. Widths are the ones OLX ships: desktop captures are 1440 wide with content capped at 1280; mobile captures are 390. 360 is the narrowest phone checked.",
+  "web-desktop": { "widths": [1280, 1440], "default_width": 1440, "hit_target_min": 24, "hit_target_aim": 32 },
+  "web-mobile":  { "widths": [360, 390],   "default_width": 390,  "hit_target_min": 24, "hit_target_aim": 44 }
+}

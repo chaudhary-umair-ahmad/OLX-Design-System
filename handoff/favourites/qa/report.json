@@ -1,0 +1,71 @@
+{
+ "schema": "olx-design-qa/1",
+ "scope": "favourites",
+ "feature": "favourites",
+ "checked": "2026-10-13T13:32:05.045Z",
+ "verdict": "PASS WITH WARNINGS",
+ "counts": {
+  "blocker": 0,
+  "warning": 3,
+  "note": 0,
+  "waived": 0
+ },
+ "screens": [
+  {
+   "id": "favourites-desktop",
+   "platform": "web-desktop",
+   "origin": "authored",
+   "states": [
+    "default",
+    "empty",
+    "loading",
+    "error"
+   ],
+   "file": "handoff/favourites/screens/favourites-desktop.html"
+  },
+  {
+   "id": "favourites-mobile",
+   "platform": "web-mobile",
+   "origin": "authored",
+   "states": [
+    "default",
+    "empty",
+    "loading",
+    "error"
+   ],
+   "file": "handoff/favourites/screens/favourites-mobile.html"
+  }
+ ],
+ "matrix_size": 16,
+ "checks": [
+  "cov",
+  "tok",
+  "fnt",
+  "cpy",
+  "flw",
+  "par",
+  "a11y",
+  "ovf",
+  "trk"
+ ],
+ "findings": [
+  {
+   "check": "trk.proposed",
+   "severity": "warning",
+   "screen": null,
+   "message": "Event \"remove_from_favourites\" is proposed, not seen live on olx.com.pk. Say so in the summary."
+  },
+  {
+   "check": "trk.proposed",
+   "severity": "warning",
+   "screen": null,
+   "message": "Event \"add_to_favourites\" is proposed, not seen live on olx.com.pk. Say so in the summary."
+  },
+  {
+   "check": "trk.ids",
+   "severity": "warning",
+   "screen": null,
+   "message": "No GA4 measurement id recorded for PK: the plan is fine, but it can't be verified in DebugView yet."
+  }
+ ]
+}

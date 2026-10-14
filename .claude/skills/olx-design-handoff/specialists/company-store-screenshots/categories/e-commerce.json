@@ -1,0 +1,30 @@
+{
+  "category": "e-commerce",
+  "guide": "e-commerce.md",
+  "arc": [
+    {
+      "label": "HERO · WHAT YOU GET",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "BROWSE & DISCOVER",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "PRODUCT DETAIL",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "CHECKOUT & PAY",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "DELIVERY & RETURNS",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "OFFERS",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    }
+  ]
+}

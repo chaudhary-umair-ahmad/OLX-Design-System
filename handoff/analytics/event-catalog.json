@@ -1,0 +1,840 @@
+{
+ "note": "OLX Pakistan GA4 / GTM event catalogue. Edit only through the event-taxonomy guide; check with npm run check:tracking. status: live = seen in window.dataLayer on www.olx.com.pk (read-only browsing, no clicks); proposed = designed here, not yet seen live.",
+ "tenant": {
+  "code": "PK",
+  "site": "https://www.olx.com.pk",
+  "currency": "PKR",
+  "currency_decimals": 0,
+  "ga4_measurement_id": null,
+  "gtm_container_id": null,
+  "consent_mode": null,
+  "key_events": null
+ },
+ "naming": {
+  "style": "snake_case, object_action or action_object as on live (ad_view, home_view, property_search); max 40 characters",
+  "reserved_prefixes": [
+   "google_",
+   "ga_",
+   "firebase_",
+   "gtm."
+  ],
+  "reserved_names": [
+   "ad_click",
+   "ad_exposure",
+   "ad_impression",
+   "ad_query",
+   "ad_reward",
+   "adunit_exposure",
+   "app_clear_data",
+   "app_exception",
+   "app_install",
+   "app_remove",
+   "app_store_refund",
+   "app_update",
+   "app_upgrade",
+   "dynamic_link_app_open",
+   "dynamic_link_app_update",
+   "dynamic_link_first_open",
+   "error",
+   "first_open",
+   "first_visit",
+   "in_app_purchase",
+   "notification_dismiss",
+   "notification_foreground",
+   "notification_open",
+   "notification_receive",
+   "os_update",
+   "screen_view",
+   "session_start",
+   "user_engagement"
+  ],
+  "limits": {
+   "event_name": 40,
+   "param_name": 40,
+   "param_value": 100,
+   "params_per_event": 25
+  },
+  "limits_source": "Google Analytics collection limits, checked 2026-10-13; re-check before a release. Note: live OLX events already send ~50-70 dataLayer keys; GTM maps a subset to GA4."
+ },
+ "shared_params": [
+  {
+   "name": "experiments"
+  },
+  {
+   "name": "device_type",
+   "example": "d"
+  },
+  {
+   "name": "app_agent_version",
+   "example": "1.0"
+  },
+  {
+   "name": "app_agent",
+   "example": "web"
+  },
+  {
+   "name": "app_environment",
+   "example": "production"
+  },
+  {
+   "name": "language",
+   "example": "en"
+  },
+  {
+   "name": "lang",
+   "example": "en"
+  },
+  {
+   "name": "area_unit",
+   "example": "Sq. M."
+  },
+  {
+   "name": "currency_unit",
+   "example": "PKR"
+  },
+  {
+   "name": "layout_preference",
+   "example": "list"
+  },
+  {
+   "name": "url",
+   "pii": true
+  },
+  {
+   "name": "query_params",
+   "pii": true
+  },
+  {
+   "name": "route"
+  },
+  {
+   "name": "referrer",
+   "pii": true
+  },
+  {
+   "name": "website_referrer",
+   "pii": true
+  },
+  {
+   "name": "starting_page_url",
+   "pii": true
+  },
+  {
+   "name": "anonymous_session_id",
+   "pii": true
+  },
+  {
+   "name": "user_profile"
+  },
+  {
+   "name": "website_platform",
+   "example": "strat"
+  },
+  {
+   "name": "loc_id",
+   "example": "5000032"
+  },
+  {
+   "name": "loc_name",
+   "example": "Gulberg 3"
+  },
+  {
+   "name": "loc_breadcrumb",
+   "pii": true
+  },
+  {
+   "name": "website_section",
+   "example": "main_site"
+  },
+  {
+   "name": "is_agent",
+   "example": "no"
+  },
+  {
+   "name": "page_type",
+   "example": "offerdetail"
+  },
+  {
+   "name": "sort_preference"
+  },
+  {
+   "name": "utm_source",
+   "pii": true
+  },
+  {
+   "name": "utm_medium",
+   "pii": true
+  },
+  {
+   "name": "utm_campaign",
+   "pii": true
+  },
+  {
+   "name": "utm_term",
+   "pii": true
+  },
+  {
+   "name": "utm_content",
+   "pii": true
+  },
+  {
+   "name": "custom_traffic_source"
+  },
+  {
+   "name": "gclid",
+   "pii": true
+  },
+  {
+   "name": "wbraid_id",
+   "pii": true
+  },
+  {
+   "name": "loc_1_id",
+   "example": "2003006"
+  },
+  {
+   "name": "loc_1_name",
+   "example": "Punjab"
+  },
+  {
+   "name": "loc_2_id",
+   "example": "4060673"
+  },
+  {
+   "name": "loc_2_name",
+   "example": "Lahore"
+  },
+  {
+   "name": "loc_3_id",
+   "example": "7"
+  },
+  {
+   "name": "loc_3_name",
+   "example": "Gulberg"
+  },
+  {
+   "name": "loc_4_id",
+   "example": "5000032"
+  },
+  {
+   "name": "loc_4_name",
+   "example": "Gulberg 3"
+  },
+  {
+   "name": "user_id",
+   "pii": true
+  },
+  {
+   "name": "event_unique_id",
+   "pii": true
+  },
+  {
+   "name": "event_id",
+   "pii": true
+  }
+ ],
+ "events": [
+  {
+   "name": "home_view",
+   "status": "live",
+   "observed_live": {
+    "PK": "2026-10-13"
+   },
+   "seen_on": "/",
+   "fires_on": "render of the page or section (observed in dataLayer on load)",
+   "params": [
+    {
+     "name": "page_number",
+     "example": 1
+    },
+    {
+     "name": "fresh_recommendations"
+    },
+    {
+     "name": "popular_categories"
+    }
+   ]
+  },
+  {
+   "name": "home_banner_impression",
+   "status": "live",
+   "observed_live": {
+    "PK": "2026-10-13"
+   },
+   "seen_on": "/",
+   "fires_on": "render of the page or section (observed in dataLayer on load)",
+   "params": [
+    {
+     "name": "page_number",
+     "example": 1
+    },
+    {
+     "name": "fresh_recommendations"
+    },
+    {
+     "name": "popular_categories"
+    },
+    {
+     "name": "name",
+     "example": "Hamdard Lucky Draw"
+    },
+    {
+     "name": "banner_id",
+     "example": 512
+    },
+    {
+     "name": "page_section",
+     "example": "top_banner"
+    }
+   ]
+  },
+  {
+   "name": "suggested_history",
+   "status": "live",
+   "observed_live": {
+    "PK": "2026-10-13"
+   },
+   "seen_on": "/",
+   "fires_on": "render of the page or section (observed in dataLayer on load)",
+   "params": [
+    {
+     "name": "page_number",
+     "example": 1
+    },
+    {
+     "name": "fresh_recommendations"
+    },
+    {
+     "name": "popular_categories"
+    },
+    {
+     "name": "originalLocation",
+     "example": "https://www.olx.com.pk/"
+    },
+    {
+     "name": "suggested_history"
+    }
+   ]
+  },
+  {
+   "name": "property_search",
+   "status": "live",
+   "observed_live": {
+    "PK": "2026-10-13"
+   },
+   "seen_on": "/mobile-phones_c1453",
+   "fires_on": "render of the page or section (observed in dataLayer on load)",
+   "params": [
+    {
+     "name": "category_1_id",
+     "example": 1411
+    },
+    {
+     "name": "category_1_name",
+     "example": "mobiles"
+    },
+    {
+     "name": "category_2_id",
+     "example": 1453
+    },
+    {
+     "name": "category_2_name",
+     "example": "mobile-phones"
+    },
+    {
+     "name": "category_3_id",
+     "example": ""
+    },
+    {
+     "name": "category_3_name",
+     "example": ""
+    },
+    {
+     "name": "listing_arrangement",
+     "example": "LIST"
+    },
+    {
+     "name": "page_number",
+     "example": 1
+    },
+    {
+     "name": "page_count",
+     "example": 304
+    },
+    {
+     "name": "sort_by",
+     "example": "desc-relevance"
+    },
+    {
+     "name": "search_keyword",
+     "pii": true
+    },
+    {
+     "name": "filter_name",
+     "example": "Search Hits Count"
+    },
+    {
+     "name": "filter_value",
+     "example": 10015
+    },
+    {
+     "name": "ad_ids",
+     "pii": true
+    },
+    {
+     "name": "ad_ids_set_2",
+     "pii": true
+    },
+    {
+     "name": "ad_ids_set_3",
+     "pii": true
+    },
+    {
+     "name": "ad_ids_set_4",
+     "pii": true
+    },
+    {
+     "name": "ad_ids_set_5",
+     "pii": true
+    },
+    {
+     "name": "popular_categories"
+    },
+    {
+     "name": "total_featured",
+     "example": "1142, 0"
+    }
+   ]
+  },
+  {
+   "name": "external_store_cta_viewed",
+   "status": "live",
+   "observed_live": {
+    "PK": "2026-10-13"
+   },
+   "seen_on": "/mobile-phones_c1453",
+   "fires_on": "render of the page or section (observed in dataLayer on load)",
+   "params": [
+    {
+     "name": "category_1_id",
+     "example": 1411
+    },
+    {
+     "name": "category_1_name",
+     "example": "mobiles"
+    },
+    {
+     "name": "category_2_id",
+     "example": 1453
+    },
+    {
+     "name": "category_2_name",
+     "example": "mobile-phones"
+    },
+    {
+     "name": "category_3_id",
+     "example": ""
+    },
+    {
+     "name": "category_3_name",
+     "example": ""
+    },
+    {
+     "name": "listing_arrangement",
+     "example": "LIST"
+    },
+    {
+     "name": "page_number",
+     "example": 1
+    },
+    {
+     "name": "page_count",
+     "example": 304
+    },
+    {
+     "name": "sort_by",
+     "example": "desc-relevance"
+    },
+    {
+     "name": "search_keyword",
+     "pii": true
+    },
+    {
+     "name": "filter_name",
+     "example": "Search Hits Count"
+    },
+    {
+     "name": "filter_value",
+     "example": 10015
+    },
+    {
+     "name": "ad_ids",
+     "pii": true
+    },
+    {
+     "name": "ad_ids_set_2",
+     "pii": true
+    },
+    {
+     "name": "ad_ids_set_3",
+     "pii": true
+    },
+    {
+     "name": "ad_ids_set_4",
+     "pii": true
+    },
+    {
+     "name": "ad_ids_set_5",
+     "pii": true
+    },
+    {
+     "name": "popular_categories"
+    },
+    {
+     "name": "category",
+     "example": "mobile-phones"
+    },
+    {
+     "name": "surface",
+     "example": "search_card"
+    },
+    {
+     "name": "element",
+     "example": "icon"
+    },
+    {
+     "name": "store",
+     "example": "c876ebda-f9b7-4100-b6d8-4ae57ea1eef4"
+    },
+    {
+     "name": "ad_id",
+     "example": "ev569828"
+    },
+    {
+     "name": "platform",
+     "example": "desktop"
+    },
+    {
+     "name": "logged_in",
+     "example": "n"
+    }
+   ]
+  },
+  {
+   "name": "ad_view",
+   "status": "live",
+   "observed_live": {
+    "PK": "2026-10-13"
+   },
+   "seen_on": "/item/<ad>",
+   "fires_on": "render of the page or section (observed in dataLayer on load)",
+   "params": [
+    {
+     "name": "make",
+     "example": "apple"
+    },
+    {
+     "name": "model",
+     "example": "17e"
+    },
+    {
+     "name": "price",
+     "example": 124000
+    },
+    {
+     "name": "new_used",
+     "example": "used"
+    },
+    {
+     "name": "pta_approved",
+     "example": "no"
+    },
+    {
+     "name": "deliverable",
+     "example": "no"
+    },
+    {
+     "name": "video",
+     "example": "no"
+    },
+    {
+     "name": "panorama",
+     "example": "no"
+    },
+    {
+     "name": "seller_verified",
+     "example": "no"
+    },
+    {
+     "name": "category_1_id",
+     "example": 1411
+    },
+    {
+     "name": "category_1_name",
+     "example": "mobiles"
+    },
+    {
+     "name": "category_2_id",
+     "example": 1453
+    },
+    {
+     "name": "category_2_name",
+     "example": "mobile-phones"
+    },
+    {
+     "name": "category_3_id",
+     "example": ""
+    },
+    {
+     "name": "category_3_name",
+     "example": ""
+    },
+    {
+     "name": "ad_id",
+     "example": "1120418215"
+    },
+    {
+     "name": "ad_title",
+     "pii": true
+    },
+    {
+     "name": "seller_id",
+     "pii": true
+    },
+    {
+     "name": "ad_condition",
+     "example": "used"
+    },
+    {
+     "name": "package_type",
+     "example": "featured"
+    },
+    {
+     "name": "seller_type",
+     "example": "business"
+    },
+    {
+     "name": "company_ids",
+     "pii": true
+    },
+    {
+     "name": "number_of_photos",
+     "example": 1
+    },
+    {
+     "name": "ownership_type",
+     "example": "non-freehold"
+    }
+   ]
+  },
+  {
+   "name": "related_ads",
+   "status": "live",
+   "observed_live": {
+    "PK": "2026-10-13"
+   },
+   "seen_on": "/item/<ad>",
+   "fires_on": "render of the page or section (observed in dataLayer on load)",
+   "params": [
+    {
+     "name": "make",
+     "example": "apple"
+    },
+    {
+     "name": "model",
+     "example": "17e"
+    },
+    {
+     "name": "price",
+     "example": 124000
+    },
+    {
+     "name": "new_used",
+     "example": "used"
+    },
+    {
+     "name": "pta_approved",
+     "example": "no"
+    },
+    {
+     "name": "deliverable",
+     "example": "no"
+    },
+    {
+     "name": "video",
+     "example": "no"
+    },
+    {
+     "name": "panorama",
+     "example": "no"
+    },
+    {
+     "name": "seller_verified",
+     "example": "no"
+    },
+    {
+     "name": "category_1_id",
+     "example": 1411
+    },
+    {
+     "name": "category_1_name",
+     "example": "mobiles"
+    },
+    {
+     "name": "category_2_id",
+     "example": 1453
+    },
+    {
+     "name": "category_2_name",
+     "example": "mobile-phones"
+    },
+    {
+     "name": "category_3_id",
+     "example": ""
+    },
+    {
+     "name": "category_3_name",
+     "example": ""
+    },
+    {
+     "name": "ad_id",
+     "example": "1120418215"
+    },
+    {
+     "name": "ad_title",
+     "pii": true
+    },
+    {
+     "name": "seller_id",
+     "pii": true
+    },
+    {
+     "name": "ad_condition",
+     "example": "used"
+    },
+    {
+     "name": "package_type",
+     "example": "featured"
+    },
+    {
+     "name": "seller_type",
+     "example": "business"
+    },
+    {
+     "name": "company_ids",
+     "pii": true
+    },
+    {
+     "name": "number_of_photos",
+     "example": 1
+    },
+    {
+     "name": "ownership_type",
+     "example": "non-freehold"
+    },
+    {
+     "name": "related_ads"
+    },
+    {
+     "name": "view_section",
+     "example": "body"
+    }
+   ]
+  },
+  {
+   "name": "contact_seller",
+   "status": "proposed",
+   "proposed_for": "catalogue seed",
+   "fires_on": "the contact action succeeding (chat opened, call intent fired, WhatsApp opened, phone number revealed)",
+   "params": [
+    {
+     "name": "lead_channel",
+     "type": "string",
+     "example": "chat",
+     "values": [
+      "chat",
+      "call",
+      "whatsapp",
+      "show_phone"
+     ],
+     "required": true
+    },
+    {
+     "name": "ad_id",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "surface",
+     "type": "string",
+     "example": "ad_page",
+     "values": [
+      "ad_page",
+      "listing_card",
+      "seller_profile"
+     ]
+    }
+   ],
+   "note": "Live OLX very likely has its own names for Chat / Call / WhatsApp / Show phone number; they fire on click, which read-only capture does not do. Observe them before using this."
+  },
+  {
+   "name": "add_to_favourites",
+   "status": "proposed",
+   "proposed_for": "catalogue seed",
+   "fires_on": "the save request succeeding",
+   "params": [
+    {
+     "name": "ad_id",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "surface",
+     "type": "string"
+    }
+   ]
+  },
+  {
+   "name": "remove_from_favourites",
+   "status": "proposed",
+   "proposed_for": "catalogue seed",
+   "fires_on": "the remove request succeeding",
+   "params": [
+    {
+     "name": "ad_id",
+     "type": "string",
+     "required": true
+    }
+   ]
+  },
+  {
+   "name": "post_ad_start",
+   "status": "proposed",
+   "proposed_for": "catalogue seed",
+   "fires_on": "the Post an Ad form opening",
+   "params": [
+    {
+     "name": "category_1_name",
+     "type": "string"
+    }
+   ]
+  },
+  {
+   "name": "post_ad_submit",
+   "status": "proposed",
+   "proposed_for": "catalogue seed",
+   "fires_on": "the ad being accepted by the server",
+   "params": [
+    {
+     "name": "category_1_name",
+     "type": "string"
+    },
+    {
+     "name": "ad_id",
+     "type": "string",
+     "required": true
+    }
+   ]
+  }
+ ]
+}

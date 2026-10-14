@@ -1,0 +1,39 @@
+{
+ "feature": "favourites",
+ "platforms": {
+  "web-desktop": {
+   "entry": "list",
+   "screens": [
+    { "id": "list", "screen": "favourites-desktop", "state": "default", "title": "Saved ads" },
+    { "id": "empty", "screen": "favourites-desktop", "state": "empty", "title": "No favourites" },
+    { "id": "loading", "screen": "favourites-desktop", "state": "loading", "title": "Loading" },
+    { "id": "error", "screen": "favourites-desktop", "state": "error", "title": "Couldn't load" }
+   ],
+   "transitions": [
+    { "from": "list", "to": "empty", "trigger": ".olx-listing__fav", "kind": "tap", "note": "un-hearting the last saved ad" },
+    { "from": "empty", "to": "list", "trigger": "Browse ads", "kind": "back" },
+    { "from": "list", "to": "loading", "trigger": "page load", "kind": "system" },
+    { "from": "loading", "to": "list", "trigger": "request succeeds", "kind": "back" },
+    { "from": "loading", "to": "error", "trigger": "request fails", "kind": "system" },
+    { "from": "error", "to": "loading", "trigger": "Try again", "kind": "back" }
+   ]
+  },
+  "web-mobile": {
+   "entry": "m-list",
+   "screens": [
+    { "id": "m-list", "screen": "favourites-mobile", "state": "default", "title": "Saved ads" },
+    { "id": "m-empty", "screen": "favourites-mobile", "state": "empty", "title": "No favourites" },
+    { "id": "m-loading", "screen": "favourites-mobile", "state": "loading", "title": "Loading" },
+    { "id": "m-error", "screen": "favourites-mobile", "state": "error", "title": "Couldn't load" }
+   ],
+   "transitions": [
+    { "from": "m-list", "to": "m-empty", "trigger": ".olx-listing__fav", "kind": "tap", "note": "un-hearting the last saved ad" },
+    { "from": "m-empty", "to": "m-list", "trigger": "Browse ads", "kind": "back" },
+    { "from": "m-list", "to": "m-loading", "trigger": "page load", "kind": "system" },
+    { "from": "m-loading", "to": "m-list", "trigger": "request succeeds", "kind": "back" },
+    { "from": "m-loading", "to": "m-error", "trigger": "request fails", "kind": "system" },
+    { "from": "m-error", "to": "m-loading", "trigger": "Try again", "kind": "back" }
+   ]
+  }
+ }
+}

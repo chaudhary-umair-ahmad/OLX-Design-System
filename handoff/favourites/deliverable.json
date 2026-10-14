@@ -1,0 +1,28 @@
+{
+ "feature": "favourites",
+ "title": "Favourites (worked example)",
+ "version": 1,
+ "audience": "engineer",
+ "platforms": ["web-desktop", "web-mobile"],
+ "locales": ["en"],
+ "screens": ["favourites-desktop", "favourites-mobile"],
+ "classification": "internal",
+ "summary": {
+  "problem": "Worked example for the hand-off skill: the logged-in Favourites page isn't captured, so its states are designed from the captured listing card.",
+  "scope": "Saved ads on desktop and mobile web: list, empty, loading and error.",
+  "changed": "First version."
+ },
+ "signoff": { "who": ["designer", "product owner"], "meaning": "Example only: not for build." },
+ "sections": { "exclude": { "motion": "no motion beyond the card hover already in components.css" } },
+ "rules": [
+  { "id": "R1", "text": "Un-hearting a saved ad removes it from the list immediately.", "test": "Tap the heart on a card; the card leaves the grid; when it was the last one, the empty state shows." },
+  { "id": "R2", "text": "Titles never break the card.", "test": "QA ovf.long: a 200-character title stays on one line with an ellipsis at 360, 390, 1280 and 1440." }
+ ],
+ "acceptance": ["The empty state offers 'Browse ads'.", "The error state offers 'Try again'."],
+ "edge_cases": ["A saved ad removed by its seller: the card should say the ad is no longer available, with a remove action (not drawn: open question)."],
+ "open_questions": [
+  { "q": "Is the page title 'Favourites' or 'My favourites' on live? The logged-in page isn't captured.", "owner": "product owner", "blocks": "copy" },
+  { "q": "Does un-hearting need an undo?", "owner": "product owner", "blocks": "R1" }
+ ],
+ "changelog": [ { "version": 1, "date": "2026-10-13", "notes": "First build of the worked example." } ]
+}

@@ -1,0 +1,30 @@
+{
+  "category": "rentals",
+  "guide": "rentals.md",
+  "arc": [
+    {
+      "label": "HERO · RENT IT",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "SEARCH BY DATES / AREA",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "LISTING & PRICE",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "BOOK OR CONTACT",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "TRUST & PAYMENTS",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    },
+    {
+      "label": "HOSTS / OWNERS",
+      "placeholder": "[Write the headline]\n[3–5 words a line]"
+    }
+  ]
+}

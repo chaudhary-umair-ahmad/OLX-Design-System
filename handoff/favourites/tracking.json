@@ -1,0 +1,13 @@
+{
+ "feature": "favourites", "version": 1, "tenants": ["PK"],
+ "metrics": [
+  { "id": "M1", "kind": "primary", "name": "Return to a saved ad", "definition": "users who open an ad from Favourites / users who view Favourites", "events": ["ad_view"] },
+  { "id": "M2", "kind": "guardrail", "name": "Accidental removals", "definition": "remove_from_favourites followed by add_to_favourites of the same ad within a minute", "events": ["remove_from_favourites", "add_to_favourites"] }
+ ],
+ "events": [
+  { "id": "E1", "action": "open a saved ad", "event": "ad_view", "decision": "extend", "screens": ["list", "m-list"], "params": { "view_section": "favourites" }, "dynamic": ["ad_id", "price", "category_1_name"] },
+  { "id": "E2", "action": "un-heart a saved ad", "event": "remove_from_favourites", "decision": "reuse", "screens": ["list", "m-list"], "dynamic": ["ad_id"] },
+  { "id": "E3", "action": "re-heart (undo)", "event": "add_to_favourites", "decision": "reuse", "screens": ["list", "m-list"], "params": { "surface": "favourites" }, "dynamic": ["ad_id"] }
+ ],
+ "open_questions": [ { "q": "What does OLX's live site fire when a heart is tapped? Observe it before relying on the proposed names.", "owner": "analytics owner", "blocks": "E2, E3" } ]
+}
