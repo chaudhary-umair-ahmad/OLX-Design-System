@@ -1,5 +1,5 @@
 {
- "note": "Screens designed with the olx-design-handoff skill. Live captures (site/pages) are not listed here; QA reaches them as <page>~desktop / <page>~mobile and caps their findings at note.",
+ "note": "Screens designed with the olx-design-system skill. Live captures (site/pages) are not listed here; QA reaches them as <page>~desktop / <page>~mobile and caps their findings at note.",
  "features": {
   "favourites": {
    "title": "Favourites (worked example)",

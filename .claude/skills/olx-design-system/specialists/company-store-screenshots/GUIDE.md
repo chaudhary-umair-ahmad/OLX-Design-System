@@ -1,4 +1,4 @@
-> **OLX Pakistan store screenshots (inside olx-design-handoff).** This is the company-store-screenshots kit with only
+> **OLX Pakistan store screenshots (inside olx-design-system).** This is the company-store-screenshots kit with only
 > the OLX Pakistan profile (plus the blank `_new-brand.*` template). Paths below are inside this skill's folder. Run
 > the scripts from the **OLX-Design-System repo root**: the profile points at the licensed Geomanist files in `fonts/`.
 

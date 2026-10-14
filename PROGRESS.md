@@ -37,10 +37,10 @@ Every push to `main` rebuilds and redeploys the site (`.github/workflows/pages.y
 - **Design system book** (`book/`): foundations, components, templates and every captured screen, each with its live HTML, screenshot and source. It also includes the design-kit screens.
 - **Prototype** (`prototype/`): 222 screens and 32 guided flows, built from the captures.
 - **Catalog** (`catalog/`): a developer index of pages, flows, sections, components and assets.
-- **Claude skill.** `.claude/skills/olx-design-system/SKILL.md` gives the rules (look at the live screen first, tokens only, `olx-*` components first, both viewports, accessibility), plus a token and markup quick reference, OLX content conventions and where everything is.
-  - Claude Code loads it automatically in this repo.
-  - For claude.ai, upload the `olx-design-system` folder as a skill.
-- **Design hand-off skill.** `.claude/skills/olx-design-handoff/` runs a design job end to end, with a gate between stages: intake → plan approval → design → review → tracking → QA → hand-off → summary.
+- **Claude skill: one skill, `.claude/skills/olx-design-system/`, with two modes.**
+  - Claude Code loads it automatically in this repo. For claude.ai, upload the folder (zipped as a `.skill`) as a skill.
+  - **Quick questions and building UI:** `foundations.md` gives the rules (look at the live screen first, tokens only, `olx-*` components first, both viewports, accessibility), plus a token and markup quick reference, OLX content conventions and where everything is.
+  - **A full design job:** `SKILL.md` runs it end to end, with a gate between stages: intake → plan approval → design → review → tracking → QA → hand-off → summary.
   - **QA gate:** `npm run qa -- --scope <feature>`. Static checks (states, tokens, Geomanist weights, copy, flows, parity, tracking) and render checks in Chromium at 1280/1440 and 360/390 (overflow, a 200-character string in user text, alt, labels, hit targets, AA contrast, rendered fonts). Writes `handoff/<feature>/qa/report.{json,html}`.
   - **Hand-off:** `npm run handoff -- --feature <feature>` builds one offline HTML file (clickable prototype, every state, specs mapped to tokens, rules with tests, copy deck, tracking, QA, open questions, sign-off). Internal only, since it embeds Geomanist; `handoff/*/dist/` is git-ignored.
   - **Real content:** `npm run fixtures` → `handoff/content/fixtures.json`, 864 listings from the captures.
@@ -90,7 +90,7 @@ Every push to `main` rebuilds and redeploys the site (`.github/workflows/pages.y
 3. **Update the hard-coded URLs** to the new owner:
    - `README.md` (Pages links);
    - `scripts/build-manifest.mjs` (the `BASE` constant), then run `npm run manifest`;
-   - `.claude/skills/olx-design-system/SKILL.md` (the published `design-system.json` link);
+   - `.claude/skills/olx-design-system/foundations.md` (the published `design-system.json` link);
    - `scripts/build-publish.mjs` (the default `BOOK_STORYBOOK_URL`, a claude.ai artifact link that belongs to the old account; Pages overrides it, so it matters only for the claude.ai copy).
 4. **Claude access.** Install the Claude GitHub App on the account that **owns** the repo (https://github.com/apps/claude), then reconnect GitHub at claude.ai → Settings → Connectors. Earlier, the app was installed on `iqratahir` while the repo belonged to `iqratahir-8`, which caused 403s on every push.
 5. **Cloud environment.** In the Claude Code cloud environment, set Network access to **Full**, or allow these hosts: `www.olx.com.pk`, `images.olx.com.pk`, `<owner>.github.io`. Without them, captures and checks of the live site can't run.
@@ -124,6 +124,8 @@ MASK_PHOTOS=1 npm run verify:pixels      # writes audit/pixel-report.md
 - **Lazy-loaded photos.** OLX puts listing photo URLs in `data-src`. `scripts/lib/capture-lib.mjs` (`freezePage`) copies them into `src`, so static copies show photos. `scripts/fix-lazy-images.mjs` repairs older captures.
 - **Pages sized to the window.** Motors uses `vh` units, so its page height depends on the window height. The pixel check sizes the window from the live screenshot, not from the saved page height.
 - **Pixel check and animations.** The checker jumps animations to their end state. Turning them off would leave fade-in popups invisible and make them look missing.
+- **Skill descriptions are capped at 1,024 characters** on claude.ai upload. Claude Code doesn't enforce it, so check the length before packaging.
+- **`git mv` into a folder that still exists** moves the source *inside* it (`a/b`), not over it. When renaming over an emptied folder, move to a temporary name first.
 - **Python 3.11 in the cloud.** The icon generator used an f-string with nested double quotes, which only Python 3.12+ accepts. It was rewritten; keep scripts 3.11-safe.
 - **Store-screenshot profiles.** Relative paths in `brands/<id>.json` resolve from the profile's own folder, not the repo root (hence `../../../../../../fonts/...`).
 - **Two sessions on one branch.** The Mac session and cloud sessions both pushed to `claude/olx-design-system-setup-1chba1`. Fetch before you push, and never force-push over the other session's work.
@@ -133,11 +135,13 @@ MASK_PHOTOS=1 npm run verify:pixels      # writes audit/pixel-report.md
 Newest first. One entry per change: date, what changed, why, and the PR. "Mac" marks work done in the session on the Mac (`local-build`); the rest was done in cloud sessions.
 
 ### 14 Oct 2026
-- **GA4 setup found and recorded** (`handoff/analytics/gtm-container.md`). Read-only from the home page source and the public GTM script: container `GTM-W6NPB7W`, GA4 `G-YP1ZBNYRVD`, consent mode referenced, and about 60 event names the container listens for. Five of the catalogue's proposed names don't match live (e.g. favourites is `favourite_toggle`, contact is `chat_lead` / `phone_view`). Not applied to the catalogue yet.
-- **Repo being transferred to another GitHub account.** The 13 and 14 Oct work is on the branch `claude/olx-design-system-setup-1chba1` and **not yet merged to `main`** (no PR opened). Open a PR from that branch and merge it in the new account.
+- **Skill description shortened to 704 characters.** claude.ai rejects a skill whose `description` is over 1,024 characters, so the merged skill failed to upload.
+- **The two OLX skills merged into one**, `olx-design-system`, at the user's request. The old `olx-design-system/SKILL.md` is now `foundations.md` (quick questions), and the hand-off skill's folder moved in as `SKILL.md`, `stages/`, `qa/`, `deliverables/` and `specialists/`. `olx-design-handoff` no longer exists. Paths in `package.json`, `README.md`, `CLAUDE.md`, `handoff/registry.json` and the scripts were updated; `npm run qa`, `handoff` and `app-assets` were re-run from the new path.
+- **GA4 setup found and recorded** (#9, `handoff/analytics/gtm-container.md`). Read-only from the home page source and the public GTM script: container `GTM-W6NPB7W`, GA4 `G-YP1ZBNYRVD`, consent mode referenced, and about 60 event names the container listens for. Five of the catalogue's proposed names don't match live (e.g. favourites is `favourite_toggle`, contact is `chat_lead` / `phone_view`). Not applied to the catalogue yet.
+- **Repo being transferred to another GitHub account.** The 13 and 14 Oct work is on the branch `claude/olx-design-system-setup-1chba1` and was merged to `main` in iqratahir-8/OLX-Design-System#9. The repo now belongs to `chaudhary-umair-ahmad`; GitHub forwards the old address.
 
 ### 13 Oct 2026
-- **`olx-design-handoff` skill added**, modelled on the uploaded Dubizzle hand-off skill and rebuilt for OLX in Node.
+- **`olx-design-handoff` skill added** (#9), modelled on the uploaded Dubizzle hand-off skill and rebuilt for OLX in Node.
   - Stages and gates, the QA runner, the single-file deliverable builder, 19 specialist guides, the OLX store-screenshot and app-icon kits, the analytics event catalogue, real-content fixtures, and the worked `favourites` example.
   - New scripts: `npm run qa`, `handoff`, `fixtures` and `app-assets`.
   - `README.md` and the `olx-design-system` skill point to it.

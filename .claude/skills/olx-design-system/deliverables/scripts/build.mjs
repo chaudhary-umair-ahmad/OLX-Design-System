@@ -4,7 +4,7 @@
 // Fonts, CSS and images are inlined; nothing is fetched when the file is opened.
 //
 // Run from the repo root:
-//   node .claude/skills/olx-design-handoff/deliverables/scripts/build.mjs --feature <feature> [--placeholder-images]
+//   node .claude/skills/olx-design-system/deliverables/scripts/build.mjs --feature <feature> [--placeholder-images]
 //   npm run handoff -- --feature favourites
 //
 // Gate: refuses when handoff/<feature>/qa/report.json is missing, BLOCKED, or older than a screen

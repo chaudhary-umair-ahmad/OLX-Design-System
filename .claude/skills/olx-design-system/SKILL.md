@@ -1,146 +1,177 @@
 ---
 name: olx-design-system
-description: Use for any OLX Pakistan (olx.com.pk) design or front-end work — screens, components, flows, prototypes, copy, design QA or hand-off for OLX Classifieds, OLX Property or OLX Motors. Keeps colours, type, spacing and components consistent with the OLX design system in this repo (tokens, olx-* CSS components, live captures of every page). Use it before writing OLX UI code, designing an OLX screen in Claude Design or Figma, or reviewing whether something matches olx.com.pk.
+description: 'OLX Pakistan (olx.com.pk: Classifieds, Property, Motors web) design and front-end work. Quick questions (a token, a component, markup, copy, does this match live) are answered from foundations.md. A full design job (new feature, revamp, flow, missing state) runs end to end with a gate at each stage: intake, a plan the user approves, design from live captures and tokens, review, analytics plan, QA on every state, width and flow, and one internal hand-off HTML (prototype, states, specs, rules, copy, tracking, QA, open questions). Also App Store / Google Play screenshots and app icons / favicons for OLX. Use before writing OLX UI code or designing an OLX screen. Works in the OLX-Design-System repo.'
+version: '2.0.0'
 ---
 
 # OLX Pakistan design system
 
-This repo is the OLX Pakistan design system, built from the live site
-(www.olx.com.pk) and checked against it. Everything is indexed in
-**`design-system.json`** at the repo root (published at
-https://iqratahir-8.github.io/OLX-Design-System/design-system.json). Read it first:
-it lists every token, CSS component, live component capture, template, screen, flow
-and asset, with file paths.
+## Two modes
 
-## Rules
-
-1. **Look before you design.** OLX already has most screens. Find the live version first:
-   - `design-system.json` → `screens`, `templates`, `flows`;
-   - `catalog/index.json` for every page, section and flow;
-   - `site/pages/<id>/<viewport>.png` for screenshots and `.html` for the real markup.
-
-   Match it. Don't invent a new pattern when a live one exists.
-2. **Tokens only.** Never hard-code a colour, size, radius, shadow or duration. Use the `--olx-*` CSS variables from `css/tokens.css`, or `dist/tokens.js` in JS.
-   - In components, use **semantic** tokens (`--olx-text`, `--olx-primary`, `--olx-border`…), so dark mode works.
-   - Use primitives (`--olx-color-petrol-900`…) only to define new semantic tokens.
-3. **Components before custom CSS.** Use the `olx-*` classes in `css/components.css`. The class names, modifiers and elements are listed under `design-system.json` → `components.css`, and `index.html` shows each one.
-   - **React:** use `storybook/src/components/` (Alert, Badge, Breadcrumb, Button, Chip, Field, ListingCard).
-   - **Something missing?** Copy the live markup from `components/<name>/<viewport>.html` and restyle it with tokens.
-4. **Desktop and mobile.** Every screen has both:
-   - desktop is 1440 wide, content max 1280 (`.olx-container`);
-   - mobile is 390 wide;
-   - the main layout breakpoint is 767px (`@media (max-width: 767px)`);
-   - token breakpoints are xs 360, sm 480, md 768, lg 950, xl 1280.
-5. **Geomanist in three weights only.** Use Regular (400), Book (500) and Medium (600). **Never use Geomanist Bold or Thin**, and never `font-weight: 700`, `bold`, or anything under 400. For emphasis or headings use `--olx-font-weight-semibold` (600). `<strong>`/`<b>` already map to 600, and `font-synthesis: none` stops faked bold.
-6. **Accessible by default.** Text contrast must be at least 4.5:1. Links and focus use `--olx-link` / `--olx-focus` (#2456d6), not the brand blue #3a77ff, which fails on white. Icon-only buttons need an `aria-label`. Respect `prefers-reduced-motion`.
-
-## Quick reference
-
-**Load everything:** `<link rel="stylesheet" href="css/olx.css">` (tokens + base + components).
-For theming, the default follows the OS, and `<html data-theme="dark">` (or `"light"`) forces a theme.
-
-**Brand colours**
-
-| Colour | Hex | Used for |
-| --- | --- | --- |
-| Petrol | #002f34 | text, primary buttons, logo |
-| Teal | #23e5db | accent |
-| Yellow | #ffce32 | highlight, "Featured" |
-| Blue | #3a77ff | brand icons only |
-| Red | #ff5636 | |
-
-The Sell button's tri-colour ring is `--olx-gradient-sell-ring`.
-
-**Semantic tokens (light theme)**
-
-| Token | Light value |
+| The ask | Do |
 | --- | --- |
-| `--olx-bg` / `--olx-bg-subtle` / `--olx-surface` | #fff / #f2f4f5 / #fff |
-| `--olx-text` / `--olx-text-muted` / `--olx-text-inverse` | #002f34 / #406367 / #fff |
-| `--olx-border` / `--olx-border-subtle` / `--olx-border-strong` | #d8dfe0 / #e8ecec / #002f34 |
-| `--olx-primary` (hover `--olx-primary-hover`) / `--olx-on-primary` | #002f34 (#23494d) / #fff |
-| `--olx-accent` / `--olx-highlight` / `--olx-featured` | #23e5db / #ffce32 / #00a49f |
-| `--olx-link` / `--olx-focus` | #2456d6 |
-| `--olx-success` / `--olx-warning` / `--olx-danger` (each with `-bg`) | #157544 / #002f34 / #b83018 |
+| A quick question: a token, a component, markup, copy, "does this match live" | Read **`foundations.md`** and answer. No stages, no gates |
+| Build or change a few OLX components or a page in code | `foundations.md`, then check with `npm run qa` |
+| A design job that should end in something engineers build | `foundations.md` once, then the stages below |
 
-**Type, spacing and shape**
+## The full job
 
-| Group | Tokens |
-| --- | --- |
-| Font | `--olx-font-family-sans`: Geomanist (committed in `fonts/`, loaded by `css/tokens.css`), then Helvetica, Arial |
-| Font size | `--olx-font-size-xs`…`4xl` = 12 / 14 / 16 / 18 / 20 / 24 / 32 / 40px |
-| Font weight | `--olx-font-weight-regular` 400 (Geomanist Regular), `medium` 500 (Geomanist Book), `semibold` 600 (Geomanist Medium). These are the only three. |
-| Line height | `--olx-font-line-height-tight` 1.2, `--olx-font-line-height-normal` 1.5 |
-| Spacing | `--olx-space-1`…`8` = 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64px |
-| Radius | `--olx-radius-sm` 4, `field` 6, `md` 8, `lg` 16, `pill` 999 |
-| Shadow | `--olx-shadow-sm`, `md`, `lg`, `featured` |
-| Motion | `--olx-motion-duration-fast` 120ms, `base` 200ms, easing `--olx-motion-easing-standard` |
+An **orchestrator**. It owns the questions, the plan and the gates. The work of each stage lives
+in its own file. Read the stage file when you reach it; don't restate its rules here.
 
-**Core markup** (copied from `index.html`):
-
-```html
-<button class="olx-btn olx-btn--primary">Chat</button>          <!-- --secondary --accent --ghost --danger, --sm, --block -->
-<a class="olx-sell" href="/post"><span aria-hidden="true">+</span> Sell</a>
-
-<div class="olx-field">                                         <!-- olx-field--error + aria-invalid on the input -->
-  <label class="olx-label" for="title">Ad title</label>
-  <input class="olx-input" id="title">
-  <span class="olx-hint">Mention the key features of your item.</span>
-</div>
-
-<form class="olx-search" role="search">
-  <label class="olx-visually-hidden" for="q">Search</label>
-  <input id="q" type="search" placeholder="Find Cars, Mobile Phones and more...">
-  <button type="submit">Search</button>
-</form>
-
-<div class="olx-alert olx-alert--info" role="status"><div><strong>Heads up</strong>Your ad is under review.</div></div>
+```
+Intake → Plan (user approves) → Design → Review → Tracking → QA gate → Deliverable → Summary
+                                stages/1   specialists/  specialists/  stages/2   stages/3
+                                           design-review analytics-tracking
 ```
 
-Listing cards use `olx-listing` (variants `--featured` and `--row`) with these elements:
-- `__media`, `__body`, `__head`;
-- `__price` (or `olx-price olx-price--md`), `__title`, `__desc`, `__meta`;
-- `__fav` (a button with `aria-pressed`), `__badge`, `__ribbon`.
+Everything runs from the **repo root** of `OLX-Design-System`. The repo has the measured system:
+- `css/olx.css`: tokens, base and `olx-*` components;
+- `site/pages/`: 202 live captures;
+- `handoff/`: the working area this skill writes to;
+- `design-system.json`: the index of all of it.
 
-`index.html` has a full example.
+The foundations (tokens, components, conventions) are in **`foundations.md`** in this folder. Read it once per job.
 
-## OLX content conventions (as on the live site)
+## Ground rules
 
-- **Prices:** "Rs 54,999" under 1 lakh; above that "Rs 9.75 Lac" (the live site also writes "Lacs", for example "Rs 71.50 Lacs"); above 1 crore "Rs 3.10 Crore".
-- **Listing meta:** "Area, City · 3 days ago" (relative time: "5 minutes ago", "1 day ago").
-- **Featured ads:** a yellow "Featured" badge; the weekly pick gets an "Ad of the Week" ribbon.
-- **Personal data:** never put real seller names or phone numbers in designs or captures. Use "Seller name" and "03XX-XXXXXXX".
+1. **Read `PROGRESS.md` and `CLAUDE.md` first.** Keep `PROGRESS.md`'s change log current after every stage you commit.
+2. **Ask once, up front, only what you can't derive.** For each question, propose an answer and your confidence. Use AskUserQuestion, at most 4 questions per round.
+3. **Show the plan and wait for approval before drawing anything.**
+4. **Stop at every gate.** A failed stage doesn't start the next. Say why, then fix it or ask.
+5. **Never present an invented value as a measured one.** Every value is one of three:
+   - **measured**: from a live capture or a token;
+   - **adopted**: a designer confirmed it;
+   - **proposed**: new, unconfirmed.
 
-## Where to find things
+   Proposed values go in `handoff/<feature>/PROPOSALS.md` and are said out loud.
+6. **Real content only.** Use `handoff/content/fixtures.json`, which holds 864 listings copied from the captures: real prices, places and "x days ago". Never lorem, `John Doe`, `$`, or made-up metrics.
+7. **Geomanist in Regular 400, Book 500 and Medium 600 only.** Never Bold, never Thin.
 
-| Need | File |
+## Stage 0: Intake
+
+First derive the answers you can, from the brief, `handoff/registry.json`, `site/index.json` and `design-system.json`. Then ask only about the gaps:
+
+| Question | Default to propose |
 | --- | --- |
-| Everything, indexed | `design-system.json` (rebuild: `npm run manifest`) |
-| Tokens | `tokens/tokens.json` (rebuild CSS/JS: `npm run build`) |
-| CSS | `css/olx.css` = `css/tokens.css` + `css/base.css` + `css/components.css` |
-| A live page as HTML + screenshot | `site/pages/<id>/<desktop\|mobile>.{html,png,json}` |
-| A page section | `site/pages/<id>/sections/<viewport>/NN-name.{html,png}` |
-| A live component | `components/<name>/<viewport>.{html,png}`, or the section paths listed per state in `design-system.json` → `components.live` |
-| Page templates | `templates/<page>/<viewport>.{html,png}` |
-| User journeys | `design-system.json` → `flows`, `docs/FLOWS.md`, prototype `prototype/data.json` |
-| Icons, category art, logos | `assets/` (`assets/index.json` lists where each is used) |
-| Storybook stories | `storybook/src/` (published at `/storybook/`) |
-| How it matches live | `audit/pixel-report.md` |
-| Status and open gaps | `PROGRESS.md` |
+| The job in one sentence, and is there a PRD or link? | from the ask |
+| New feature, or a revamp of a captured page? (Stage 1, step 0 checks what exists) | from `site/index.json` |
+| Vertical: Classifieds, Property or Motors? | from the ask |
+| Platforms: `web-desktop`, `web-mobile` | both |
+| Locale | English (Urdu is not in scope) |
+| Who reads the hand-off: engineers, designers, product? | engineers |
+| How far: design only / design + QA / all the way to the hand-off | all the way |
+| Tracking: the primary metric and guardrails | from the PRD, else ask |
 
-## Taking a design all the way to hand-off
+Fix the **feature name** (kebab-case) here. It becomes the registry `feature` and the folder `handoff/<feature>/`.
 
-For a feature, revamp or flow that should end in something engineers build, use the **`olx-design-handoff`** skill
-(`.claude/skills/olx-design-handoff/SKILL.md`). It adds plan approval, a design review, analytics, a QA gate
-(`npm run qa`) and a single-file hand-off (`npm run handoff`), plus store screenshots and app icons. This skill stays
-the reference for tokens, components and conventions.
+## Stage 1: Plan (gate: user approval)
 
-## Checking your work
+Write the plan in chat, briefly:
+- the screens and states (empty, loading and error included), and which are reused from captures or new;
+- the flow;
+- what's cut;
+- what's unverified;
+- the QA scope;
+- the hand-off sections you expect to exclude, with reasons;
+- the open questions, each with an owner.
 
-- **Compare with live.** Put your screen next to the matching `site/pages/<id>/<viewport>.png`. Check both viewports.
-- **Re-run the pixel check** if you changed captured HTML or CSS: `MASK_PHOTOS=1 npm run verify:pixels`. It writes `audit/pixel-report.md`.
-- **Refresh from live** only when OLX changes. This needs network access to www.olx.com.pk; see "How to work on it" in `PROGRESS.md`.
+End with **"Approve, or tell me what to change."** Don't continue without an answer.
 
-## Known gaps
+## Stage 2: Design
 
-Logged-in screens aren't captured yet: post an ad, chat, profile and my ads (`templates/{chat,login,post-ad,profile}` are empty). For those, follow the patterns of the nearest captured screens and say that you did. The full list is in `design-system.json` → `gaps`.
+Follow `stages/1-design.md` fully, including step 0 (is it already captured?), the product pass, the critique, and step 6, which leaves the hand-off pack ready (registry entries, `flows.json`, `deliverable.json`, first QA).
+
+**Gate:** every screen and state is registered, and the critique is written.
+
+## Stage 2.5: Review
+
+Follow `specialists/design-review/GUIDE.md` on the new screens. Words go through `specialists/design-copy/GUIDE.md`, and every input through `specialists/design-forms/GUIDE.md`. Use `design-grid`, `design-typography` and `design-interaction` where the review names a gap.
+
+**Gate:** no open P0 or P1. Fix them, or have the user accept them in writing; list accepted ones in the summary.
+
+## Stage 2.7: Tracking (when a metric was given)
+
+Follow `specialists/analytics-tracking/GUIDE.md`. It runs from metrics to actions on the flow, then through `event-taxonomy`, to the feature's `tracking.json`, registered in `handoff/registry.json`.
+
+**Gate:** `npm run qa -- --scope <feature> --checks trk` has no blockers. Say out loud which events are only `proposed` (not seen on olx.com.pk).
+
+## Stage 3: QA
+
+Follow `stages/2-qa.md`: show the matrix, run it, state the verdict in one line.
+
+**Gate:**
+- **BLOCKED stops the job.** Fix the blockers (back to Stage 2), or, only if the user says so, add a waiver with a reason, owner and expiry.
+- **PASS WITH WARNINGS can continue** once the user has been told the warnings.
+- Never relabel a blocker as a pass.
+
+## Stage 4: Deliverable
+
+Only if the user chose "all the way". Follow `stages/3-deliverable.md`. It re-checks the QA gate and builds one self-contained INTERNAL HTML into `handoff/<feature>/dist/` (git-ignored).
+
+**Gate:** its checks pass: no personal data, nothing remote, under 12 MB. If it fell back to placeholder images, say so.
+
+## Stage 5: Summary
+
+One screen, not the report:
+- the verdict line, with blocker and warning counts;
+- the three findings worth reading;
+- open questions with owners;
+- what's unverified (proposed values, proposed events);
+- where the file is;
+- what still needs a person (sign-off, observing click events on live).
+
+Add the `PROGRESS.md` log entry, commit, and push to the working branch. Merging to `main` is asked, never assumed.
+
+## Resuming
+
+If the feature already has registry entries, `flows.json` or a deliverable, say what exists and start from the first stage that isn't done. Don't redesign. A new version of a hand-off bumps `version` in `deliverable.json` and adds a changelog entry.
+
+## What this skill won't do
+
+- Skip plan approval, or run stages in parallel.
+- Click, type or submit on olx.com.pk. Capturing only navigates and scrolls; logged-in screens are captured on the Mac (`npm run capture:logged-in`).
+- Publish a deliverable outside the repo. It's INTERNAL: it inlines the licensed Geomanist.
+
+## Scripts (run from the repo root)
+
+| Command | Does |
+| --- | --- |
+| `npm run qa -- --scope <feature\|screen\|page~desktop\|all> [--matrix] [--checks …]` | QA gate: writes `handoff/<feature>/qa/report.{json,html}` |
+| `npm run handoff -- --feature <feature> [--placeholder-images]` | Builds the single-file deliverable |
+| `npm run fixtures` | Rebuilds `handoff/content/fixtures.json` from the captures |
+| `npm run verify:pixels` | Checks stored captures against their live screenshots |
+| `MASK_PHOTOS=1 npm run verify:pixels -- site` | Same, ignoring listing photos |
+
+`handoff/favourites/` is a **worked example**: screens, registry entries, `flows.json`, `tracking.json`, `deliverable.json`, a QA report and a built hand-off. Copy its shape.
+
+## Specialist guides (read the one you need)
+
+| Guide | Use when | Read |
+| --- | --- | --- |
+| design-review | Critique a screen like a senior OLX designer and catch what looks AI-made, before QA | `specialists/design-review/GUIDE.md` |
+| design-copy | Any word on a screen: buttons, labels, errors, empty states, prices, dates | `specialists/design-copy/GUIDE.md` |
+| design-forms | Post an Ad, login, filters, profile, report: layout, inputs, validation | `specialists/design-forms/GUIDE.md` |
+| design-grid | Container, columns, breakpoints, spacing, listing grids and rows | `specialists/design-grid/GUIDE.md` |
+| design-typography | Hierarchy from the measured scale, prices, truncation, the Geomanist weights | `specialists/design-typography/GUIDE.md` |
+| design-interaction | Every state of every control, loading, dialogs and sheets, destructive actions | `specialists/design-interaction/GUIDE.md` |
+| motion-design | Transitions, menus, sheets, carousels, toasts: timing and easing from the tokens | `specialists/motion-design/GUIDE.md` |
+| icons | Find, check and register icons; house set first | `specialists/icons/GUIDE.md` |
+| imagery-illustration | Listing photos, empty-state art, banners, avatars | `specialists/imagery-illustration/GUIDE.md` |
+| design-prompt-images | Image-generation prompts for banners and heroes that don't look AI-made, set in Pakistan | `specialists/design-prompt-images/GUIDE.md` |
+| design-inspiration | How other products solve a pattern; structure only, rebuilt from OLX parts | `specialists/design-inspiration/GUIDE.md` |
+| chart-data-viz | Charts, stats, dashboards (seller performance, price trends) | `specialists/chart-data-viz/GUIDE.md` |
+| token-check | Find and fix hard-coded colours, sizes and fonts in a screen or component | `specialists/token-check/GUIDE.md` |
+| analytics-tracking | Metric → events → `tracking.json` for a feature | `specialists/analytics-tracking/GUIDE.md` |
+| event-taxonomy | Reuse, extend or add events in `handoff/analytics/event-catalog.json` | `specialists/event-taxonomy/GUIDE.md` |
+| ga4-event-spec | The dataLayer / GA4 spec engineers implement | `specialists/ga4-event-spec/GUIDE.md` |
+| funnel-analysis | Funnels for browse → ad → contact, Post an Ad, favourites | `specialists/funnel-analysis/GUIDE.md` |
+| company-store-screenshots | App Store / Google Play screenshots for the OLX apps | `specialists/company-store-screenshots/GUIDE.md` |
+| company-web-app-assets | Favicons, PWA icons, iOS and Android app icons, with a dev hand-off folder | `specialists/company-web-app-assets/GUIDE.md` |
+
+**Precedence for any OLX design question:**
+1. the live captures (`site/pages/`), which win over memory and over any document;
+2. tokens and components (`css/`, `tokens/tokens.json`, `design-system.json`);
+3. these guides.
+
+Report any conflict rather than quietly choosing one side.
