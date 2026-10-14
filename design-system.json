@@ -1,17 +1,17 @@
 {
  "name": "OLX Pakistan Design System",
  "version": "0.1.0",
- "generated": "2026-10-09",
+ "generated": "2026-10-14",
  "source": {
   "site": "https://www.olx.com.pk",
   "codebase": "ZTechGroup/maple (private)"
  },
  "urls": {
-  "book": "https://iqratahir-8.github.io/OLX-Design-System/",
-  "storybook": "https://iqratahir-8.github.io/OLX-Design-System/storybook/",
-  "prototype": "https://iqratahir-8.github.io/OLX-Design-System/proto/",
-  "showcase": "https://iqratahir-8.github.io/OLX-Design-System/showcase/",
-  "manifest": "https://iqratahir-8.github.io/OLX-Design-System/design-system.json"
+  "book": "https://chaudhary-umair-ahmad.github.io/OLX-Design-System/",
+  "storybook": "https://chaudhary-umair-ahmad.github.io/OLX-Design-System/storybook/",
+  "prototype": "https://chaudhary-umair-ahmad.github.io/OLX-Design-System/proto/",
+  "showcase": "https://chaudhary-umair-ahmad.github.io/OLX-Design-System/showcase/",
+  "manifest": "https://chaudhary-umair-ahmad.github.io/OLX-Design-System/design-system.json"
  },
  "skill": ".claude/skills/olx-design-system/SKILL.md",
  "usage": {
@@ -1984,7 +1984,7 @@
  "prototype": {
   "data": "prototype/data.json",
   "screens": 222,
-  "url": "https://iqratahir-8.github.io/OLX-Design-System/proto/"
+  "url": "https://chaudhary-umair-ahmad.github.io/OLX-Design-System/proto/"
  },
  "assets": {
   "index": "assets/index.json",

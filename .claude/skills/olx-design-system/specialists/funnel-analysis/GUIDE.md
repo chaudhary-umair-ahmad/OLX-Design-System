@@ -6,9 +6,9 @@ Define funnels in the hand-off so the metric can be read on day one. Use catalog
 
 | Funnel | Steps (events) | Notes |
 | --- | --- | --- |
-| Browse → contact | `home_view` → `property_search` / category view → `ad_view` → `contact_seller` | the core marketplace funnel. `contact_seller` is proposed |
-| Favourites return | `ad_view` (+ `add_to_favourites`) → favourites view → `ad_view` with `view_section: favourites` | the worked example's M1 |
-| Post an Ad | `post_ad_start` → category chosen → `post_ad_submit` | proposed; logged-in, can't be observed from the cloud |
+| Browse → contact | `home_view` → `property_search` / category view → `ad_view` → `open_chat` → `chat_lead` (or `phone_view` → `phone_lead`) | the core marketplace funnel. The lead events are `live_name`: real names, unobserved parameters |
+| Favourites return | `ad_view` (+ `favourite_toggle`) → favourites view → `ad_view` with `view_section: favourites` | the worked example's M1 |
+| Post an Ad | `click_sell` → `add-listing_view` → category chosen → `publish_ad` → `ad-post-success_view` | live names; logged-in, so the parameters can't be observed from the cloud |
 | Related ads | `ad_view` → `related_ads` → `ad_view` | live events |
 
 ## How to write one

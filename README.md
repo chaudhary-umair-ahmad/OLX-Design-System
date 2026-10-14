@@ -105,7 +105,7 @@ To publish the book as one page, `npm run build:publish` writes a flat copy to `
 
 ### GitHub Pages
 
-Every push to `main` deploys the book and the Storybook to https://iqratahir-8.github.io/OLX-Design-System/ (`.github/workflows/pages.yml`):
+Every push to `main` deploys the book and the Storybook to https://chaudhary-umair-ahmad.github.io/OLX-Design-System/ (`.github/workflows/pages.yml`):
 
 | URL | What |
 | --- | --- |
@@ -144,7 +144,7 @@ Scripts, ad slots and iframes are removed, links are made inert, and personal da
   - Claude Code loads it automatically in this repo. On claude.ai, upload the folder (or the packaged `.skill` zip) as a skill.
 - **`design-system.json`** is the machine-readable index for Claude Design and other tools. It lists tokens with their light and dark values, CSS components, React wrappers, live component captures, templates, screens, flows, assets and quality results, all with file paths.
   - Rebuild it with `npm run manifest` after changing tokens, CSS or captures.
-  - Published at https://iqratahir-8.github.io/OLX-Design-System/design-system.json.
+  - Published at https://chaudhary-umair-ahmad.github.io/OLX-Design-System/design-system.json.
 
 Status and open work: `PROGRESS.md`.
 

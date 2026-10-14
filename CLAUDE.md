@@ -11,7 +11,7 @@ With every change you commit, in the same commit or PR:
 
 1. **Add an entry at the top of the change log** in `PROGRESS.md`. Put it under today's date, newest first, and write:
    - what changed and why, in plain words;
-   - the PR (`iqratahir-8/OLX-Design-System#N`), once it exists.
+   - the PR (`chaudhary-umair-ahmad/OLX-Design-System#N`), once it exists.
 2. **Update the sections above the log** if the change affects them:
    - "What is done";
    - "What is not done";

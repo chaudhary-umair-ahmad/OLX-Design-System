@@ -22,7 +22,7 @@ This shows which events exist, **not** their parameters. Confirm parameters in G
 - **Other:** `property_search`, `search_start`, `login_successful`, `book_inspection`, `buy_with_delivery`, `free_ad_payment`
 - No WhatsApp event was found.
 
-## What this changes in `event-catalog.json` (not yet applied)
+## What this changed in `event-catalog.json` (applied 14 Oct 2026)
 
 | Proposed here | Live name(s) |
 | --- | --- |
@@ -30,8 +30,12 @@ This shows which events exist, **not** their parameters. Confirm parameters in G
 | `add_to_favourites`, `remove_from_favourites` | `favourite_toggle` |
 | `post_ad_start`, `post_ad_submit` | `click_sell`, `add-listing_view`, `publish_ad`, `ad-post-success_view` |
 
-Next: put the IDs in `tenant`, replace the proposed names with the live ones, switch `handoff/favourites/tracking.json`
-to `favourite_toggle`, re-run `npm run qa -- --scope favourites`.
+Applied on 14 Oct 2026: the IDs and the consent signals are in `tenant`, the five proposed events were replaced
+by the 11 live names above (each recording what it `replaces`), `handoff/favourites/tracking.json` fires
+`favourite_toggle`, and QA was re-run.
+
+Those 11 carry `status: "live_name"`: the name is real, the parameters are not observed (`params: []`). QA warns
+`trk.unverified` when a feature uses one. The questions below are what's still missing.
 
 ## Still needs the analytics owner
 

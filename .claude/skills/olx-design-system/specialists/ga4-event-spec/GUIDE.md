@@ -8,20 +8,23 @@ OLX pushes events to `window.dataLayer` (observed on live). Spec each event as a
 
 ```js
 window.dataLayer.push({
-  event: 'remove_from_favourites',
+  event: 'favourite_toggle',
   ad_id: '1234567890',          // string, required
   category_1_name: 'Mobiles',   // from shared_params
   page_type: 'favourites',
-  surface: 'favourites'
+  surface: 'favourites'  // parameters are unobserved: confirm in GTM Preview
 });
 ```
+
+`favourite_toggle` is one live event for both directions. Which parameter says saved or removed is not yet
+known, so a spec that depends on the direction stays an open question until someone observes a heart tap.
 
 ## Per event, the spec states
 
 | Field | Example |
 | --- | --- |
-| Name | `remove_from_favourites` (status: proposed) |
-| Fires when | the un-favourite request succeeds, not on tap |
+| Name | `favourite_toggle` (status: live_name) |
+| Fires when | the favourite request succeeds, not on tap |
 | Fires once per | action |
 | Parameters | name, type, required, allowed values, example |
 | Screens | the flow step ids |

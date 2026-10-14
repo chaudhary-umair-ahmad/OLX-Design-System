@@ -10,7 +10,7 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 
 const read = async (f) => readFile(f, 'utf8');
 const json = async (f) => JSON.parse(await read(f));
-const BASE = 'https://iqratahir-8.github.io/OLX-Design-System';
+const BASE = 'https://chaudhary-umair-ahmad.github.io/OLX-Design-System';
 
 // ---------- tokens: from the generated CSS, so names are exactly what code uses ----------
 const tokensCss = await read('css/tokens.css');

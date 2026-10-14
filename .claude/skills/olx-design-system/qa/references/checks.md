@@ -37,6 +37,7 @@ finding is capped at **note**. Run a subset with `--checks cov,tok,…` (by pref
 | `trk.screen` | blocker | an event fires on a step that isn't in `flows.json` |
 | `trk.metric` | blocker | a metric names an event the plan doesn't fire |
 | `trk.proposed` | warning | the event is `proposed`: never observed on olx.com.pk |
+| `trk.unverified` | warning | the event is `live_name`: the live container triggers on the name, but its parameters haven't been observed |
 | `trk.ids` | warning | no GA4 measurement id is recorded for PK, so the plan can't be checked in DebugView yet |
 
 ## Render (Chromium, per state × width)
