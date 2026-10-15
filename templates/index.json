@@ -23,7 +23,8 @@
       "viewport": "desktop",
       "path": "/mobile-phones_c1453",
       "width": 1440,
-      "height": 9516,
+      "height": 16653,
+      "viewportHeight": 900,
       "dpr": 1
     },
     {
@@ -31,7 +32,8 @@
       "viewport": "mobile",
       "path": "/mobile-phones_c1453",
       "width": 390,
-      "height": 6345,
+      "height": 10613,
+      "viewportHeight": 664,
       "dpr": 3
     },
     {
@@ -40,6 +42,7 @@
       "path": "/",
       "width": 1440,
       "height": 5950,
+      "viewportHeight": 900,
       "dpr": 1
     },
     {
@@ -47,7 +50,8 @@
       "viewport": "mobile",
       "path": "/",
       "width": 390,
-      "height": 4426,
+      "height": 4425,
+      "viewportHeight": 664,
       "dpr": 3
     },
     {

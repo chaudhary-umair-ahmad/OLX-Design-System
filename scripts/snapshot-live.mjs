@@ -15,7 +15,7 @@
 // (Geomanist, committed in fonts/) and fall back to olx.com.pk.
 import { chromium, devices } from 'playwright';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
-import { freezePage, inlineStylesheets, fontOverrides, cropPng, docShell, scrollThrough, layoutFullHeight, pageParts } from './lib/capture-lib.mjs';
+import { freezePage, inlineStylesheets, fontOverrides, cropPng, docShell, scrollThrough, pageParts } from './lib/capture-lib.mjs';
 
 const ORIGIN = 'https://www.olx.com.pk';
 
@@ -109,11 +109,19 @@ async function capture(browser, pageName, { path, steps }, vp) {
 
     const dir = `templates/${pageName}`;
     await mkdir(dir, { recursive: true });
-    const size = await layoutFullHeight(page);
-    const fullHeight = size.height;
-    const shotBuffer = await page.screenshot({ path: `${dir}/${vp}.png` });
+    // Screenshot the whole page at the window size a real visitor has. The old way resized
+    // the window to the page height first, which laid the page out at a size nobody browses
+    // at: anything sized in `vh` grew to fit (the filters sidebar came out 1646px instead of
+    // its real 742px). `fullPage` captures the same pixels without touching the window.
+    const view = page.viewportSize();
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForTimeout(400);
+    const shotBuffer = await page.screenshot({ path: `${dir}/${vp}.png`, fullPage: true });
+    const size = { width: view.width, height: await page.evaluate(() => document.documentElement.scrollHeight) };
     templateIndex = templateIndex.filter((t) => !(t.page === pageName && t.viewport === vp))
-      .concat({ page: pageName, viewport: vp, path: path ?? '', width: size.width, height: Math.ceil(size.height), dpr: viewports[vp].deviceScaleFactor ?? 1 });
+      // viewportHeight is the window the page was laid out in; height is the page itself.
+      // The checker needs the window, since the PNG only tells it the page height.
+      .concat({ page: pageName, viewport: vp, path: path ?? '', width: size.width, height: Math.ceil(size.height), viewportHeight: view.height, dpr: viewports[vp].deviceScaleFactor ?? 1 });
 
     const parts = await pageParts(page);
     const fonts = `<style data-from="local-fonts">\n${await fontOverrides(page)}\n</style>`;
@@ -166,8 +174,26 @@ async function capture(browser, pageName, { path, steps }, vp) {
         return { x, y, width: Math.ceil(r.right + scrollX) - x, height: Math.ceil(r.bottom + scrollY) - y };
       });
       const cdir = `components/${name}`;
+      // Normally the component's PNG is cut out of the page screenshot, so it shows exactly
+      // the region the book crops out of the template. On an infinite-scroll page that can
+      // fail: taking the screenshot scrolls the document, more listings load, and anything
+      // below the fold ends up outside the image (see "Infinite scroll" in PROGRESS.md).
+      // Fall back to photographing the element itself, and record that we did.
+      let croppedPng, direct = false;
+      try {
+        croppedPng = cropPng(shotBuffer, rect, viewports[vp].deviceScaleFactor ?? 1);
+      } catch (err) {
+        try {
+          croppedPng = await el.screenshot({ animations: 'disabled', timeout: 20_000 });
+          direct = true;
+          console.error(`  ${pageName}/${vp}/${name}: ${err.message} Photographed the element directly instead.`);
+        } catch (err2) {
+          console.error(`  uncroppable ${pageName}/${vp}/${name}: ${err.message} Element screenshot also failed: ${err2.message.split('\n')[0]}`);
+          continue;
+        }
+      }
       await mkdir(cdir, { recursive: true });
-      await writeFile(`${cdir}/${vp}.png`, cropPng(shotBuffer, rect, viewports[vp].deviceScaleFactor ?? 1));
+      await writeFile(`${cdir}/${vp}.png`, croppedPng);
       const info = await el.evaluate((node) => {
         const r = node.getBoundingClientRect();
         const chain = [];
@@ -185,7 +211,7 @@ async function capture(browser, pageName, { path, steps }, vp) {
         title: `${name} (${vp}) – OLX live component`,
         htmlAttrs: parts.htmlAttrs, bodyAttrs: parts.bodyAttrs, head: componentHead, body,
       }));
-      found.push({ name, page: pageName, viewport: vp, width: rect.width, height: rect.height, rect });
+      found.push({ name, page: pageName, viewport: vp, width: rect.width, height: rect.height, rect, ...(direct ? { capturedDirectly: true } : {}) });
     }
     console.log(`captured ${pageName}/${vp} (${found.length} components)`);
     return found;

@@ -100,11 +100,29 @@ export async function fontOverrides(page, fontsDir = '../../fonts') {
   }).join('\n');
 }
 
+// How much of the element's box must actually be inside the screenshot for the crop to
+// be worth keeping. Below this, the clamping below would hand back a sliver that looks
+// like a capture but isn't one.
+const MIN_CROP_COVERAGE = 0.5;
+
 export function cropPng(buffer, { x, y, width, height }, dpr) {
   const src = PNG.sync.read(buffer);
   // Clamp to the screenshot: an element can stick out past the page edge.
   const sx = Math.min(Math.max(0, Math.round(x * dpr)), src.width - 1), sy = Math.min(Math.max(0, Math.round(y * dpr)), src.height - 1);
   const w = Math.max(1, Math.min(Math.round(width * dpr), src.width - sx)), h = Math.max(1, Math.min(Math.round(height * dpr), src.height - sy));
+  // The clamp above used to pass silently, so an element measured outside the screenshot
+  // was written out as a 1px PNG that no one could tell from a real capture. That happens
+  // whenever the page grows between the screenshot and the measurement, which it does on
+  // every lazy-loading or infinite-scroll page: taking the screenshot scrolls the document,
+  // more content loads, and everything below the fold moves down. Refuse the crop instead,
+  // and let the caller record the component as not captured.
+  const want = { w: Math.max(1, Math.round(width * dpr)), h: Math.max(1, Math.round(height * dpr)) };
+  if (w < want.w * MIN_CROP_COVERAGE || h < want.h * MIN_CROP_COVERAGE) {
+    throw new Error(
+      `crop lies outside the screenshot: wanted ${want.w}x${want.h} at ${sx},${sy} but only ${w}x${h} is inside ` +
+      `a ${src.width}x${src.height} image. The page almost certainly grew after the screenshot was taken.`,
+    );
+  }
   const out = new PNG({ width: w, height: h });
   PNG.bitblt(src, out, sx, sy, w, h, 0, 0);
   return PNG.sync.write(out);

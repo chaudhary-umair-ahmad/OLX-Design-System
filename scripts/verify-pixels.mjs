@@ -52,7 +52,7 @@ if (want('templates')) {
   for (const t of index.templates) {
     const base = `templates/${t.page}/${t.viewport}`;
     if (!existsSync(`${base}.html`) || !existsSync(`${base}.png`)) continue;
-    targets.push({ group: 'templates', id: `${t.page}~${t.viewport}`, html: `${base}.html`, png: `${base}.png`, width: t.width, height: t.height, dpr: t.dpr ?? 1, fullPage: true });
+    targets.push({ group: 'templates', id: `${t.page}~${t.viewport}`, html: `${base}.html`, png: `${base}.png`, width: t.width, height: t.height, viewportHeight: t.viewportHeight, dpr: t.dpr ?? 1, fullPage: true });
   }
 }
 if (want('components')) {
@@ -144,9 +144,18 @@ async function render(t) {
       t.photos = t.photos.map(([x, y, w, h]) => [x - box.x, y - box.y, w, h]);
       return await el.screenshot({ animations: 'disabled', timeout: 60_000 });
     }
-    // Use the window size the live screenshot was taken at (its PNG size / dpr), not the
-    // measured page height: pages sized in vh units grow with the window, so the two differ.
     if (t.fullPage) {
+      if (t.viewportHeight) {
+        // Captured with `fullPage` at a real window size, so reproduce that window and let
+        // `fullPage` grow the image. Sizing the window to the page height instead would lay
+        // the page out at a size nobody browses at and stretch every `vh`-sized box.
+        await page.setViewportSize({ width: t.width, height: t.viewportHeight });
+        await page.waitForTimeout(300);
+        await page.evaluate(() => window.scrollTo(0, 0));
+        return await page.screenshot({ fullPage: true, animations: 'disabled' });
+      }
+      // Captured the old way, by resizing the window to the page height. Match that, or the
+      // comparison is against a layout the capture never had. Re-capture to get rid of this.
       const { height } = PNG.sync.read(await readFile(t.png));
       await page.setViewportSize({ width: t.width, height: Math.max(1, Math.round(height / t.dpr)) });
       await page.waitForTimeout(300);
