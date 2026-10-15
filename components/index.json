@@ -7,12 +7,12 @@
       "page": "ad-detail",
       "viewport": "desktop",
       "width": 820,
-      "height": 497,
+      "height": 91,
       "rect": {
         "x": 80,
-        "y": 1147,
+        "y": 1117,
         "width": 820,
-        "height": 497
+        "height": 91
       }
     },
     {
@@ -23,7 +23,7 @@
       "height": 122,
       "rect": {
         "x": 0,
-        "y": 721,
+        "y": 673,
         "width": 390,
         "height": 122
       }
@@ -36,7 +36,7 @@
       "height": 121,
       "rect": {
         "x": 80,
-        "y": 987,
+        "y": 957,
         "width": 820,
         "height": 121
       }
@@ -49,7 +49,7 @@
       "height": 189,
       "rect": {
         "x": 0,
-        "y": 513,
+        "y": 465,
         "width": 390,
         "height": 189
       }
@@ -59,12 +59,12 @@
       "page": "ad-detail",
       "viewport": "desktop",
       "width": 820,
-      "height": 146,
+      "height": 116,
       "rect": {
         "x": 80,
         "y": 802,
         "width": 820,
-        "height": 146
+        "height": 116
       }
     },
     {
@@ -72,12 +72,12 @@
       "page": "ad-detail",
       "viewport": "mobile",
       "width": 390,
-      "height": 170,
+      "height": 122,
       "rect": {
         "x": 0,
         "y": 294,
         "width": 390,
-        "height": 170
+        "height": 122
       }
     },
     {
@@ -241,7 +241,7 @@
       "height": 49,
       "rect": {
         "x": 940,
-        "y": 503,
+        "y": 439,
         "width": 420,
         "height": 49
       },
@@ -814,12 +814,12 @@
       "page": "ad-detail",
       "viewport": "desktop",
       "width": 820,
-      "height": 460,
+      "height": 459,
       "rect": {
         "x": 80,
-        "y": 1683,
+        "y": 1247,
         "width": 820,
-        "height": 460
+        "height": 459
       }
     },
     {
@@ -830,7 +830,7 @@
       "height": 351,
       "rect": {
         "x": 0,
-        "y": 1062,
+        "y": 1014,
         "width": 390,
         "height": 351
       }
@@ -843,7 +843,7 @@
       "height": 171,
       "rect": {
         "x": 80,
-        "y": 2182,
+        "y": 1745,
         "width": 820,
         "height": 171
       }
@@ -856,7 +856,7 @@
       "height": 236,
       "rect": {
         "x": 16,
-        "y": 1432,
+        "y": 1384,
         "width": 358,
         "height": 236
       }
@@ -935,7 +935,7 @@
       "height": 143,
       "rect": {
         "x": 4,
-        "y": 862,
+        "y": 814,
         "width": 386,
         "height": 143
       }
@@ -945,29 +945,12 @@
       "page": "ad-detail",
       "viewport": "desktop",
       "width": 420,
-      "height": 270,
+      "height": 206,
       "rect": {
         "x": 940,
         "y": 282,
         "width": 420,
-        "height": 270
-      }
-    },
-    {
-      "name": "show-phone-button",
-      "page": "ad-detail",
-      "viewport": "desktop",
-      "width": 420,
-      "height": 49,
-      "rect": {
-        "x": 940,
-        "y": 439,
-        "width": 420,
-        "height": 49
-      },
-      "stretchedByPage": {
-        "pageHeight": 48,
-        "ownHeight": 24
+        "height": 206
       }
     },
     {

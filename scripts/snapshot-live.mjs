@@ -219,14 +219,7 @@ async function capture(browser, pageName, { path, steps }, vp) {
         const r = node.getBoundingClientRect();
         const chain = [];
         for (let a = node.parentElement; a && a !== document.body; a = a.parentElement) {
-          const cs = getComputedStyle(a);
-          chain.unshift({
-            tag: a.tagName.toLowerCase(), cls: a.getAttribute('class') ?? '', style: a.getAttribute('style') ?? '',
-            // How this ancestor lays its children out. Flattening a flex or grid parent to a
-            // block changes the child's own box, so it is kept; see `keep` below.
-            display: cs.display,
-            flex: { direction: cs.flexDirection, align: cs.alignItems, justify: cs.justifyContent, gap: cs.gap, wrap: cs.flexWrap },
-          });
+          chain.unshift({ tag: a.tagName.toLowerCase(), cls: a.getAttribute('class') ?? '', style: a.getAttribute('style') ?? '' });
         }
         const own = getComputedStyle(node);
         // The tallest thing inside the component. When the component's own box is taller than
@@ -243,21 +236,15 @@ async function capture(browser, pageName, { path, steps }, vp) {
           contentHeight: tallestChild,
         };
       });
-      // Ancestors keep their classes (for selectors and variables). Their page positioning and
-      // their own size are dropped, since the component is no longer on the page -- but the way
-      // they lay children out is kept, because that is what gives the component its box. The old
-      // reset forced `display:block` on everything, which flattened the flex rows the app banner
-      // gets its height from and left it 147px instead of 172px.
-      const resetOf = (a) => {
-        const flexish = /flex|grid/.test(a.display);
-        const keep = flexish
-          ? `display:${a.display};flex-direction:${a.flex.direction};align-items:${a.flex.align};justify-content:${a.flex.justify};gap:${a.flex.gap};flex-wrap:${a.flex.wrap};`
-          : 'display:block;';
-        // `relative` rather than `static`: a positioned ancestor is what an out-of-flow
-        // component resolves against, and relative positioning with no offsets moves nothing.
-        return `${keep}position:relative;width:auto;height:auto;min-height:0;max-width:none;margin:0;padding:0;border:0;transform:none;overflow:visible;box-shadow:none;`;
-      };
-      const open = info.chain.map((a) => `<div class="${a.cls}" style="${a.style ? a.style.replace(/"/g, '&quot;') + ';' : ''}${resetOf(a)}">`).join('');
+      // Ancestors keep their classes (for selectors and variables) but not their layout.
+      // Keeping their `display` was tried and is much worse: a flex ancestor left holding a
+      // single child applies flex-item sizing to it, which wrecked 17 components (listing-card
+      // ~desktop went from 0.65% to 87.21%) to fix one. Flattening to a block is the safer
+      // reading of "this component, out of its page".
+      // The one exception is `position`: an out-of-flow component needs a positioned ancestor
+      // to resolve against, or it sizes itself against the window and draws no height at all.
+      const reset = `display:block;position:${info.outOfFlow ? 'relative' : 'static'};width:auto;height:auto;min-height:0;max-width:none;margin:0;padding:0;border:0;transform:none;overflow:visible;box-shadow:none;`;
+      const open = info.chain.map((a) => `<div class="${a.cls}" style="${a.style ? a.style.replace(/"/g, '&quot;') + ';' : ''}${reset}">`).join('');
       const close = '</div>'.repeat(info.chain.length);
       // An out-of-flow component cannot give the wrapper a height, so the wrapper is given the
       // box the component had on the page. That is the containing block it actually resolved

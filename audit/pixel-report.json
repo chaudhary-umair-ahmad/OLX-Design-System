@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-15T08:35:20.246Z",
+ "checked": "2026-10-15T09:51:43.628Z",
  "browser": "Chromium 141.0.7390.37",
  "tolerance": 48,
  "thresholds": {
@@ -11,23 +11,23 @@
   {
    "group": "components",
    "id": "ad-description~desktop",
-   "verdict": "close",
-   "changed": 2.7,
+   "verdict": "mismatch",
+   "changed": 18.05,
    "photosMasked": 0,
    "live": [
     820,
-    545
+    497
    ],
    "stored": [
     820,
-    545
+    593
    ]
   },
   {
    "group": "components",
    "id": "ad-description~mobile",
-   "verdict": "close",
-   "changed": 2.62,
+   "verdict": "mismatch",
+   "changed": 15.59,
    "photosMasked": 0,
    "live": [
     1170,
@@ -35,14 +35,14 @@
    ],
    "stored": [
     1170,
-    363
+    423
    ]
   },
   {
    "group": "components",
    "id": "ad-details~desktop",
-   "verdict": "close",
-   "changed": 2.71,
+   "verdict": "mismatch",
+   "changed": 35.53,
    "photosMasked": 0,
    "live": [
     820,
@@ -50,14 +50,14 @@
    ],
    "stored": [
     820,
-    120
+    183
    ]
   },
   {
    "group": "components",
    "id": "ad-details~mobile",
-   "verdict": "close",
-   "changed": 2.21,
+   "verdict": "mismatch",
+   "changed": 19.67,
    "photosMasked": 0,
    "live": [
     1170,
@@ -65,44 +65,44 @@
    ],
    "stored": [
     1170,
-    564
+    624
    ]
   },
   {
    "group": "components",
    "id": "ad-overview~desktop",
    "verdict": "mismatch",
-   "changed": 3.16,
+   "changed": 19.58,
    "photosMasked": 0,
    "live": [
     820,
-    116
+    146
    ],
    "stored": [
     820,
-    115
+    175
    ]
   },
   {
    "group": "components",
    "id": "ad-overview~mobile",
-   "verdict": "close",
-   "changed": 1.03,
+   "verdict": "match",
+   "changed": 0,
    "photosMasked": 0,
    "live": [
     1170,
-    366
+    510
    ],
    "stored": [
     1170,
-    366
+    510
    ]
   },
   {
    "group": "components",
    "id": "app-banner~desktop",
    "verdict": "mismatch",
-   "changed": 26.24,
+   "changed": 25.38,
    "photosMasked": 0,
    "live": [
     1280,
@@ -117,15 +117,15 @@
    "group": "components",
    "id": "brand-chips~desktop",
    "verdict": "match",
-   "changed": 0.45,
+   "changed": 0.43,
    "photosMasked": 0,
    "live": [
     288,
-    225
+    233
    ],
    "stored": [
     288,
-    224
+    232
    ]
   },
   {
@@ -146,8 +146,8 @@
   {
    "group": "components",
    "id": "breadcrumb~desktop",
-   "verdict": "match",
-   "changed": 0,
+   "verdict": "close",
+   "changed": 2.92,
    "photosMasked": 0,
    "live": [
     1280,
@@ -162,7 +162,7 @@
    "group": "components",
    "id": "breadcrumb~mobile",
    "verdict": "mismatch",
-   "changed": 30.81,
+   "changed": 13.45,
    "photosMasked": 0,
    "live": [
     1074,
@@ -176,8 +176,8 @@
   {
    "group": "components",
    "id": "categories-filter~desktop",
-   "verdict": "match",
-   "changed": 0.4,
+   "verdict": "mismatch",
+   "changed": 4.51,
    "photosMasked": 0,
    "live": [
     304,
@@ -222,7 +222,7 @@
    "group": "components",
    "id": "category-tile~mobile",
    "verdict": "mismatch",
-   "changed": 5.1,
+   "changed": 65.93,
    "photosMasked": 0,
    "live": [
     210,
@@ -230,7 +230,7 @@
    ],
    "stored": [
     210,
-    273
+    129
    ]
   },
   {
@@ -266,8 +266,8 @@
   {
    "group": "components",
    "id": "chat-button~desktop",
-   "verdict": "close",
-   "changed": 2.66,
+   "verdict": "mismatch",
+   "changed": 5.83,
    "photosMasked": 0,
    "live": [
     420,
@@ -281,8 +281,8 @@
   {
    "group": "components",
    "id": "contact-bar~mobile",
-   "verdict": "match",
-   "changed": 0.3,
+   "verdict": "mismatch",
+   "changed": 37.94,
    "photosMasked": 0,
    "live": [
     1170,
@@ -326,38 +326,38 @@
   {
    "group": "components",
    "id": "delivery-card~desktop",
-   "verdict": "close",
-   "changed": 2.58,
-   "photosMasked": 69.2,
+   "verdict": "mismatch",
+   "changed": 67.42,
+   "photosMasked": 5.6,
    "live": [
     302,
     428
    ],
    "stored": [
     301,
-    426
+    192
    ]
   },
   {
    "group": "components",
    "id": "delivery-card~mobile",
    "verdict": "mismatch",
-   "changed": 3.98,
-   "photosMasked": 65,
+   "changed": 61.11,
+   "photosMasked": 13.8,
    "live": [
     519,
     780
    ],
    "stored": [
     519,
-    777
+    447
    ]
   },
   {
    "group": "components",
    "id": "filters-sidebar~desktop",
    "verdict": "match",
-   "changed": 0.14,
+   "changed": 0.17,
    "photosMasked": 0,
    "live": [
     304,
@@ -446,24 +446,24 @@
   {
    "group": "components",
    "id": "listing-card~desktop",
-   "verdict": "close",
-   "changed": 0.65,
-   "photosMasked": 66.6,
+   "verdict": "mismatch",
+   "changed": 87.21,
+   "photosMasked": 3.1,
    "live": [
     311,
     461
    ],
    "stored": [
     311,
-    460
+    218
    ]
   },
   {
    "group": "components",
    "id": "listing-card~mobile",
-   "verdict": "close",
-   "changed": 2.57,
-   "photosMasked": 66.8,
+   "verdict": "mismatch",
+   "changed": 20.55,
+   "photosMasked": 62.1,
    "live": [
     645,
     948
@@ -476,16 +476,16 @@
   {
    "group": "components",
    "id": "listing-row-featured~desktop",
-   "verdict": "match",
-   "changed": 0,
-   "photosMasked": 32.1,
+   "verdict": "mismatch",
+   "changed": 57.36,
+   "photosMasked": 7.2,
    "live": [
     960,
     237
    ],
    "stored": [
     960,
-    237
+    169
    ]
   },
   {
@@ -521,23 +521,23 @@
   {
    "group": "components",
    "id": "listing-section~mobile",
-   "verdict": "close",
-   "changed": 2.04,
-   "photosMasked": 55.9,
+   "verdict": "mismatch",
+   "changed": 12.11,
+   "photosMasked": 53,
    "live": [
     1170,
     1053
    ],
    "stored": [
     1170,
-    1050
+    1110
    ]
   },
   {
    "group": "components",
    "id": "listing-toolbar~desktop",
    "verdict": "mismatch",
-   "changed": 3.01,
+   "changed": 21.44,
    "photosMasked": 0,
    "live": [
     330,
@@ -545,7 +545,7 @@
    ],
    "stored": [
     329,
-    36
+    42
    ]
   },
   {
@@ -581,8 +581,8 @@
   {
    "group": "components",
    "id": "mobile-header~mobile",
-   "verdict": "close",
-   "changed": 0.51,
+   "verdict": "match",
+   "changed": 0,
    "photosMasked": 0,
    "live": [
     1170,
@@ -597,7 +597,7 @@
    "group": "components",
    "id": "mobile-location-bar~mobile",
    "verdict": "mismatch",
-   "changed": 5.21,
+   "changed": 28.19,
    "photosMasked": 0,
    "live": [
     1074,
@@ -605,14 +605,14 @@
    ],
    "stored": [
     1074,
-    75
+    99
    ]
   },
   {
    "group": "components",
    "id": "page-title~desktop",
    "verdict": "mismatch",
-   "changed": 3.43,
+   "changed": 22.83,
    "photosMasked": 0,
    "live": [
     381,
@@ -626,38 +626,38 @@
   {
    "group": "components",
    "id": "related-ads~desktop",
-   "verdict": "close",
-   "changed": 0.91,
-   "photosMasked": 55,
+   "verdict": "mismatch",
+   "changed": 83.27,
+   "photosMasked": 22.1,
    "live": [
     820,
     460
    ],
    "stored": [
     820,
-    459
+    305
    ]
   },
   {
    "group": "components",
    "id": "related-ads~mobile",
-   "verdict": "close",
-   "changed": 2.12,
-   "photosMasked": 55.9,
+   "verdict": "mismatch",
+   "changed": 12.09,
+   "photosMasked": 53,
    "live": [
     1170,
     1053
    ],
    "stored": [
     1170,
-    1050
+    1110
    ]
   },
   {
    "group": "components",
    "id": "safety-tips~desktop",
    "verdict": "mismatch",
-   "changed": 4.37,
+   "changed": 38.48,
    "photosMasked": 0,
    "live": [
     820,
@@ -665,14 +665,14 @@
    ],
    "stored": [
     820,
-    170
+    266
    ]
   },
   {
    "group": "components",
    "id": "safety-tips~mobile",
    "verdict": "mismatch",
-   "changed": 4.61,
+   "changed": 3.1,
    "photosMasked": 0,
    "live": [
     1074,
@@ -686,8 +686,8 @@
   {
    "group": "components",
    "id": "search-bar~desktop",
-   "verdict": "match",
-   "changed": 0,
+   "verdict": "mismatch",
+   "changed": 23.19,
    "photosMasked": 0,
    "live": [
     902,
@@ -716,14 +716,23 @@
   {
    "group": "components",
    "id": "sell-button~desktop",
-   "verdict": "error",
-   "error": "the stored HTML renders 104×0: the component's wrapper collapsed, so there is nothing to compare"
+   "verdict": "mismatch",
+   "changed": 32.53,
+   "photosMasked": 0,
+   "live": [
+    104,
+    48
+   ],
+   "stored": [
+    104,
+    48
+   ]
   },
   {
    "group": "components",
    "id": "sell-button~mobile",
-   "verdict": "mismatch",
-   "changed": 16.15,
+   "verdict": "match",
+   "changed": 0,
    "photosMasked": 0,
    "live": [
     216,
@@ -738,52 +747,52 @@
    "group": "components",
    "id": "seller-card-mobile~mobile",
    "verdict": "close",
-   "changed": 0.93,
-   "photosMasked": 2.8,
+   "changed": 1.08,
+   "photosMasked": 0,
    "live": [
     1158,
-    447
+    429
    ],
    "stored": [
     1158,
-    447
+    429
    ]
   },
   {
    "group": "components",
    "id": "seller-card~desktop",
    "verdict": "mismatch",
-   "changed": 12.87,
-   "photosMasked": 4.6,
+   "changed": 20.07,
+   "photosMasked": 0,
    "live": [
     420,
-    148
+    142
    ],
    "stored": [
     420,
-    163
+    173
    ]
   },
   {
    "group": "components",
    "id": "seller-sidebar~desktop",
-   "verdict": "close",
-   "changed": 1.86,
-   "photosMasked": 2.7,
+   "verdict": "mismatch",
+   "changed": 27.97,
+   "photosMasked": 0,
    "live": [
     420,
-    276
+    270
    ],
    "stored": [
     420,
-    275
+    301
    ]
   },
   {
    "group": "components",
    "id": "show-phone-button~desktop",
    "verdict": "mismatch",
-   "changed": 6.81,
+   "changed": 92.59,
    "photosMasked": 0,
    "live": [
     420,
@@ -3734,31 +3743,31 @@
   {
    "group": "templates",
    "id": "ad-detail~desktop",
-   "verdict": "close",
-   "changed": 1.05,
-   "photosMasked": 23.8,
+   "verdict": "match",
+   "changed": 0,
+   "photosMasked": 24,
    "live": [
     1440,
-    2912
+    2894
    ],
    "stored": [
     1440,
-    2912
+    2894
    ]
   },
   {
    "group": "templates",
    "id": "ad-detail~mobile",
-   "verdict": "close",
-   "changed": 0.7,
-   "photosMasked": 22,
+   "verdict": "match",
+   "changed": 0,
+   "photosMasked": 21.4,
    "live": [
     1170,
-    6732
+    6858
    ],
    "stored": [
     1170,
-    6732
+    6858
    ]
   },
   {
@@ -3766,29 +3775,29 @@
    "id": "category-listing~desktop",
    "verdict": "match",
    "changed": 0,
-   "photosMasked": 10.7,
+   "photosMasked": 18.7,
    "live": [
     1440,
-    16653
+    9515
    ],
    "stored": [
     1440,
-    16653
+    9515
    ]
   },
   {
    "group": "templates",
    "id": "category-listing~mobile",
-   "verdict": "mismatch",
-   "changed": 45.94,
-   "photosMasked": 12.1,
+   "verdict": "match",
+   "changed": 0,
+   "photosMasked": 20.5,
    "live": [
     1170,
-    18975
+    18921
    ],
    "stored": [
     1170,
-    31839
+    18921
    ]
   },
   {
@@ -3825,60 +3834,60 @@
    "group": "templates",
    "id": "location-prompt~mobile",
    "verdict": "match",
-   "changed": 0.06,
-   "photosMasked": 38.2,
+   "changed": 0,
+   "photosMasked": 0,
    "live": [
     1170,
-    12306
+    1992
    ],
    "stored": [
     1170,
-    12306
+    1992
    ]
   },
   {
    "group": "templates",
    "id": "location-select~mobile",
    "verdict": "match",
-   "changed": 0.17,
-   "photosMasked": 14.2,
+   "changed": 0,
+   "photosMasked": 0,
    "live": [
     1170,
-    33231
+    1992
    ],
    "stored": [
     1170,
-    33231
+    1992
    ]
   },
   {
    "group": "templates",
    "id": "search-results~desktop",
-   "verdict": "mismatch",
-   "changed": 4.53,
-   "photosMasked": 21.6,
+   "verdict": "match",
+   "changed": 0,
+   "photosMasked": 21.9,
    "live": [
     1440,
-    13252
+    15744
    ],
    "stored": [
     1440,
-    13252
+    15744
    ]
   },
   {
    "group": "templates",
    "id": "search-results~mobile",
-   "verdict": "mismatch",
-   "changed": 7.17,
-   "photosMasked": 25.3,
+   "verdict": "match",
+   "changed": 0.01,
+   "photosMasked": 24.4,
    "live": [
     1170,
-    25506
+    30651
    ],
    "stored": [
     1170,
-    25506
+    30651
    ]
   }
  ]
