@@ -1,6 +1,6 @@
 # OLX Design System — progress and hand-over
 
-Status as of **14 Oct 2026**. Written for whoever picks this up next, in another account or
+Status as of **15 Oct 2026**. Written for whoever picks this up next, in another account or
 another Claude session. Read this first, then `README.md`.
 
 **Keep this file current.** Every change to the repo adds a dated entry at the top of the
@@ -65,11 +65,10 @@ Every push to `main` rebuilds and redeploys the site (`.github/workflows/pages.y
 ## What is not done (open work)
 
 1. **Logged-in screens.** Post an ad, chat, profile and my ads can't be captured from the cloud, because they need your OLX login. Capture them on the Mac with `npm run capture:logged-in`, which opens a browser for you to log in.
-2. **Component captures to redo.** These capture or markup problems are known; see `audit/pixel-report.md`:
-   - the mobile breadcrumb was captured 1 px tall;
-   - the filters sidebar was captured partly expanded;
-   - the app banner and delivery card render shorter than live;
-   - the desktop sell button times out in the checker.
+2. **Component captures: one root cause, not four bugs.** `home` and `category-listing` were re-captured on 15 Oct. That fixed the delivery card (mismatch 23.74% → close 2.39%) and nothing else, because a re-capture reproduces the same three faults. See `audit/pixel-report.md` and the "Full-page capture distorts the layout" gotcha below.
+   - **The mobile breadcrumb (1 px) and the expanded filters sidebar are the same bug.** `layoutFullHeight` in `scripts/lib/capture-lib.mjs` resizes the window to the whole page height before the screenshot, so anything sized against the window lays out wrongly: on mobile the breadcrumb collapses to height 0 (and `cropPng`'s `Math.max(1, …)` turns that into the 1 px PNG), and the `vh`-constrained filters sidebar expands to its full 1646 px instead of the real 742 px. The app banner (173 px captured, 147 px rendered) looks like the same cause.
+   - **Fixing it means changing how every capture is taken**, e.g. screenshotting with Playwright's `fullPage: true` at the real window size instead of resizing the window. That re-captures all 106 pages and 39 components, so it was left for a decision rather than slipped into a component fix.
+   - **The desktop sell button is a different, smaller problem.** Its stored HTML renders 104×0, because a component is extracted without the flex parent it got its height from. The checker used to wait the full 60 s and then report only "locator.screenshot: Timeout"; it now detects the collapsed wrapper in about 2 s and says so. The capture itself is right (the PNG is 104×48); making such components render standalone needs the extraction to keep enough of the parent's layout.
 3. **Matching with `maple`.** `audit/comparisons/live-vs-repo.md` covers live versus this repo. Reconciling components with the `maple` source is still pending; `docs/inventory.md` marks it "specced".
 4. **Hand-off skill follow-ups.**
    - **GA4:** the IDs and the live event names are now known from the public tag container (`GTM-W6NPB7W`, `G-YP1ZBNYRVD`; see `handoff/analytics/gtm-container.md`), but **not yet applied** to `event-catalog.json`. Apply them: put the IDs in `tenant`, replace the 5 proposed names with the live ones (`favourite_toggle`, `chat_lead`, `phone_view`, `publish_ad`…), switch the favourites example to `favourite_toggle`, and re-run QA.
@@ -123,6 +122,8 @@ MASK_PHOTOS=1 npm run verify:pixels      # writes audit/pixel-report.md
 - **Storybook and the book share a folder.** The Storybook build empties its output folder, and the book puts design-kit pages under `storybook/` too. The workflow therefore builds Storybook separately and merges it in. Don't change that back.
 - **Lazy-loaded photos.** OLX puts listing photo URLs in `data-src`. `scripts/lib/capture-lib.mjs` (`freezePage`) copies them into `src`, so static copies show photos. `scripts/fix-lazy-images.mjs` repairs older captures.
 - **Pages sized to the window.** Motors uses `vh` units, so its page height depends on the window height. The pixel check sizes the window from the live screenshot, not from the saved page height.
+- **Full-page capture distorts the layout.** `layoutFullHeight` (`scripts/lib/capture-lib.mjs`) makes the whole page fit by setting the window height to the page height, and `snapshot-live.mjs` screenshots at that size and measures every component's rectangle there. A window several thousand pixels tall is not a window any user has, so anything sized against it is captured wrong: `vh`-constrained boxes expand (the filters sidebar, 1646 px instead of 742 px) and some elements collapse to height 0 (the mobile breadcrumb, which `cropPng` then clamps to a 1 px PNG). When a component's captured size looks nothing like the live one, suspect this before the selector. Taking the screenshot with Playwright's `fullPage: true` at the real window size would avoid it, but it changes every stored capture, so it needs a full re-capture.
+- **A component extracted from its parent can render 0 px tall.** `snapshot-live.mjs` wraps a component in its ancestors' classes but resets their layout (`height:auto;min-height:0`), so a component that got its height from a flex or grid parent has none on its own: the desktop sell button renders 104×0. Playwright can't screenshot an empty box and waits for the timeout, so `verify-pixels.mjs` now checks the box first and reports the collapse instead of a bare timeout. Don't "fix" it by pinning the live height onto the wrapper: that makes the height comparison pass by construction and hides the real difference.
 - **Pixel check and animations.** The checker jumps animations to their end state. Turning them off would leave fade-in popups invisible and make them look missing.
 - **Skill descriptions are capped at 1,024 characters** on claude.ai upload. Claude Code doesn't enforce it, so check the length before packaging.
 - **`git mv` into a folder that still exists** moves the source *inside* it (`a/b`), not over it. When renaming over an emptied folder, move to a temporary name first.
@@ -133,6 +134,13 @@ MASK_PHOTOS=1 npm run verify:pixels      # writes audit/pixel-report.md
 ## Change log
 
 Newest first. One entry per change: date, what changed, why, and the PR. "Mac" marks work done in the session on the Mac (`local-build`); the rest was done in cloud sessions.
+
+### 15 Oct 2026
+- **`home` and `category-listing` re-captured from live, and the "four broken component captures" turned out to be two bugs**. Open-work item 2 said four components needed redoing. Re-capturing fixed one of them, the delivery card (mismatch 23.74% → close 2.39%, the rest being rotating ad content); the others came back identical, because they aren't stale captures:
+  - **The mobile breadcrumb and the expanded filters sidebar are one bug in `layoutFullHeight`.** It sets the window height to the whole page height before the screenshot, so layout that depends on the window is captured wrong: the breadcrumb collapses to height 0 (clamped to the 1 px PNG) and the `vh`-constrained sidebar expands to 1646 px instead of 742 px. The app banner looks like the same cause. Written up under "Gotchas"; the fix changes every capture in the repo, so it is left as a decision rather than slipped in here.
+  - **The desktop sell button renders 104×0** because a component is extracted without the flex parent that gave it its height. `verify-pixels.mjs` used to wait the full 60 s and report only "locator.screenshot: Timeout". It now checks the box first and reports "the stored HTML renders 104×0: the component's wrapper collapsed", in about 2 s. The diagnosis is fixed, not the capture — the PNG was always right at 104×48.
+  - Why it matters: the log was pointing the next session at four selector problems, when three of them are one shared-library bug and one is a limitation of extracting components from their parents.
+  - 65 files: the two pages' templates and all their components, re-captured from live on 15 Oct. No component was lost (66 entries before and after).
 
 ### 14 Oct 2026
 - **Skill description shortened to 704 characters.** claude.ai rejects a skill whose `description` is over 1,024 characters, so the merged skill failed to upload.

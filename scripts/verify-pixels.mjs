@@ -133,7 +133,15 @@ async function render(t) {
     if (t.element) {
       const el = page.locator('body > *').first();
       const box = await el.boundingBox();
-      if (box) t.photos = t.photos.map(([x, y, w, h]) => [x - box.x, y - box.y, w, h]);
+      // A component whose wrapper collapses to nothing can never be screenshotted:
+      // Playwright waits for a stable, non-empty box and then times out, which costs a
+      // minute and reports the timeout instead of the reason. Say what happened instead.
+      // Components are extracted without their flex or grid parent, so one that got its
+      // height from that parent has none on its own. See "Component captures" in PROGRESS.md.
+      if (!box || box.width < 1 || box.height < 1) {
+        throw new Error(`the stored HTML renders ${Math.round(box?.width ?? 0)}×${Math.round(box?.height ?? 0)}: the component's wrapper collapsed, so there is nothing to compare`);
+      }
+      t.photos = t.photos.map(([x, y, w, h]) => [x - box.x, y - box.y, w, h]);
       return await el.screenshot({ animations: 'disabled', timeout: 60_000 });
     }
     // Use the window size the live screenshot was taken at (its PNG size / dpr), not the
