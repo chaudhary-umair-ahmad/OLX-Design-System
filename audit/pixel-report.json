@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-15T06:39:20.468Z",
+ "checked": "2026-10-15T08:35:20.246Z",
  "browser": "Chromium 141.0.7390.37",
  "tolerance": 48,
  "thresholds": {
@@ -117,15 +117,15 @@
    "group": "components",
    "id": "brand-chips~desktop",
    "verdict": "match",
-   "changed": 0.43,
+   "changed": 0.45,
    "photosMasked": 0,
    "live": [
     288,
-    233
+    225
    ],
    "stored": [
     288,
-    232
+    224
    ]
   },
   {
@@ -162,15 +162,15 @@
    "group": "components",
    "id": "breadcrumb~mobile",
    "verdict": "mismatch",
-   "changed": 98.72,
+   "changed": 30.81,
    "photosMasked": 0,
    "live": [
     1074,
-    1
+    81
    ],
    "stored": [
     1074,
-    78
+    75
    ]
   },
   {
@@ -222,7 +222,7 @@
    "group": "components",
    "id": "category-tile~mobile",
    "verdict": "mismatch",
-   "changed": 3.57,
+   "changed": 5.1,
    "photosMasked": 0,
    "live": [
     210,
@@ -251,8 +251,8 @@
   {
    "group": "components",
    "id": "category-tiles~mobile",
-   "verdict": "close",
-   "changed": 2.17,
+   "verdict": "mismatch",
+   "changed": 4.03,
    "photosMasked": 0,
    "live": [
     1170,
@@ -312,7 +312,7 @@
    "group": "components",
    "id": "copyright-bar~mobile",
    "verdict": "mismatch",
-   "changed": 5.75,
+   "changed": 3.48,
    "photosMasked": 0,
    "live": [
     1170,
@@ -341,8 +341,8 @@
   {
    "group": "components",
    "id": "delivery-card~mobile",
-   "verdict": "close",
-   "changed": 2.39,
+   "verdict": "mismatch",
+   "changed": 3.98,
    "photosMasked": 65,
    "live": [
     519,
@@ -356,12 +356,12 @@
   {
    "group": "components",
    "id": "filters-sidebar~desktop",
-   "verdict": "mismatch",
-   "changed": 54.94,
+   "verdict": "match",
+   "changed": 0.14,
    "photosMasked": 0,
    "live": [
     304,
-    1646
+    743
    ],
    "stored": [
     304,
@@ -387,11 +387,11 @@
    "group": "components",
    "id": "footer~mobile",
    "verdict": "close",
-   "changed": 2.75,
+   "changed": 1.49,
    "photosMasked": 0,
    "live": [
     1170,
-    1686
+    1683
    ],
    "stored": [
     1170,
@@ -462,7 +462,7 @@
    "group": "components",
    "id": "listing-card~mobile",
    "verdict": "close",
-   "changed": 2.62,
+   "changed": 2.57,
    "photosMasked": 66.8,
    "live": [
     645,
@@ -522,7 +522,7 @@
    "group": "components",
    "id": "listing-section~mobile",
    "verdict": "close",
-   "changed": 2,
+   "changed": 2.04,
    "photosMasked": 55.9,
    "live": [
     1170,
@@ -612,7 +612,7 @@
    "group": "components",
    "id": "page-title~desktop",
    "verdict": "mismatch",
-   "changed": 21.03,
+   "changed": 3.43,
    "photosMasked": 0,
    "live": [
     381,
@@ -3764,31 +3764,31 @@
   {
    "group": "templates",
    "id": "category-listing~desktop",
-   "verdict": "close",
-   "changed": 1.3,
-   "photosMasked": 20.8,
+   "verdict": "match",
+   "changed": 0,
+   "photosMasked": 10.7,
    "live": [
     1440,
-    9516
+    16653
    ],
    "stored": [
     1440,
-    9516
+    16653
    ]
   },
   {
    "group": "templates",
    "id": "category-listing~mobile",
-   "verdict": "close",
-   "changed": 1.27,
-   "photosMasked": 23.8,
+   "verdict": "mismatch",
+   "changed": 45.94,
+   "photosMasked": 12.1,
    "live": [
     1170,
-    19035
+    18975
    ],
    "stored": [
     1170,
-    19035
+    31839
    ]
   },
   {
@@ -3814,11 +3814,11 @@
    "photosMasked": 35.4,
    "live": [
     1170,
-    13278
+    13275
    ],
    "stored": [
     1170,
-    13278
+    13275
    ]
   },
   {
