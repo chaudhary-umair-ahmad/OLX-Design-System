@@ -1,6 +1,6 @@
 {
   "source": "https://www.olx.com.pk",
-  "captured": "2026-10-07",
+  "captured": "2026-10-15",
   "templates": [
     {
       "page": "ad-detail",
@@ -31,7 +31,7 @@
       "viewport": "mobile",
       "path": "/mobile-phones_c1453",
       "width": 390,
-      "height": 6326,
+      "height": 6345,
       "dpr": 3
     },
     {
@@ -39,7 +39,7 @@
       "viewport": "desktop",
       "path": "/",
       "width": 1440,
-      "height": 5526,
+      "height": 5950,
       "dpr": 1
     },
     {
@@ -47,7 +47,7 @@
       "viewport": "mobile",
       "path": "/",
       "width": 390,
-      "height": 4102,
+      "height": 4426,
       "dpr": 3
     },
     {

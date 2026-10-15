@@ -1,6 +1,6 @@
 # OLX Design System — progress and hand-over
 
-Status as of **14 Oct 2026**. Written for whoever picks this up next, in another account or
+Status as of **15 Oct 2026**. Written for whoever picks this up next, in another account or
 another Claude session. Read this first, then `README.md`.
 
 **Keep this file current.** Every change to the repo adds a dated entry at the top of the
@@ -56,20 +56,21 @@ Every push to `main` rebuilds and redeploys the site (`.github/workflows/pages.y
   | | Match | Close | Off | Not compared |
   | --- | --- | --- | --- | --- |
   | Screens | 141 | 10 | 39 | 12 |
-  | Templates | 6 | – | 4 | – |
-  | Components | 22 | 12 | 19 | 1 |
+  | Templates | 4 | 4 | 2 | – |
+  | Components | 17 | 19 | 17 | 1 |
 
+  - **Screens are from 7 Oct; templates and components were re-checked on 15 Oct under Chromium 141.** The two runs aren't directly comparable: see "Pixel-check percentages don't carry across machines" below. The templates and components rows moved in both directions — fewer "off" (4 → 2 and 19 → 17) after the re-capture, and some "match" rows slipped to "close" purely from the different browser build.
   - Screens and templates marked "off" are listing pages, 3–11% different. The cause is result counts and "x minutes ago" text that change after the screenshot.
+  - The one component not compared is `sell-button~desktop`: its stored HTML renders 104×0, so there is nothing to screenshot.
   - "Not compared" are scroll states, which static HTML can't reproduce.
 
 ## What is not done (open work)
 
 1. **Logged-in screens.** Post an ad, chat, profile and my ads can't be captured from the cloud, because they need your OLX login. Capture them on the Mac with `npm run capture:logged-in`, which opens a browser for you to log in.
-2. **Component captures to redo.** These capture or markup problems are known; see `audit/pixel-report.md`:
-   - the mobile breadcrumb was captured 1 px tall;
-   - the filters sidebar was captured partly expanded;
-   - the app banner and delivery card render shorter than live;
-   - the desktop sell button times out in the checker.
+2. **Component captures: one root cause, not four bugs.** `home` and `category-listing` were re-captured on 15 Oct. That fixed the delivery card (mismatch 23.74% → close 2.39%) and nothing else, because a re-capture reproduces the same three faults. See `audit/pixel-report.md` and the "Full-page capture distorts the layout" gotcha below.
+   - **The mobile breadcrumb (1 px) and the expanded filters sidebar are the same bug.** `layoutFullHeight` in `scripts/lib/capture-lib.mjs` resizes the window to the whole page height before the screenshot, so anything sized against the window lays out wrongly: on mobile the breadcrumb collapses to height 0 (and `cropPng`'s `Math.max(1, …)` turns that into the 1 px PNG), and the `vh`-constrained filters sidebar expands to its full 1646 px instead of the real 742 px. The app banner (173 px captured, 147 px rendered) looks like the same cause.
+   - **Fixing it means changing how every capture is taken**, e.g. screenshotting with Playwright's `fullPage: true` at the real window size instead of resizing the window. That re-captures all 106 pages and 39 components, so it was left for a decision rather than slipped into a component fix.
+   - **The desktop sell button is a different, smaller problem.** Its stored HTML renders 104×0, because a component is extracted without the flex parent it got its height from. The checker used to wait the full 60 s and then report only "locator.screenshot: Timeout"; it now detects the collapsed wrapper in about 2 s and says so. The capture itself is right (the PNG is 104×48); making such components render standalone needs the extraction to keep enough of the parent's layout.
 3. **Matching with `maple`.** `audit/comparisons/live-vs-repo.md` covers live versus this repo. Reconciling components with the `maple` source is still pending; `docs/inventory.md` marks it "specced".
 4. **Hand-off skill follow-ups.**
    - **GA4: applied on 14 Oct 2026.** The ids and consent signals are in `tenant`, the 5 proposed events were replaced by the 11 live names, the favourites example fires `favourite_toggle`, and QA was re-run (PASS WITH WARNINGS, 1 warning).
@@ -120,7 +121,10 @@ MASK_PHOTOS=1 npm run verify:pixels      # writes audit/pixel-report.md
 - **Storybook and the book share a folder.** The Storybook build empties its output folder, and the book puts design-kit pages under `storybook/` too. The workflow therefore builds Storybook separately and merges it in. Don't change that back.
 - **Lazy-loaded photos.** OLX puts listing photo URLs in `data-src`. `scripts/lib/capture-lib.mjs` (`freezePage`) copies them into `src`, so static copies show photos. `scripts/fix-lazy-images.mjs` repairs older captures.
 - **Pages sized to the window.** Motors uses `vh` units, so its page height depends on the window height. The pixel check sizes the window from the live screenshot, not from the saved page height.
+- **Full-page capture distorts the layout.** `layoutFullHeight` (`scripts/lib/capture-lib.mjs`) makes the whole page fit by setting the window height to the page height, and `snapshot-live.mjs` screenshots at that size and measures every component's rectangle there. A window several thousand pixels tall is not a window any user has, so anything sized against it is captured wrong: `vh`-constrained boxes expand (the filters sidebar, 1646 px instead of 742 px) and some elements collapse to height 0 (the mobile breadcrumb, which `cropPng` then clamps to a 1 px PNG). When a component's captured size looks nothing like the live one, suspect this before the selector. Taking the screenshot with Playwright's `fullPage: true` at the real window size would avoid it, but it changes every stored capture, so it needs a full re-capture.
+- **A component extracted from its parent can render 0 px tall.** `snapshot-live.mjs` wraps a component in its ancestors' classes but resets their layout (`height:auto;min-height:0`), so a component that got its height from a flex or grid parent has none on its own: the desktop sell button renders 104×0. Playwright can't screenshot an empty box and waits for the timeout, so `verify-pixels.mjs` now checks the box first and reports the collapse instead of a bare timeout. Don't "fix" it by pinning the live height onto the wrapper: that makes the height comparison pass by construction and hides the real difference.
 - **Pixel check and animations.** The checker jumps animations to their end state. Turning them off would leave fade-in popups invisible and make them look missing.
+- **Pixel-check percentages don't carry across machines.** The checker is deterministic on one machine — the same capture gives the same number every run — but anti-aliased text rasterises slightly differently between Chromium builds, so re-checking an untouched capture elsewhere can move it a few percent and look like a regression. On 15 Oct a re-check under Chromium 141 moved nine `ad-detail` captures that nothing had touched (e.g. `safety-tips~desktop` 0.58% → 4.37%), with their rendered sizes identical to the pixel. Hours went into hunting that: it is not the captures, the fonts (removing `fonts/` changes nothing), `MASK_PHOTOS`, the remote Google stylesheet the components link, or the checker's logic (the only change to it since the report was the `fonts` label). The report now records the browser build it ran under; compare like with like, and trust a size or geometry difference (a 1 px PNG, 1646 px against 742 px, a 104×0 render) far more than a few percent of changed pixels.
 - **Skill descriptions are capped at 1,024 characters** on claude.ai upload. Claude Code doesn't enforce it, so check the length before packaging.
 - **`git mv` into a folder that still exists** moves the source *inside* it (`a/b`), not over it. When renaming over an emptied folder, move to a temporary name first.
 - **Python 3.11 in the cloud.** The icon generator used an f-string with nested double quotes, which only Python 3.12+ accepts. It was rewritten; keep scripts 3.11-safe.
@@ -130,6 +134,16 @@ MASK_PHOTOS=1 npm run verify:pixels      # writes audit/pixel-report.md
 ## Change log
 
 Newest first. One entry per change: date, what changed, why, and the PR. "Mac" marks work done in the session on the Mac (`local-build`); the rest was done in cloud sessions.
+
+### 15 Oct 2026
+- **`home` and `category-listing` re-captured from live, and the "four broken component captures" turned out to be two bugs** (#12). Open-work item 2 said four components needed redoing. Re-capturing fixed one of them, the delivery card (mismatch 23.74% → close 2.39%, the rest being rotating ad content); the others came back identical, because they aren't stale captures:
+  - **The mobile breadcrumb and the expanded filters sidebar are one bug in `layoutFullHeight`.** It sets the window height to the whole page height before the screenshot, so layout that depends on the window is captured wrong: the breadcrumb collapses to height 0 (clamped to the 1 px PNG) and the `vh`-constrained sidebar expands to 1646 px instead of 742 px. The app banner looks like the same cause. Written up under "Gotchas"; the fix changes every capture in the repo, so it is left as a decision rather than slipped in here.
+  - **The desktop sell button renders 104×0** because a component is extracted without the flex parent that gave it its height. `verify-pixels.mjs` used to wait the full 60 s and report only "locator.screenshot: Timeout". It now checks the box first and reports "the stored HTML renders 104×0: the component's wrapper collapsed", in about 2 s. The diagnosis is fixed, not the capture — the PNG was always right at 104×48.
+  - Why it matters: the log was pointing the next session at four selector problems, when three of them are one shared-library bug and one is a limitation of extracting components from their parents.
+  - 65 files: the two pages' templates and all their components, re-captured from live on 15 Oct. No component was lost (66 entries before and after).
+- **`templates` and `components` re-checked; the report now records its browser build** (#12). Six captures improved, all on the re-captured pages: `delivery-card` on both viewports (17.69% and 23.74% → close), `brand-chips~mobile`, `listing-card~mobile` and both `category-listing` templates (7.33% → 1.27% on mobile).
+  - Nine `ad-detail` captures moved the other way (`safety-tips~desktop` 0.58% → 4.37%, `ad-detail~desktop` match → close) although **nothing touched them** — not this change, not any commit since the report was generated. Their rendered sizes are identical to the pixel; only anti-aliased text differs, because the 7 Oct report was produced under a different Chromium build. `verify-pixels.mjs` now records the build in the report and says percentages aren't comparable across builds, and "Gotchas" has the full list of what was ruled out. The committed report therefore mixes `site` rows carried forward from 7 Oct with `templates` and `components` rows measured on 15 Oct; a `site` re-check would likely shift those rows the same way.
+  - Why it matters: without this, the next person re-runs the check, sees nine regressions they didn't cause, and goes looking for a bug in the captures.
 
 ### 14 Oct 2026
 - **GA4 / GTM findings applied to the event catalogue** (#11). `handoff/analytics/event-catalog.json` now carries the ids (`GTM-W6NPB7W`, `G-YP1ZBNYRVD`), the consent signals the container references, and the retired UA id. The 5 proposed events were replaced by the 11 names the live container triggers on (`chat_lead`, `open_chat`, `phone_view`, `phone_lead`, `sms_lead`, `make_an_offer`, `favourite_toggle`, `click_sell`, `add-listing_view`, `publish_ad`, `ad-post-success_view`), each recording what it `replaces`. Why: the catalogue was telling designers to track names that don't exist on live.
