@@ -5,18 +5,18 @@
     {
       "page": "ad-detail",
       "viewport": "desktop",
-      "path": "/item/apple-iphone-7-plus-5000-iid-1118460214",
+      "path": "/item/one-plus-10-pro-5g-panda-version-12gb512gb-iid-1120140159",
       "width": 1440,
-      "height": 2457,
+      "height": 2505,
       "viewportHeight": 900,
       "dpr": 1
     },
     {
       "page": "ad-detail",
       "viewport": "mobile",
-      "path": "/item/apple-iphone-7-plus-5000-iid-1118460214",
+      "path": "/item/one-plus-10-pro-5g-panda-version-12gb512gb-iid-1120140159",
       "width": 390,
-      "height": 2238,
+      "height": 2268,
       "viewportHeight": 664,
       "dpr": 3
     },
