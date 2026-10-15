@@ -33,7 +33,6 @@
     "fontStack": "\"Geomanist\", sans-serif",
     "fonts": [
       { "family": "Geomanist", "path": "fonts/Geomanist-Regular.a35649b1d4c9738de84be469ebdf3b2e.woff2", "weight": 400 },
-      { "family": "Geomanist", "path": "fonts/Geomanist-Book.5b15bf678f13c8611b01501ea643892e.woff2", "weight": 500 },
       { "family": "Geomanist", "path": "fonts/Geomanist-Medium.55687bb88819a897b599bb150b1fddcf.woff2", "weight": 600 }
     ]
   }

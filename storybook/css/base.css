@@ -2,7 +2,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-/* Geomanist is loaded as Regular, Book and Medium only: never let the browser fake a bold or italic. */
+/* Geomanist is loaded as Regular and Medium only: never let the browser fake a bold or italic. */
 html { -webkit-text-size-adjust: 100%; font-synthesis: none; }
 b, strong { font-weight: var(--olx-font-weight-semibold); }
 

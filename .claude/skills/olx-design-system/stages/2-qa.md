@@ -43,7 +43,7 @@ The full list with severities is in `qa/references/checks.md`.
 | --- | --- |
 | `cov` | coverage: the file exists, each declared state is drawn, an empty state exists |
 | `tok` | tokens: no inline style, no hex, every `var()` resolves, few px literals |
-| `fnt` | Geomanist only, weights 400 / 500 / 600 only, and they actually load |
+| `fnt` | Geomanist only, weights 400 / 600 only, and they actually load |
 | `cpy` | no lorem or TODO, no personal data, OLX voice, `Rs` price format |
 | `flw` | `flows.json`: no dead transitions, every screen reachable, a way back from each |
 | `par` | desktop and mobile pairs have the same states and the same button words |
@@ -53,7 +53,7 @@ The full list with severities is in `qa/references/checks.md`.
 
 ## Severity
 
-- **blocker:** a missing state on an authored screen, a hard-coded colour or inline style, a font weight outside 400/500/600 or a face other than Geomanist, placeholder text, personal data, a dead or unreachable flow, horizontal overflow, an image without alt, a control without a name, contrast under AA.
+- **blocker:** a missing state on an authored screen, a hard-coded colour or inline style, a font weight outside 400/600 or a face other than Geomanist, placeholder text, personal data, a dead or unreachable flow, horizontal overflow, an image without alt, a control without a name, contrast under AA.
 - **warning:** px literals, a hit target under 24×24 px, a heading level jump, voice, price format, parity, a `proposed` event, Geomanist not loading.
 - **note:** everything on a `live` capture, and observations.
 

@@ -1,7 +1,7 @@
 {
  "name": "OLX Pakistan Design System",
  "version": "0.1.0",
- "generated": "2026-10-14",
+ "generated": "2026-10-15",
  "source": {
   "site": "https://www.olx.com.pk",
   "codebase": "ZTechGroup/maple (private)"
@@ -23,8 +23,8 @@
   ],
   "tokensJson": "tokens/tokens.json",
   "tokensJs": "dist/tokens.js",
-  "theming": "Light by default, follows prefers-color-scheme; force with <html data-theme=\"light|dark\">. Components use semantic tokens (--olx-bg, --olx-text, --olx-primary, ...) only.",
-  "fonts": "Geomanist, committed in fonts/ and loaded by css/tokens.css: Regular 400 (--olx-font-weight-regular), Book 500 (--olx-font-weight-medium), Medium 600 (--olx-font-weight-semibold). Never use Geomanist Bold or Thin: there is no token for them, <strong>/<b> use 600, and font-synthesis is off. Fallback: Helvetica, Arial, sans-serif.",
+  "theming": "olx.com.pk is light only: web pages set <html data-theme=\"light\"> (without it the page follows prefers-color-scheme). The dark theme is the OLX app's, not in maple; use data-theme=\"dark\" only for app or explicitly requested dark designs. Components use semantic tokens (--olx-bg, --olx-text, --olx-primary, ...) only.",
+  "fonts": "Geomanist, committed in fonts/ and loaded by css/tokens.css: Regular 400 (--olx-font-weight-regular), Medium 600 (--olx-font-weight-semibold). Never use Geomanist Bold or Thin: there is no token for them, <strong>/<b> use 600, and font-synthesis is off. Fallback: Helvetica, Arial, sans-serif.",
   "docs": [
    "README.md",
    "docs/INTEGRATION.md",
@@ -35,7 +35,7 @@
  "tokens": {
   "source": "tokens/tokens.json",
   "css": "css/tokens.css",
-  "count": 98,
+  "count": 97,
   "groups": {
    "color": [
     {
@@ -187,10 +187,6 @@
     {
      "name": "--olx-font-weight-regular",
      "value": "400"
-    },
-    {
-     "name": "--olx-font-weight-medium",
-     "value": "500"
     },
     {
      "name": "--olx-font-weight-semibold",
@@ -839,7 +835,7 @@
       "html": "components/ad-description/desktop.html",
       "png": "components/ad-description/desktop.png",
       "width": 820,
-      "height": 545
+      "height": 139
      },
      {
       "viewport": "mobile",
@@ -886,7 +882,7 @@
       "html": "components/ad-overview/mobile.html",
       "png": "components/ad-overview/mobile.png",
       "width": 390,
-      "height": 122
+      "height": 146
      }
     ]
    },
@@ -1084,7 +1080,7 @@
       "html": "components/filters-sidebar/desktop.html",
       "png": "components/filters-sidebar/desktop.png",
       "width": 304,
-      "height": 1646
+      "height": 743
      }
     ]
    },
@@ -1408,7 +1404,7 @@
       "html": "components/related-ads/desktop.html",
       "png": "components/related-ads/desktop.png",
       "width": 820,
-      "height": 460
+      "height": 459
      },
      {
       "viewport": "mobile",
@@ -1555,19 +1551,19 @@
  "templates": [
   {
    "name": "ad-detail",
-   "path": "/item/samsung-s25-pta-100-orignal-stock-iid-1112212726",
+   "path": "/item/one-plus-10-pro-5g-panda-version-12gb512gb-iid-1120140159",
    "viewports": {
     "desktop": {
      "html": "templates/ad-detail/desktop.html",
      "png": "templates/ad-detail/desktop.png",
      "width": 1440,
-     "height": 2912
+     "height": 2505
     },
     "mobile": {
      "html": "templates/ad-detail/mobile.html",
      "png": "templates/ad-detail/mobile.png",
      "width": 390,
-     "height": 2244
+     "height": 2268
     }
    }
   },
@@ -1579,13 +1575,13 @@
      "html": "templates/category-listing/desktop.html",
      "png": "templates/category-listing/desktop.png",
      "width": 1440,
-     "height": 9516
+     "height": 9515
     },
     "mobile": {
      "html": "templates/category-listing/mobile.html",
      "png": "templates/category-listing/mobile.png",
      "width": 390,
-     "height": 6326
+     "height": 6307
     }
    }
   },
@@ -1597,13 +1593,13 @@
      "html": "templates/home/desktop.html",
      "png": "templates/home/desktop.png",
      "width": 1440,
-     "height": 5526
+     "height": 5950
     },
     "mobile": {
      "html": "templates/home/mobile.html",
      "png": "templates/home/mobile.png",
      "width": 390,
-     "height": 4102
+     "height": 4425
     }
    }
   },
@@ -1615,7 +1611,7 @@
      "html": "templates/location-prompt/mobile.html",
      "png": "templates/location-prompt/mobile.png",
      "width": 390,
-     "height": 4102
+     "height": 664
     }
    }
   },
@@ -1627,7 +1623,7 @@
      "html": "templates/location-select/mobile.html",
      "png": "templates/location-select/mobile.png",
      "width": 390,
-     "height": 11077
+     "height": 664
     }
    }
   },
@@ -1639,13 +1635,13 @@
      "html": "templates/search-results/desktop.html",
      "png": "templates/search-results/desktop.png",
      "width": 1440,
-     "height": 13252
+     "height": 16249
     },
     "mobile": {
      "html": "templates/search-results/mobile.html",
      "png": "templates/search-results/mobile.png",
      "width": 390,
-     "height": 8502
+     "height": 10501
     }
    }
   }
@@ -2006,13 +2002,12 @@
  },
  "quality": {
   "report": "audit/pixel-report.md",
-  "checked": "2026-10-07T15:47:19.426Z",
+  "checked": "2026-10-15T09:57:55.124Z",
   "summary": {
    "components": {
-    "match": 22,
-    "close": 12,
+    "close": 13,
     "mismatch": 19,
-    "error": 1
+    "match": 22
    },
    "site": {
     "match": 141,
@@ -2021,8 +2016,8 @@
     "close": 10
    },
    "templates": {
-    "match": 6,
-    "mismatch": 4
+    "match": 9,
+    "mismatch": 1
    }
   }
  },

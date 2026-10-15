@@ -23,8 +23,8 @@ Every push to `main` rebuilds and redeploys the site (`.github/workflows/pages.y
 
 ## What is done
 
-- **Tokens.** `tokens/tokens.json` is the source of truth: colours, semantic light and dark theme, type, spacing, radius, shadow and motion. `npm run build` generates `css/tokens.css` and `dist/tokens.js`.
-- **Font.** Geomanist is committed and published, since OLX holds the licence, in three weights only: Regular 400, Book 500 and Medium 600. Bold and Thin are not used. There is no bold token, `<strong>` uses 600, and `font-synthesis: none` stops faked bold. The Arabic GE SS Two font is not in git.
+- **Tokens.** `tokens/tokens.json` is the source of truth: colours, semantic light and dark theme (the dark theme is the **app's**; it is not in `maple` and not on the website, so web pages set `data-theme="light"`), type, spacing, radius, shadow and motion. `npm run build` generates `css/tokens.css` and `dist/tokens.js`.
+- **Font.** Geomanist is committed and published, since OLX holds the licence, in two weights only: Regular 400 and Medium 600. Book, Bold and Thin are not used. The Book file stays in `fonts/` only because live CSS, and so the captures, load it. There is no bold token, `<strong>` uses 600, and `font-synthesis: none` stops faked bold. The Arabic GE SS Two font is not in git.
 - **CSS components.** `css/components.css` holds the `olx-*` classes; the README has the list. The showcase is `index.html`.
 - **Live captures** from olx.com.pk, re-captured in one full pass on 7 Oct 2026 with photos:
   - `site/pages/`: 106 pages and states, 202 captures across desktop and mobile. Each has HTML, a screenshot, section crops and link hotspots.
@@ -146,6 +146,15 @@ MASK_PHOTOS=1 npm run verify:pixels      # writes audit/pixel-report.md
 Newest first. One entry per change: date, what changed, why, and the PR. "Mac" marks work done in the session on the Mac (`local-build`); the rest was done in cloud sessions.
 
 ### 15 Oct 2026
+- **Geomanist Regular and Medium only; dark theme is the app's.** OLX uses Medium, not Book.
+  - Removed the `medium` (500) weight token and Book's `@font-face` (`tokens/tokens.json`, `css/tokens.css`, `dist/tokens.js`); `.olx-label` now uses `--olx-font-weight-semibold` (600). `storybook/` copies synced.
+  - The skill follows: `foundations.md`, `SKILL.md`, the design and QA stages, the typography, token-check and store-screenshot guides, and the OLX store brand profile (Book face dropped, eyebrow 600).
+  - **QA now blocks 500** (`fnt.weight`, `fnt.render` in `qa/scripts/qa.mjs`). `handoff/favourites` still passes (0 blockers).
+  - `fonts/Geomanist-Book…woff2` is kept: live olx.com.pk CSS still declares Book at 500 and about 2,700 captured files load it.
+  - New skill rule 7: olx.com.pk is light only, so web pages set `data-theme="light"` (otherwise `css/tokens.css` follows the OS). Dark, from the OLX app, is for app designs or when asked. The manifest's theming note says the same.
+  - `foundations.md` reads the `design-system.json` copy shipped next to it in an uploaded skill, and wins over the published copy, which lags until `main` is pushed.
+  - Docs updated: `CLAUDE.md`, README, the book, the showcase, `docs/INTEGRATION.md`, script comments.
+
 - **`show-phone-button~desktop` restored after a re-capture dropped it** (#15). `ad-detail`'s path is resolved at run time because ads expire, so each run captures a different ad, and the ad in the #14 run didn't offer a "Show phone number" button. The component fell out of `components/index.json` (56 entries to 55) while its stale files stayed on disk, and the `captured` line still read normally — only a `missing` line said otherwise. Re-capturing `ad-detail` brought it back. Written up under "Gotchas": after re-capturing that page, compare the component count and read the `missing` lines.
 - **The sell button is fixed; the app banner turned out not to be a bug; and a third problem surfaced on the way** (#14). All 10 templates and all 66 components were re-captured.
   - **The sell button is `position: absolute`** on live (104×48 inside a `position: relative` parent). The old wrapper forced every ancestor to `position: static`, so it lost its containing block, resolved against the window, and drew no height: 104×0. Ancestors now stay `position: relative`, and an out-of-flow component gets the box it had on the page. It renders 104×48, matching live, and is marked `outOfFlow` since its height then agrees with the capture by construction.

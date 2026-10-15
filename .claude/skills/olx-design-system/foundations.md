@@ -5,10 +5,14 @@ questions need only this file; a full design job also follows `SKILL.md`.
 
 This repo is the OLX Pakistan design system, built from the live site
 (www.olx.com.pk) and checked against it. Everything is indexed in
-**`design-system.json`** at the repo root (published at
-https://chaudhary-umair-ahmad.github.io/OLX-Design-System/design-system.json). Read it first:
-it lists every token, CSS component, live component capture, template, screen, flow
-and asset, with file paths.
+**`design-system.json`**. Read it first: it lists every token, CSS component, live
+component capture, template, screen, flow and asset, with file paths.
+
+- In the repo it is at the root. In the uploaded skill (claude.ai) a copy ships **next to this
+  file**: use that copy.
+- The published copy (https://chaudhary-umair-ahmad.github.io/OLX-Design-System/design-system.json)
+  only updates when `main` is pushed, so it can lag. **Where anything disagrees with this skill,
+  this skill wins.**
 
 ## Rules
 
@@ -19,7 +23,7 @@ and asset, with file paths.
 
    Match it. Don't invent a new pattern when a live one exists.
 2. **Tokens only.** Never hard-code a colour, size, radius, shadow or duration. Use the `--olx-*` CSS variables from `css/tokens.css`, or `dist/tokens.js` in JS.
-   - In components, use **semantic** tokens (`--olx-text`, `--olx-primary`, `--olx-border`…), so dark mode works.
+   - In components, use **semantic** tokens (`--olx-text`, `--olx-primary`, `--olx-border`…), so the dark theme works where it's used (rule 7).
    - Use primitives (`--olx-color-petrol-900`…) only to define new semantic tokens.
 3. **Components before custom CSS.** Use the `olx-*` classes in `css/components.css`. The class names, modifiers and elements are listed under `design-system.json` → `components.css`, and `index.html` shows each one.
    - **React:** use `storybook/src/components/` (Alert, Badge, Breadcrumb, Button, Chip, Field, ListingCard).
@@ -29,13 +33,19 @@ and asset, with file paths.
    - mobile is 390 wide;
    - the main layout breakpoint is 767px (`@media (max-width: 767px)`);
    - token breakpoints are xs 360, sm 480, md 768, lg 950, xl 1280.
-5. **Geomanist in three weights only.** Use Regular (400), Book (500) and Medium (600). **Never use Geomanist Bold or Thin**, and never `font-weight: 700`, `bold`, or anything under 400. For emphasis or headings use `--olx-font-weight-semibold` (600). `<strong>`/`<b>` already map to 600, and `font-synthesis: none` stops faked bold.
+5. **Geomanist in two weights only.** Use Regular (400) and Medium (600). **Never use Geomanist Book (500), Bold or Thin**, and never `font-weight: 500`, `700`, `bold`, or anything under 400. (Captured pages still show 500, because live CSS declares Book; don't copy it into new work.) For emphasis or headings use `--olx-font-weight-semibold` (600). `<strong>`/`<b>` already map to 600, and `font-synthesis: none` stops faked bold.
 6. **Accessible by default.** Text contrast must be at least 4.5:1. Links and focus use `--olx-link` / `--olx-focus` (#2456d6), not the brand blue #3a77ff, which fails on white. Icon-only buttons need an `aria-label`. Respect `prefers-reduced-motion`.
+7. **Dark theme is the app's, for now.** olx.com.pk is light only; the dark tokens come from the
+   OLX app and are not in `maple`.
+   - **Web designs:** light. Put `<html data-theme="light">` on every web page, because
+     `css/tokens.css` otherwise follows the OS and would turn dark on a dark-mode device.
+   - **Dark is allowed** for app designs, or when someone asks for a dark version. Use
+     `data-theme="dark"` and semantic tokens only, and say that dark isn't on the website.
 
 ## Quick reference
 
 **Load everything:** `<link rel="stylesheet" href="css/olx.css">` (tokens + base + components).
-For theming, the default follows the OS, and `<html data-theme="dark">` (or `"light"`) forces a theme.
+Theming: without `data-theme` the page follows the OS. Web pages set `data-theme="light"`; `"dark"` only for app or requested dark designs (rule 7).
 
 **Brand colours**
 
@@ -67,7 +77,7 @@ The Sell button's tri-colour ring is `--olx-gradient-sell-ring`.
 | --- | --- |
 | Font | `--olx-font-family-sans`: Geomanist (committed in `fonts/`, loaded by `css/tokens.css`), then Helvetica, Arial |
 | Font size | `--olx-font-size-xs`…`4xl` = 12 / 14 / 16 / 18 / 20 / 24 / 32 / 40px |
-| Font weight | `--olx-font-weight-regular` 400 (Geomanist Regular), `medium` 500 (Geomanist Book), `semibold` 600 (Geomanist Medium). These are the only three. |
+| Font weight | `--olx-font-weight-regular` 400 (Geomanist Regular), `--olx-font-weight-semibold` 600 (Geomanist Medium). These are the only two. |
 | Line height | `--olx-font-line-height-tight` 1.2, `--olx-font-line-height-normal` 1.5 |
 | Spacing | `--olx-space-1`…`8` = 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64px |
 | Radius | `--olx-radius-sm` 4, `field` 6, `md` 8, `lg` 16, `pill` 999 |

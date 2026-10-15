@@ -1,7 +1,8 @@
 // Download the web fonts referenced by the captured OLX templates into fonts/
 // so the static copies render pixel-for-pixel. The files are committed (OLX holds the
-// Geomanist licence); run this only if OLX changes them. Only Regular, Book and
-// Medium are used: never add Geomanist Bold or Thin.
+// Geomanist licence); run this only if OLX changes them. The design system uses
+// only Regular and Medium; Book is kept because live CSS (and so the captures) loads it.
+// Never add Geomanist Bold or Thin.
 //
 //   npm run fetch-fonts
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';

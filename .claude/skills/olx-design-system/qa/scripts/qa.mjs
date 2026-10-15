@@ -107,11 +107,11 @@ if (want('tok')) for (const s of screens) {
   if (s.origin !== 'live' && !/href="[^"]*css\/(olx|tokens)\.css"/.test(h)) add('tok.css', 'warning', s.id, 'Screen does not link css/olx.css (tokens, base and components).');
 }
 
-// fnt — font rule (static part): Geomanist Regular 400, Book 500, Medium 600 only
+// fnt — font rule (static part): Geomanist Regular 400 and Medium 600 only (never Book 500)
 if (want('fnt')) for (const s of screens) {
   const h = html[s.id]; if (!h) continue;
-  const bad = h.match(/font-weight\s*:\s*(bold|bolder|lighter|[1-3]00|[7-9]00)\b/gi);
-  if (bad) add('fnt.weight', 'blocker', s.id, `Font weight outside Regular/Book/Medium: ${[...new Set(bad)].join(', ')}. Never Geomanist Bold or Thin; use --olx-font-weight-semibold (600).`);
+  const bad = h.match(/font-weight\s*:\s*(bold|bolder|lighter|[1-3]00|500|[7-9]00)\b/gi);
+  if (bad) add('fnt.weight', 'blocker', s.id, `Font weight outside Regular/Medium: ${[...new Set(bad)].join(', ')}. Never Geomanist Book, Bold or Thin; use --olx-font-weight-semibold (600).`);
   const fam = h.match(/font-family\s*:\s*([^;}"]+)/gi)?.filter((f) => !/var\(--olx-font-family|inherit|Geomanist/i.test(f));
   if (fam?.length) add('fnt.family', 'blocker', s.id, `Font family other than Geomanist: ${fam.slice(0, 3).join(' | ')}`);
 }
@@ -246,8 +246,8 @@ if (renderGroups.length && !NO_RENDER) {
       if (fnt) {
         const weights = new Set(), families = new Set();
         for (const el of root.querySelectorAll('*')) { if (!visible(el) || ![...el.childNodes].some((n) => n.nodeType === 3 && n.nodeValue.trim())) continue; const cs = getComputedStyle(el); weights.add(cs.fontWeight); families.add(cs.fontFamily.split(',')[0].replace(/"/g, '').trim()); }
-        const badW = [...weights].filter((w) => !['400', '500', '600'].includes(w));
-        if (badW.length) out.push(['fnt.render', 'blocker', `Rendered text uses weight ${badW.join(', ')}: only 400 / 500 / 600 (Geomanist Regular, Book, Medium).`]);
+        const badW = [...weights].filter((w) => !['400', '600'].includes(w));
+        if (badW.length) out.push(['fnt.render', 'blocker', `Rendered text uses weight ${badW.join(', ')}: only 400 / 600 (Geomanist Regular, Medium).`]);
         const badF = [...families].filter((f) => !/^geomanist$/i.test(f));
         if (badF.length) out.push(['fnt.render', 'blocker', `Rendered text uses ${badF.join(', ')} instead of Geomanist.`]);
         const loaded = [...document.fonts].some((f) => /geomanist/i.test(f.family) && f.status === 'loaded');

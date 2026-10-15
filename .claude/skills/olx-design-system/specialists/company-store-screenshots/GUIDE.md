@@ -9,7 +9,7 @@
 | Profile | `brands/olx-pk.json` + `.md`, **measured** from `css/tokens.css` (the website; the apps are not measured) |
 | Theme | `olx-pk`, injected by the scaffold: white surface, petrol ink `#002F34`, accent `#2456D6` (`--olx-link`), teal `#23E5DB` on petrol, muted `#406367` |
 | Accent | one label or emphasis word per slide. No glows, blobs or washes (`accentAsDecoration: false`). The yellow/teal/blue ring is the Sell button's, used only as that button |
-| Type | **Geomanist** Regular 400, Book 500, Medium 600 only; headlines 600 (`maxHeadlineWeight: 600`). Never Bold or Thin. Licensed to OLX: decks are **INTERNAL** until marketing signs off |
+| Type | **Geomanist** Regular 400 and Medium 600 only; headlines 600 (`maxHeadlineWeight: 600`). Never Book, Bold or Thin. Licensed to OLX: decks are **INTERNAL** until marketing signs off |
 | Icon | not in the repo: ask for the 1024×1024 store icon. Until then the feature graphic shows a dashed ICON placeholder. Icon exports: `company-web-app-assets` |
 | Locale | English. Urdu is out of scope until it is asked for |
 | Captures | the shipping OLX apps (iOS 6.9" simulator, an Android phone), a sample-data account, 9:41 status bar. Never the website captures in `site/pages/`, except as a draft that says so |

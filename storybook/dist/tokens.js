@@ -131,7 +131,6 @@ export const tokens = {
     },
     "weight": {
       "regular": "400",
-      "medium": "500",
       "semibold": "600"
     },
     "line-height": {
@@ -190,13 +189,6 @@ export const tokens = {
       "weight": "400",
       "style": "normal",
       "file": "fonts/Geomanist-Regular.a35649b1d4c9738de84be469ebdf3b2e.woff2"
-    },
-    {
-      "family": "Geomanist",
-      "name": "Geomanist Book",
-      "weight": "500",
-      "style": "normal",
-      "file": "fonts/Geomanist-Book.5b15bf678f13c8611b01501ea643892e.woff2"
     },
     {
       "family": "Geomanist",

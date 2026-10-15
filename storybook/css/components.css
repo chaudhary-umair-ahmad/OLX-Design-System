@@ -34,7 +34,7 @@
 
 /* ---------- Form fields ---------- */
 .olx-field { display: flex; flex-direction: column; gap: var(--olx-space-1); }
-.olx-label { font-size: var(--olx-font-size-sm); font-weight: var(--olx-font-weight-medium); }
+.olx-label { font-size: var(--olx-font-size-sm); font-weight: var(--olx-font-weight-semibold); }
 .olx-hint { font-size: var(--olx-font-size-xs); color: var(--olx-text-muted); }
 
 .olx-input, .olx-select, .olx-textarea {

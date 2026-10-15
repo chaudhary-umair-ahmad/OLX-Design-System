@@ -63,7 +63,7 @@ Then:
 - **Real content** from `handoff/content/fixtures.json`: titles, prices, locations, times, specs, photos.
 - **Both platforms.** Desktop is 1440 wide with content at 1280; mobile is 390. Mobile isn't a narrow desktop. Check how live solves it: category pages are list rows on both, and home sections become horizontal carousels on mobile.
 - **Copy in OLX's voice** (`design-copy`): `Chat`, `Call`, `Sell`, `Show phone number`, `Apply Filters`, `View more`.
-- **Geomanist only, in Regular 400, Book 500 and Medium 600.** Headings and prices use 600. Never 700 or under 400.
+- **Geomanist only, in Regular 400 and Medium 600.** Never Book 500. Headings and prices use 600. Never 700 or under 400.
 
 Specialist guides, for the parts that are easy to get wrong:
 

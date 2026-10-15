@@ -15,7 +15,7 @@ npm run qa -- --scope <feature> --checks tok,fnt                          # plus
 | `tok.inline` | move it into the screen's `<style>` as a class; only custom properties may stay inline |
 | `tok.resolve` | a typo or a token that doesn't exist; check `css/tokens.css` (or `design-system.json` → `tokens`) |
 | `tok.px` | `--olx-space-*` for spacing, `--olx-radius-*`, `--olx-font-size-*`. Borders of 1 px and media sizes may stay px |
-| `fnt.weight` | 400 / 500 / 600 via `--olx-font-weight-*`. 700 → 600 |
+| `fnt.weight` | 400 / 600 via `--olx-font-weight-*`. 500 and 700 → 600 |
 | `fnt.family` | `var(--olx-font-family-sans)` |
 
 ## Matching a value to a token

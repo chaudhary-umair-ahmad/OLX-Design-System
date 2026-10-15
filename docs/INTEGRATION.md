@@ -89,9 +89,10 @@ pages it appears on. To use them:
   SVGR.
 - Load raster art from `assets/categories/` and `assets/images/` directly.
 
-Geomanist is committed (`fonts/`, and `storybook/fonts/` for Storybook) in three weights: Regular 400
-(`--olx-font-weight-regular`), Book 500 (`--olx-font-weight-medium`) and Medium 600
-(`--olx-font-weight-semibold`). Don't use Geomanist Bold or Thin; there is no token for them.
+Geomanist is committed (`fonts/`, and `storybook/fonts/` for Storybook) and used in two weights: Regular 400
+(`--olx-font-weight-regular`) and Medium 600 (`--olx-font-weight-semibold`). Don't use Geomanist
+Book, Bold or Thin; there is no token for them. (The Book file stays in `fonts/` only because the
+captured live pages load it.)
 `css/tokens.css` declares the `@font-face` rules. The Arabic font GE SS Two is not in git;
 `npm run localize` (`storybook/`) downloads it for local use.
 

@@ -25,6 +25,6 @@ Don't leave a change out of the log because it's small. The log is how the next 
 
 ## Other rules
 
-- **Font.** Geomanist only, in Regular (400), Book (500) and Medium (600). Never Geomanist Bold or Thin.
+- **Font.** Geomanist only, in Regular (400) and Medium (600). Never Geomanist Book, Bold or Thin.
 - **Generated files.** After changing tokens, CSS or captures, re-run `npm run build` (tokens) and `npm run manifest` (`design-system.json`). Keep `storybook/tokens`, `storybook/css` and `storybook/fonts` in sync with the root copies.
 - **Shared branch.** Fetch before pushing; the Mac session and cloud sessions share branches. Never force-push over someone else's commits.

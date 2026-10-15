@@ -7,7 +7,7 @@ storybook-static
 # templates in design-kit/templates/ are the artefact worth keeping.
 design-kit/raw/
 
-# Geomanist (Regular, Book, Medium) is committed: OLX holds the licence. GE SS Two (Arabic)
+# Geomanist (Regular, Book, Medium) is committed (Book only for the captures): OLX holds the licence. GE SS Two (Arabic)
 # is not covered; npm run localize downloads it for local use.
 design-kit/templates/_assets/fonts/884e3c54294d.woff2
 design-kit/templates/_assets/fonts/8d8649cbadfc.woff2

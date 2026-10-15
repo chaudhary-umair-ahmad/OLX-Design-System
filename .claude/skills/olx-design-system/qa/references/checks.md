@@ -15,7 +15,7 @@ finding is capped at **note**. Run a subset with `--checks cov,tok,…` (by pref
 | `tok.resolve` | blocker | a `var(--x)` that neither `css/tokens.css` nor the screen defines |
 | `tok.px` | warning | px literals in `<style>`; prefer `--olx-space-*`, `--olx-radius-*`, `--olx-font-size-*` |
 | `tok.css` | warning | the screen doesn't link `css/olx.css` |
-| `fnt.weight` | blocker | a `font-weight` other than 400, 500, 600 (or their tokens) |
+| `fnt.weight` | blocker | a `font-weight` other than 400, 600 (or their tokens) |
 | `fnt.family` | blocker | a `font-family` other than Geomanist / `var(--olx-font-family-sans)` |
 | `cpy.placeholder` | blocker | lorem, ipsum, TODO, TBC, TBD, `xxx`, `John Doe`, `Jane Doe`, "product name", "placeholder" |
 | `cpy.pii` | blocker | a Pakistani mobile number (`03XX…`, `+92 3XX…`) or an email address is visible; use `03XX-XXXXXXX` |
@@ -51,14 +51,14 @@ finding is capped at **note**. Run a subset with `--checks cov,tok,…` (by pref
 | `a11y.heading` | warning | heading levels skip (h1 → h3) |
 | `a11y.target` | warning | a control is smaller than 24 × 24 px |
 | `a11y.contrast` | blocker | text under WCAG AA (4.5:1, or 3:1 for 18.66 px semibold / 24 px and up) |
-| `fnt.render` | blocker | rendered text uses a weight other than 400 / 500 / 600, or a face other than Geomanist |
+| `fnt.render` | blocker | rendered text uses a weight other than 400 / 600, or a face other than Geomanist |
 | `fnt.load` | warning | Geomanist didn't load |
 
 ## Not covered (say so; don't claim them)
 
 - Keyboard order and focus traps, screen-reader reading order.
 - Motion and `prefers-reduced-motion`.
-- Dark theme (the tokens have one; screens aren't tested in it).
+- Dark theme (the tokens have one, from the OLX app; web screens are light only and aren't tested in it).
 - Urdu / RTL.
 - Content extremes other than long text: zero, very large numbers, a missing photo, a null date.
 

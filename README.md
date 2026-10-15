@@ -30,7 +30,7 @@ scripts/import-motors.mjs  Imports Motors pages saved by the design kit (local-b
 scripts/capture-logged-in.mjs  Run locally: you log in, then capture logged-in screens into site/
 scripts/build-prototype.mjs  Wires captured links/buttons to captured screens -> prototype/data.json
 scripts/lib/capture-lib.mjs  Shared capture code (clean-up, redaction, CSS inlining, layout, cropping)
-fonts/                    Geomanist Regular, Book and Medium (committed; OLX holds the licence). No Bold or Thin.
+fonts/                    Geomanist Regular and Medium (Book too, for the captures only; OLX holds the licence).
 scripts/fetch-fonts.mjs   Re-downloads the Geomanist files into fonts/ from olx.com.pk
 scripts/capture.mjs       Playwright capture (screenshot, HTML, computed styles)
 scripts/inspect-components.mjs  Computed styles of key live components -> audit/live-snapshots/components.json
@@ -228,4 +228,4 @@ npm run preview   # serves the repo; open /index.html
 
 The generated files are committed so the CSS works without a build step. Text/background token pairs are chosen to meet WCAG AA contrast (4.5:1) in both themes.
 
-Token values are matched to the live site (see `audit/comparisons/live-vs-repo.md`). The font is Geomanist, OLX's typeface, committed in `fonts/` in three weights only: Regular (400), Book (500) and Medium (600). `css/tokens.css` loads them with `@font-face`. Bold and Thin are not used: there is no bold weight token, `<strong>`/`<b>` use Medium (600), and `font-synthesis: none` stops the browser from faking a bold.
+Token values are matched to the live site (see `audit/comparisons/live-vs-repo.md`). The font is Geomanist, OLX's typeface, used in two weights only: Regular (400) and Medium (600). `css/tokens.css` loads them with `@font-face`. Book, Bold and Thin are not used (`fonts/` also holds Book, only because the captured live pages load it): there is no bold weight token, `<strong>`/`<b>` use Medium (600), and `font-synthesis: none` stops the browser from faking a bold.

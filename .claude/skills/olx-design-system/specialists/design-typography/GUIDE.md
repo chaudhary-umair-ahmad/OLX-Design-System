@@ -1,14 +1,13 @@
 # Typography
 
-**Geomanist only**, licensed by OLX and bundled in `fonts/`, in three weights:
+**Geomanist only**, licensed by OLX and bundled in `fonts/`, in two weights:
 
 | Weight | Token | Use |
 | --- | --- | --- |
 | Regular 400 | `--olx-font-weight-regular` | body, meta, inputs |
-| Book 500 | `--olx-font-weight-medium` | labels, tabs, secondary emphasis |
-| Medium 600 | `--olx-font-weight-semibold` | headings, prices, buttons, `<strong>` |
+| Medium 600 | `--olx-font-weight-semibold` | headings, prices, buttons, labels, tabs, `<strong>` |
 
-**Never Geomanist Bold or Thin, and never 700+ or under 400.** There is no bold token, and `font-synthesis: none`
+**Never Geomanist Book (500), Bold or Thin, and never 500, 700+ or under 400.** There is no bold token, and `font-synthesis: none`
 stops the browser faking one. QA blocks any other weight or face (`fnt.weight`, `fnt.family`, `fnt.render`).
 
 ## Scale (measured)

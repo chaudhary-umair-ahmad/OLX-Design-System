@@ -46,7 +46,7 @@ The foundations (tokens, components, conventions) are in **`foundations.md`** in
 
    Proposed values go in `handoff/<feature>/PROPOSALS.md` and are said out loud.
 6. **Real content only.** Use `handoff/content/fixtures.json`, which holds 864 listings copied from the captures: real prices, places and "x days ago". Never lorem, `John Doe`, `$`, or made-up metrics.
-7. **Geomanist in Regular 400, Book 500 and Medium 600 only.** Never Bold, never Thin.
+7. **Geomanist in Regular 400 and Medium 600 only.** Never Book (500), Bold or Thin.
 
 ## Stage 0: Intake
 

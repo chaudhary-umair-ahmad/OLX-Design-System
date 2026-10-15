@@ -28,7 +28,7 @@ function flatten(node, prefix = []) {
 
 const { semantic, breakpoint, fontFaces = [], ...primitives } = tokens;
 
-// Geomanist ships in three faces only (Regular 400, Book 500, Medium 600). Bold and
+// Geomanist ships in two faces only (Regular 400, Medium 600). Book, Bold and
 // Thin are deliberately not loaded, so they can't appear; font-synthesis in base.css
 // stops the browser faking them. Paths are relative to css/tokens.css.
 const faces = fontFaces.map((f) => `@font-face {

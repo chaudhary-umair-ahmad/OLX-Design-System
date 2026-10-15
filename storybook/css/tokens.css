@@ -10,14 +10,6 @@
 
 @font-face {
   font-family: "Geomanist";
-  src: url("../fonts/Geomanist-Book.5b15bf678f13c8611b01501ea643892e.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Geomanist";
   src: url("../fonts/Geomanist-Medium.55687bb88819a897b599bb150b1fddcf.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
@@ -62,7 +54,6 @@
   --olx-font-size-3xl: 32px;
   --olx-font-size-4xl: 40px;
   --olx-font-weight-regular: 400;
-  --olx-font-weight-medium: 500;
   --olx-font-weight-semibold: 600;
   --olx-font-line-height-tight: 1.2;
   --olx-font-line-height-normal: 1.5;

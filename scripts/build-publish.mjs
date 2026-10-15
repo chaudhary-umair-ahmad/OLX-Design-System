@@ -28,7 +28,7 @@ const bookHtml = (await readFile('book/index.html', 'utf8'))
 await writeFile(join(OUT, 'index.html'), bookHtml);
 for (const f of ['book/book.js', 'book/book.css']) await copy(f, f.slice(5));
 await copy('css/tokens.css');
-// Geomanist Regular, Book and Medium: tokens.css loads them from ../fonts/, and the
+// Geomanist Regular and Medium: tokens.css loads them from ../fonts/, and the
 // captured pages from fonts/ at the root (site/pages/<id>/ -> ../../../fonts/).
 for (const f of await readdir('fonts')) if (f.endsWith('.woff2')) await copy(`fonts/${f}`);
 await copy('tokens/tokens.json');

@@ -29,8 +29,8 @@ captures, never from the website captures (except as a draft that says so).
 
 ## Type
 
-**Geomanist**, licensed by OLX, in `fonts/`. Regular 400, Book 500 and Medium 600 only: headlines 600, eyebrow 500,
-body 400. **Never Geomanist Bold or Thin, and never a faked bold** (`maxHeadlineWeight: 600` caps every style).
+**Geomanist**, licensed by OLX, in `fonts/`. Regular 400 and Medium 600 only: headlines and eyebrow 600,
+body 400. **Never Geomanist Book, Bold or Thin, and never a faked bold** (`maxHeadlineWeight: 600` caps every style).
 The deck is INTERNAL until marketing signs it off.
 
 ## Logo and icon
