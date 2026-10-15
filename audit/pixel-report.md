@@ -7,43 +7,27 @@ Checked 2026-10-15 with `node scripts/verify-pixels.mjs`. Each stored HTML file 
 | Group | Match | Close | Mismatch | Error | Skipped |
 | --- | --- | --- | --- | --- | --- |
 | site | 141 | 10 | 39 | 0 | 12 |
-| templates | 10 | 0 | 0 | 0 | 0 |
-| components | 16 | 4 | 34 | 0 | 0 |
+| templates | 9 | 0 | 1 | 0 | 0 |
+| components | 22 | 13 | 19 | 0 | 0 |
 
 ## Not matching
 
 | Capture | Verdict | Changed | Live size | Rendered size |
 | --- | --- | --- | --- | --- |
 | components/show-phone-button~desktop | mismatch | 92.59% | 420×49 | 420×48 |
-| components/listing-card~desktop | mismatch | 87.21% | 311×461 | 311×218 |
-| components/related-ads~desktop | mismatch | 83.27% | 820×460 | 820×305 |
-| components/delivery-card~desktop | mismatch | 67.42% | 302×428 | 301×192 |
-| components/category-tile~mobile | mismatch | 65.93% | 210×276 | 210×129 |
-| components/delivery-card~mobile | mismatch | 61.11% | 519×780 | 519×447 |
-| components/listing-row-featured~desktop | mismatch | 57.36% | 960×237 | 960×169 |
-| components/safety-tips~desktop | mismatch | 38.48% | 820×171 | 820×266 |
-| components/contact-bar~mobile | mismatch | 37.94% | 1170×192 | 1170×192 |
-| components/ad-details~desktop | mismatch | 35.53% | 820×121 | 820×183 |
-| components/sell-button~desktop | mismatch | 32.53% | 104×48 | 104×48 |
-| components/mobile-location-bar~mobile | mismatch | 28.19% | 1074×75 | 1074×99 |
-| components/seller-sidebar~desktop | mismatch | 27.97% | 420×270 | 420×301 |
-| components/app-banner~desktop | mismatch | 25.38% | 1280×173 | 1280×147 |
-| components/search-bar~desktop | mismatch | 23.19% | 902×50 | 902×50 |
-| components/page-title~desktop | mismatch | 22.83% | 381×37 | 381×36 |
-| components/listing-toolbar~desktop | mismatch | 21.44% | 330×37 | 329×42 |
-| components/listing-card~mobile | mismatch | 20.55% | 645×948 | 645×945 |
-| components/seller-card~desktop | mismatch | 20.07% | 420×142 | 420×173 |
-| components/ad-details~mobile | mismatch | 19.67% | 1170×567 | 1170×624 |
-| components/ad-overview~desktop | mismatch | 19.58% | 820×146 | 820×175 |
-| components/ad-description~desktop | mismatch | 18.05% | 820×497 | 820×593 |
-| components/ad-description~mobile | mismatch | 15.59% | 1170×366 | 1170×423 |
-| components/breadcrumb~mobile | mismatch | 13.45% | 1074×81 | 1074×75 |
-| components/listing-section~mobile | mismatch | 12.11% | 1170×1053 | 1170×1110 |
-| components/related-ads~mobile | mismatch | 12.09% | 1170×1053 | 1170×1110 |
+| components/sell-button~desktop | mismatch | 32.45% | 104×48 | 104×48 |
+| components/breadcrumb~mobile | mismatch | 30.81% | 1074×81 | 1074×75 |
+| components/app-banner~desktop | mismatch | 26.24% | 1280×173 | 1280×147 |
+| components/delivery-card~mobile | mismatch | 23.13% | 519×780 | 519×723 |
+| components/page-title~desktop | mismatch | 21.03% | 381×37 | 381×36 |
+| components/delivery-card~desktop | mismatch | 17.69% | 302×428 | 301×406 |
+| components/sell-button~mobile | mismatch | 16.15% | 216×138 | 216×138 |
+| components/seller-card~desktop | mismatch | 11.82% | 420×142 | 420×157 |
 | site/prop-flats-sale~mobile | mismatch | 11.23% | 780×25736 | 780×25736 |
 | site/prop-portions~mobile | mismatch | 11.06% | 780×25736 | 780×25736 |
 | site/sub-houses~mobile | mismatch | 10.75% | 780×25736 | 780×25736 |
 | site/prop-houses-rent~mobile | mismatch | 10.64% | 780×25736 | 780×25736 |
+| templates/category-listing~mobile | mismatch | 7.98% | 1170×18921 | 1170×18921 |
 | site/sub-motorcycles~mobile | mismatch | 7.79% | 780×11972 | 780×11972 |
 | site/cat-property-for-rent~mobile | mismatch | 7.63% | 780×45700 | 780×45700 |
 | site/cat-furniture~mobile | mismatch | 7.48% | 780×21080 | 780×21080 |
@@ -58,13 +42,13 @@ Checked 2026-10-15 with `node scripts/verify-pixels.mjs`. Each stored HTML file 
 | site/cat-animals~mobile | mismatch | 6.43% | 780×11988 | 780×11988 |
 | site/city-category~mobile | mismatch | 6.37% | 780×12688 | 780×12688 |
 | site/search-results~mobile | mismatch | 5.93% | 780×20098 | 780×20098 |
-| components/chat-button~desktop | mismatch | 5.83% | 420×49 | 420×48 |
 | site/prop-plots~desktop | mismatch | 5.6% | 1440×8202 | 1440×8202 |
 | site/cat-business~mobile | mismatch | 5.22% | 780×9356 | 780×9356 |
+| components/mobile-location-bar~mobile | mismatch | 5.21% | 1074×75 | 1074×75 |
+| components/category-tile~mobile | mismatch | 5.1% | 210×276 | 210×273 |
 | site/prop-city-houses~desktop | mismatch | 4.68% | 1440×13786 | 1440×13786 |
 | site/cat-property-for-rent~desktop | mismatch | 4.53% | 1440×13455 | 1440×13455 |
 | site/prop-city-plots~desktop | mismatch | 4.52% | 1440×13353 | 1440×13353 |
-| components/categories-filter~desktop | mismatch | 4.51% | 304×266 | 304×265 |
 | site/cat-property-for-sale~desktop | mismatch | 4.27% | 1440×13426 | 1440×13426 |
 | site/sorted-low-price~desktop | mismatch | 4.18% | 1440×15811 | 1440×15811 |
 | site/cat-animals~desktop | mismatch | 4.05% | 1440×16100 | 1440×16100 |
@@ -78,6 +62,7 @@ Checked 2026-10-15 with `node scripts/verify-pixels.mjs`. Each stored HTML file 
 | components/copyright-bar~mobile | mismatch | 3.48% | 1170×306 | 1170×303 |
 | components/copyright-bar~desktop | mismatch | 3.45% | 1440×58 | 1440×57 |
 | site/cat-business~desktop | mismatch | 3.34% | 1440×7757 | 1440×7757 |
+| components/ad-description~mobile | mismatch | 3.32% | 1170×366 | 1170×363 |
 | site/sub-flats-for-rent~desktop | mismatch | 3.27% | 1440×14118 | 1440×14118 |
 | components/search-row~desktop | mismatch | 3.24% | 1280×78 | 1280×78 |
 | site/cat-electronics~desktop | mismatch | 3.23% | 1440×9074 | 1440×9074 |
@@ -87,17 +72,27 @@ Checked 2026-10-15 with `node scripts/verify-pixels.mjs`. Each stored HTML file 
 | site/city~desktop | mismatch | 3.08% | 1440×9094 | 1440×9094 |
 | site/cat-vehicles~desktop | mismatch | 3.06% | 1440×9625 | 1440×9625 |
 | site/cat-jobs~desktop | mismatch | 3.03% | 1440×7424 | 1440×7424 |
-| components/breadcrumb~desktop | close | 2.92% | 1280×26 | 1280×26 |
+| components/listing-toolbar~desktop | mismatch | 3.01% | 330×37 | 329×36 |
+| components/ad-details~mobile | close | 2.9% | 1170×567 | 1170×564 |
 | site/sub-online-jobs~desktop | close | 2.9% | 1440×7725 | 1440×7725 |
 | site/cat-services~desktop | close | 2.79% | 1440×13455 | 1440×13455 |
 | components/brand-chips~mobile | close | 2.51% | 228×84 | 225×84 |
+| components/listing-card~mobile | close | 2.34% | 645×948 | 645×945 |
+| components/listing-section~mobile | close | 2.05% | 1170×1053 | 1170×1050 |
+| components/chat-button~desktop | close | 2.04% | 420×49 | 420×48 |
 | site/cat-books-sports~mobile | close | 2.04% | 780×20970 | 780×20970 |
 | site/cat-jobs~mobile | close | 1.94% | 780×9052 | 780×9052 |
+| components/related-ads~mobile | close | 1.87% | 1170×1053 | 1170×1050 |
 | site/cat-bikes~desktop | close | 1.74% | 1440×13455 | 1440×13455 |
 | components/footer~mobile | close | 1.49% | 1170×1683 | 1170×1683 |
 | site/sub-flats-for-rent~mobile | close | 1.18% | 780×46528 | 780×46528 |
-| components/seller-card-mobile~mobile | close | 1.08% | 1158×429 | 1158×429 |
+| components/ad-description~desktop | close | 1.1% | 820×91 | 820×90 |
 | site/motors-brand-tyres~desktop | close | 0.88% | 1440×1123 | 1440×1123 |
 | site/motors-insurance-tpl~desktop | close | 0.88% | 1440×1123 | 1440×1123 |
+| components/ad-overview~desktop | close | 0.86% | 820×116 | 820×115 |
+| components/ad-details~desktop | close | 0.83% | 820×121 | 820×120 |
+| components/listing-card~desktop | close | 0.65% | 311×461 | 311×460 |
 | site/prop-rooms~desktop | close | 0.62% | 1440×13394 | 1440×13394 |
 | site/prop-houses-rent~desktop | close | 0.6% | 1440×13786 | 1440×13786 |
+| components/safety-tips~desktop | close | 0.58% | 820×171 | 820×170 |
+| components/seller-card-mobile~mobile | close | 0.51% | 1158×429 | 1158×429 |
