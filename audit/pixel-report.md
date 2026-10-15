@@ -1,6 +1,6 @@
 # Pixel check: stored captures vs the live screenshots
 
-Checked 2026-10-15 with `node scripts/verify-pixels.mjs`. Each stored HTML file is rendered at its captured size and device pixel ratio and compared with the screenshot taken from olx.com.pk at capture time. A pixel counts as changed when a colour channel differs by more than 48/255 and no pixel within 1px of it in the other image is close (so 1px antialiasing shifts don't count). Fonts: Geomanist (fonts/).
+Checked 2026-10-15 with `node scripts/verify-pixels.mjs`. Each stored HTML file is rendered at its captured size and device pixel ratio and compared with the screenshot taken from olx.com.pk at capture time. A pixel counts as changed when a colour channel differs by more than 48/255 and no pixel within 1px of it in the other image is close (so 1px antialiasing shifts don't count). Fonts: Geomanist (fonts/). Rendered by Chromium 141.0.7390.37: percentages from another browser build are not directly comparable, because anti-aliased text rasterises differently.
 
 **match** ≤ 0.5% of pixels changed · **close** ≤ 3% · **mismatch** above that. Listing photos are user content and can change or disappear on OLX, so a small share of changes in photo areas is expected.
 

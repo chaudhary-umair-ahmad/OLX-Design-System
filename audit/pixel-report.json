@@ -1,5 +1,6 @@
 {
- "checked": "2026-10-15T06:35:18.263Z",
+ "checked": "2026-10-15T06:39:20.468Z",
+ "browser": "Chromium 141.0.7390.37",
  "tolerance": 48,
  "thresholds": {
   "match": 0.005,
