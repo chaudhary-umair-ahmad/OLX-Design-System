@@ -220,6 +220,10 @@ for (const [i, t] of todo.entries()) {
   results.push(r);
   console.log(`${String(i + 1).padStart(3)}/${todo.length} ${r.verdict.padEnd(8)} ${r.changed ?? '-'}%\t${r.group}/${r.id}${r.error ? '  ' + r.error : ''}`);
 }
+// Which browser rendered this run. Anti-aliased text rasterises slightly differently
+// between Chromium builds, so the same capture can shift by a few percent on another
+// machine with nothing else changed. Record it, or a later run looks like a regression.
+const browserVersion = `Chromium ${browser.version()}`;
 await browser.close();
 server.close();
 
@@ -232,13 +236,13 @@ for (const r of results) merged.set(key(r), r);
 const all = [...merged.values()].sort((a, b) => key(a).localeCompare(key(b)));
 
 const fonts = existsSync('fonts') ? 'Geomanist (fonts/)' : 'fallback (fonts/ missing: run npm run fetch-fonts)';
-await writeFile('audit/pixel-report.json', JSON.stringify({ checked: new Date().toISOString(), tolerance: CHANNEL_TOLERANCE, thresholds: { match: MATCH, close: CLOSE }, fonts, results: all }, null, 1) + '\n');
+await writeFile('audit/pixel-report.json', JSON.stringify({ checked: new Date().toISOString(), browser: browserVersion, tolerance: CHANNEL_TOLERANCE, thresholds: { match: MATCH, close: CLOSE }, fonts, results: all }, null, 1) + '\n');
 
 const count = (g, v) => all.filter((r) => r.group === g && r.verdict === v).length;
 const lines = [
   '# Pixel check: stored captures vs the live screenshots',
   '',
-  `Checked ${new Date().toISOString().slice(0, 10)} with \`node scripts/verify-pixels.mjs\`. Each stored HTML file is rendered at its captured size and device pixel ratio and compared with the screenshot taken from olx.com.pk at capture time. A pixel counts as changed when a colour channel differs by more than ${CHANNEL_TOLERANCE}/255 and no pixel within 1px of it in the other image is close (so 1px antialiasing shifts don't count). Fonts: ${fonts}.`,
+  `Checked ${new Date().toISOString().slice(0, 10)} with \`node scripts/verify-pixels.mjs\`. Each stored HTML file is rendered at its captured size and device pixel ratio and compared with the screenshot taken from olx.com.pk at capture time. A pixel counts as changed when a colour channel differs by more than ${CHANNEL_TOLERANCE}/255 and no pixel within 1px of it in the other image is close (so 1px antialiasing shifts don't count). Fonts: ${fonts}. Rendered by ${browserVersion}: percentages from another browser build are not directly comparable, because anti-aliased text rasterises differently.`,
   '',
   `**match** ≤ ${MATCH * 100}% of pixels changed · **close** ≤ ${CLOSE * 100}% · **mismatch** above that. Listing photos are user content and can change or disappear on OLX, so a small share of changes in photo areas is expected.`,
   '',
