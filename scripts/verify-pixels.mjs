@@ -44,7 +44,13 @@ if (want('site')) {
     // "Scrolled" captures are the screen after scrolling (sticky headers); the static
     // HTML can't be put back in that scroll state, so they aren't compared.
     if (meta.scrolled) { targets.push({ group: 'site', id: `${p.id}~${p.viewport}`, skip: 'scroll state, not comparable from static HTML' }); continue; }
-    targets.push({ group: 'site', id: `${p.id}~${p.viewport}`, html: `${base}.html`, png: `${base}.png`, width: meta.width, height: meta.height, dpr: meta.dpr ?? 1, fullPage: !meta.overlay });
+    // Same as templates: a page that loads more content while being photographed has no
+    // markup snapshot that matches its image, so comparing them measures only that.
+    if (meta.unstable) {
+      targets.push({ group: 'site', id: `${p.id}~${p.viewport}`, skip: `the page loads more content while being photographed (markup ${meta.unstable.markupHeight}px, image ${meta.unstable.imageHeight}px), so no static snapshot matches it` });
+      continue;
+    }
+    targets.push({ group: 'site', id: `${p.id}~${p.viewport}`, html: `${base}.html`, png: `${base}.png`, width: meta.width, height: meta.height, viewportHeight: meta.viewportHeight, dpr: meta.dpr ?? 1, fullPage: !meta.overlay });
   }
 }
 if (want('templates')) {

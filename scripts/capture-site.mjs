@@ -22,10 +22,11 @@
 // visited. Logged-in screens are captured separately, on your own machine, with
 // scripts/capture-logged-in.mjs.
 import { chromium, devices } from 'playwright';
+import { PNG } from 'pngjs';
 import { pathToFileURL } from 'node:url';
 import { mkdir, writeFile, readFile, access } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { freezePage, inlineStylesheets, fontOverrides, cropPng, docShell, scrollThrough, layoutFullHeight, pageParts } from './lib/capture-lib.mjs';
+import { freezePage, inlineStylesheets, fontOverrides, cropPng, docShell, scrollThrough, pageParts } from './lib/capture-lib.mjs';
 
 export const ORIGIN = 'https://www.olx.com.pk';
 export const OUT = 'site';
@@ -460,16 +461,33 @@ export async function capture(browser, def, path, vp, contextOptions = {}) {
     }
     await page.waitForTimeout(300);
 
-    // Pages are laid out at full height; overlays keep the screen size so the
-    // modal or menu stays where the user sees it.
+    // Overlays keep the screen size, so the modal or menu stays where the user sees it.
+    // Everything else is photographed whole with `fullPage`, at the window size a real
+    // visitor has. The old way resized the window to the page height first, which laid the
+    // page out at a size nobody browses at and stretched anything sized in `vh`.
     const onScreen = def.overlay || def.scrolled;
-    const size = onScreen ? page.viewportSize() : await layoutFullHeight(page);
+    const view = page.viewportSize();
+    if (!onScreen) {
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.waitForTimeout(400);
+    }
     const { hotspots, sections } = await page.evaluate(measure, { overlay: !!def.overlay, scrolled: !!def.scrolled });
-    const shot = await page.screenshot();
+    // Read the markup before the screenshot. `fullPage` scrolls the document to photograph
+    // it, which loads more content on a lazy page, so markup read afterwards describes a
+    // bigger page than the picture. See "A lazy page and its own screenshot" in PROGRESS.md.
+    const parts = await pageParts(page);
+    const markupHeight = onScreen ? view.height : await page.evaluate(() => document.documentElement.scrollHeight);
+
+    const shot = await page.screenshot(onScreen ? {} : { fullPage: true });
+    // The image is the ground truth for how tall the page was: `fullPage` sizes itself from
+    // the document as it finishes scrolling, not from what we measured a moment earlier.
+    const shotHeight = Math.round(PNG.sync.read(shot).height / dpr);
+    const unstable = !onScreen && Math.abs(shotHeight - markupHeight) > 2;
+    if (unstable) console.error(`  ${def.id}/${vp}: the page changed size while being photographed (markup ${markupHeight}px, image ${shotHeight}px). Marked as not comparable.`);
+    const size = { width: view.width, height: onScreen ? view.height : shotHeight };
 
     await mkdir(`${dir}/sections/${vp}`, { recursive: true });
     await writeFile(`${dir}/${vp}.png`, shot);
-    const parts = await pageParts(page);
     const cssHashes = await writeCss(parts.styleBlocks);
     const fonts = `<style data-from="local-fonts">\n${await fontOverrides(page, '../../../fonts')}\n</style>`;
     const cssLinks = (prefix) => cssHashes.map((h) => `<link rel="stylesheet" href="${prefix}css/${h}.css">`).join('\n');
@@ -494,7 +512,8 @@ export async function capture(browser, def, path, vp, contextOptions = {}) {
     }
     const meta = {
       id: def.id, title: def.title, viewport: vp, url: ORIGIN + path, finalUrl: page.url(),
-      width: size.width, height: size.height, dpr, overlay: !!def.overlay, scrolled: !!def.scrolled,
+      width: size.width, height: size.height, viewportHeight: view.height, dpr, overlay: !!def.overlay, scrolled: !!def.scrolled,
+      ...(unstable ? { unstable: { markupHeight, imageHeight: shotHeight } } : {}),
       captured: new Date().toISOString(), sections: sectionMeta, hotspots,
     };
     await writeFile(`${dir}/${vp}.json`, JSON.stringify(meta, null, 1) + '\n');
