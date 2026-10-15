@@ -478,7 +478,13 @@ export async function capture(browser, def, path, vp, contextOptions = {}) {
     const sectionMeta = [];
     for (const [i, s] of sections.entries()) {
       const file = `${String(i + 1).padStart(2, '0')}-${slugify(s.name)}`;
-      await writeFile(`${dir}/sections/${vp}/${file}.png`, cropPng(shot, s.rect, dpr));
+      try {
+        await writeFile(`${dir}/sections/${vp}/${file}.png`, cropPng(shot, s.rect, dpr));
+      } catch (err) {
+        // Measured outside the screenshot: keep the previous PNG rather than a sliver.
+        console.error(`  uncroppable section ${def.title}/${vp}/${s.name}: ${err.message}`);
+        continue;
+      }
       const body = `<div style="width:${s.rect.width}px">${s.html}</div>`;
       await writeFile(`${dir}/sections/${vp}/${file}.html`, docShell({
         title: `${def.title}: ${s.name} (${vp})`, htmlAttrs: parts.htmlAttrs, bodyAttrs: parts.bodyAttrs,

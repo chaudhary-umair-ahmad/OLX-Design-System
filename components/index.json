@@ -98,12 +98,12 @@
       "page": "category-listing",
       "viewport": "desktop",
       "width": 288,
-      "height": 233,
+      "height": 225,
       "rect": {
         "x": 97,
         "y": 1278,
         "width": 288,
-        "height": 233
+        "height": 225
       }
     },
     {
@@ -114,10 +114,11 @@
       "height": 28,
       "rect": {
         "x": 208,
-        "y": 64,
+        "y": 9684,
         "width": 76,
         "height": 28
-      }
+      },
+      "capturedDirectly": true
     },
     {
       "name": "breadcrumb",
@@ -140,10 +141,11 @@
       "height": 27,
       "rect": {
         "x": 16,
-        "y": 9938,
+        "y": 9986,
         "width": 358,
         "height": 27
-      }
+      },
+      "capturedDirectly": true
     },
     {
       "name": "categories-filter",
@@ -296,7 +298,7 @@
       "height": 260,
       "rect": {
         "x": 16,
-        "y": 1141,
+        "y": 1122,
         "width": 173,
         "height": 260
       }
@@ -306,12 +308,12 @@
       "page": "category-listing",
       "viewport": "desktop",
       "width": 304,
-      "height": 1646,
+      "height": 743,
       "rect": {
         "x": 80,
         "y": 278,
         "width": 304,
-        "height": 1646
+        "height": 743
       }
     },
     {
@@ -886,7 +888,7 @@
       "height": 46,
       "rect": {
         "x": 159,
-        "y": 4374,
+        "y": 612,
         "width": 72,
         "height": 46
       }
