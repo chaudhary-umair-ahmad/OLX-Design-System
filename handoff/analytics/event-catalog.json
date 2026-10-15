@@ -1,14 +1,27 @@
 {
- "note": "OLX Pakistan GA4 / GTM event catalogue. Edit only through the event-taxonomy guide; check with npm run check:tracking. status: live = seen in window.dataLayer on www.olx.com.pk (read-only browsing, no clicks); proposed = designed here, not yet seen live.",
+ "note": "OLX Pakistan GA4 / GTM event catalogue. Edit only through the event-taxonomy guide; check with npm run qa -- --scope <feature>. status: live = seen in window.dataLayer on www.olx.com.pk (read-only browsing, no clicks); live_name = the name is one the live GTM container triggers on, but its parameters have not been observed; proposed = designed here, never seen live.",
  "tenant": {
   "code": "PK",
   "site": "https://www.olx.com.pk",
   "currency": "PKR",
   "currency_decimals": 0,
-  "ga4_measurement_id": null,
-  "gtm_container_id": null,
-  "consent_mode": null,
-  "key_events": null
+  "ga4_measurement_id": "G-YP1ZBNYRVD",
+  "gtm_container_id": "GTM-W6NPB7W",
+  "consent_mode": {
+   "status": "referenced_by_container",
+   "signals": [
+    "analytics_storage",
+    "ads_data_redaction"
+   ],
+   "defaults": null,
+   "note": "The container references these consent signals, so consent mode looks configured. The banner tool and what is denied by default are unknown: ask the analytics owner."
+  },
+  "key_events": null,
+  "ids_source": "Read read-only from the home page source and the public container script gtm.js?id=GTM-W6NPB7W on 2026-10-14; see handoff/analytics/gtm-container.md. The production GA4 property is still to be confirmed by the analytics owner.",
+  "key_events_note": "Which live events GA4 counts as key events (conversions) is unknown: ask the analytics owner.",
+  "retired": {
+   "universal_analytics": "UA-192624154-2 (retired, ignore)"
+  }
  },
  "naming": {
   "style": "snake_case, object_action or action_object as on live (ad_view, home_view, property_search); max 40 characters",
@@ -54,7 +67,15 @@
    "param_value": 100,
    "params_per_event": 25
   },
-  "limits_source": "Google Analytics collection limits, checked 2026-10-13; re-check before a release. Note: live OLX events already send ~50-70 dataLayer keys; GTM maps a subset to GA4."
+  "limits_source": "Google Analytics collection limits, checked 2026-10-13; re-check before a release. Note: live OLX events already send ~50-70 dataLayer keys; GTM maps a subset to GA4.",
+  "live_name_exceptions": [
+   "add-listing_view",
+   "ad-post-success_view",
+   "select_payment_view",
+   "select_single_package_view",
+   "select_multiple_packages_view"
+  ],
+  "live_name_exceptions_note": "These live names contain a hyphen, so they break this catalogue's own snake_case rule and the QA name check (trk.name). They are recorded as they really fire. A new event never copies this."
  },
  "shared_params": [
   {
@@ -742,99 +763,146 @@
    ]
   },
   {
-   "name": "contact_seller",
-   "status": "proposed",
-   "proposed_for": "catalogue seed",
-   "fires_on": "the contact action succeeding (chat opened, call intent fired, WhatsApp opened, phone number revealed)",
-   "params": [
-    {
-     "name": "lead_channel",
-     "type": "string",
-     "example": "chat",
-     "values": [
-      "chat",
-      "call",
-      "whatsapp",
-      "show_phone"
-     ],
-     "required": true
-    },
-    {
-     "name": "ad_id",
-     "type": "string",
-     "required": true
-    },
-    {
-     "name": "surface",
-     "type": "string",
-     "example": "ad_page",
-     "values": [
-      "ad_page",
-      "listing_card",
-      "seller_profile"
-     ]
-    }
+   "name": "chat_lead",
+   "status": "live_name",
+   "name_source": "GTM container GTM-W6NPB7W, read 2026-10-14",
+   "replaces": [
+    "contact_seller"
    ],
-   "note": "Live OLX very likely has its own names for Chat / Call / WhatsApp / Show phone number; they fire on click, which read-only capture does not do. Observe them before using this."
+   "fires_on": "a chat lead reaching the seller (the message being sent)",
+   "params": [],
+   "params_status": "unobserved",
+   "note": "The lead half of contacting by chat; open_chat is the click that precedes it. Also has a chat_lead_unique variant. Parameters not observed: the container shows which events exist, not what they send. Confirm in GTM Preview (Tag Assistant) on the Mac, signed in, before relying on them."
   },
   {
-   "name": "add_to_favourites",
-   "status": "proposed",
-   "proposed_for": "catalogue seed",
-   "fires_on": "the save request succeeding",
-   "params": [
-    {
-     "name": "ad_id",
-     "type": "string",
-     "required": true
-    },
-    {
-     "name": "surface",
-     "type": "string"
-    }
-   ]
+   "name": "open_chat",
+   "status": "live_name",
+   "name_source": "GTM container GTM-W6NPB7W, read 2026-10-14",
+   "replaces": [
+    "contact_seller"
+   ],
+   "fires_on": "the chat window opening on an ad or seller page",
+   "params": [],
+   "params_status": "unobserved",
+   "note": "Parameters not observed: the container shows which events exist, not what they send. Confirm in GTM Preview (Tag Assistant) on the Mac, signed in, before relying on them."
   },
   {
-   "name": "remove_from_favourites",
-   "status": "proposed",
-   "proposed_for": "catalogue seed",
-   "fires_on": "the remove request succeeding",
-   "params": [
-    {
-     "name": "ad_id",
-     "type": "string",
-     "required": true
-    }
-   ]
+   "name": "phone_view",
+   "status": "live_name",
+   "name_source": "GTM container GTM-W6NPB7W, read 2026-10-14",
+   "replaces": [
+    "contact_seller"
+   ],
+   "fires_on": "the seller's phone number being revealed",
+   "params": [],
+   "params_status": "unobserved",
+   "note": "Also has a phone_view_unique variant. Parameters not observed: the container shows which events exist, not what they send. Confirm in GTM Preview (Tag Assistant) on the Mac, signed in, before relying on them."
   },
   {
-   "name": "post_ad_start",
-   "status": "proposed",
-   "proposed_for": "catalogue seed",
-   "fires_on": "the Post an Ad form opening",
-   "params": [
-    {
-     "name": "category_1_name",
-     "type": "string"
-    }
-   ]
+   "name": "phone_lead",
+   "status": "live_name",
+   "name_source": "GTM container GTM-W6NPB7W, read 2026-10-14",
+   "replaces": [
+    "contact_seller"
+   ],
+   "fires_on": "a call being placed to the seller",
+   "params": [],
+   "params_status": "unobserved",
+   "note": "Also has a phone_lead_unique variant. Parameters not observed: the container shows which events exist, not what they send. Confirm in GTM Preview (Tag Assistant) on the Mac, signed in, before relying on them."
   },
   {
-   "name": "post_ad_submit",
-   "status": "proposed",
-   "proposed_for": "catalogue seed",
+   "name": "sms_lead",
+   "status": "live_name",
+   "name_source": "GTM container GTM-W6NPB7W, read 2026-10-14",
+   "replaces": [
+    "contact_seller"
+   ],
+   "fires_on": "an SMS being sent to the seller",
+   "params": [],
+   "params_status": "unobserved",
+   "note": "Also has an sms_lead_unique variant. Parameters not observed: the container shows which events exist, not what they send. Confirm in GTM Preview (Tag Assistant) on the Mac, signed in, before relying on them."
+  },
+  {
+   "name": "make_an_offer",
+   "status": "live_name",
+   "name_source": "GTM container GTM-W6NPB7W, read 2026-10-14",
+   "replaces": [
+    "contact_seller"
+   ],
+   "fires_on": "an offer being submitted on an ad",
+   "params": [],
+   "params_status": "unobserved",
+   "note": "Parameters not observed: the container shows which events exist, not what they send. Confirm in GTM Preview (Tag Assistant) on the Mac, signed in, before relying on them."
+  },
+  {
+   "name": "favourite_toggle",
+   "status": "live_name",
+   "name_source": "GTM container GTM-W6NPB7W, read 2026-10-14",
+   "replaces": [
+    "add_to_favourites",
+    "remove_from_favourites"
+   ],
+   "fires_on": "the heart being toggled on an ad (the save or remove request succeeding)",
+   "params": [],
+   "params_status": "unobserved",
+   "note": "One event for both directions, so add and remove are told apart by a parameter whose name is not yet known. Parameters not observed: the container shows which events exist, not what they send. Confirm in GTM Preview (Tag Assistant) on the Mac, signed in, before relying on them."
+  },
+  {
+   "name": "click_sell",
+   "status": "live_name",
+   "name_source": "GTM container GTM-W6NPB7W, read 2026-10-14",
+   "replaces": [
+    "post_ad_start",
+    "post_ad_submit"
+   ],
+   "fires_on": "the Sell / Post an Ad control being tapped",
+   "params": [],
+   "params_status": "unobserved",
+   "note": "Parameters not observed: the container shows which events exist, not what they send. Confirm in GTM Preview (Tag Assistant) on the Mac, signed in, before relying on them."
+  },
+  {
+   "name": "add-listing_view",
+   "status": "live_name",
+   "name_source": "GTM container GTM-W6NPB7W, read 2026-10-14",
+   "replaces": [
+    "post_ad_start",
+    "post_ad_submit"
+   ],
+   "fires_on": "the Post an Ad form being shown",
+   "params": [],
+   "params_status": "unobserved",
+   "note": "Hyphenated live name; see naming.live_name_exceptions. Parameters not observed: the container shows which events exist, not what they send. Confirm in GTM Preview (Tag Assistant) on the Mac, signed in, before relying on them."
+  },
+  {
+   "name": "publish_ad",
+   "status": "live_name",
+   "name_source": "GTM container GTM-W6NPB7W, read 2026-10-14",
+   "replaces": [
+    "post_ad_start",
+    "post_ad_submit"
+   ],
    "fires_on": "the ad being accepted by the server",
-   "params": [
-    {
-     "name": "category_1_name",
-     "type": "string"
-    },
-    {
-     "name": "ad_id",
-     "type": "string",
-     "required": true
-    }
-   ]
+   "params": [],
+   "params_status": "unobserved",
+   "note": "Parameters not observed: the container shows which events exist, not what they send. Confirm in GTM Preview (Tag Assistant) on the Mac, signed in, before relying on them."
+  },
+  {
+   "name": "ad-post-success_view",
+   "status": "live_name",
+   "name_source": "GTM container GTM-W6NPB7W, read 2026-10-14",
+   "replaces": [
+    "post_ad_start",
+    "post_ad_submit"
+   ],
+   "fires_on": "the ad-posted success screen being shown",
+   "params": [],
+   "params_status": "unobserved",
+   "note": "Hyphenated live name; see naming.live_name_exceptions. Parameters not observed: the container shows which events exist, not what they send. Confirm in GTM Preview (Tag Assistant) on the Mac, signed in, before relying on them."
   }
- ]
+ ],
+ "name_inventory": {
+  "source": "GTM container GTM-W6NPB7W, read 2026-10-14",
+  "reference": "handoff/analytics/gtm-container.md",
+  "note": "About 60 names the live container triggers on. Only the ones a feature needs are listed as events above; add the rest from the reference when a feature uses them."
+ }
 }

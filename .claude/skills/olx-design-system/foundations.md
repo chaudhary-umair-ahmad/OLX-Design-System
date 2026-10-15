@@ -6,7 +6,7 @@ questions need only this file; a full design job also follows `SKILL.md`.
 This repo is the OLX Pakistan design system, built from the live site
 (www.olx.com.pk) and checked against it. Everything is indexed in
 **`design-system.json`** at the repo root (published at
-https://iqratahir-8.github.io/OLX-Design-System/design-system.json). Read it first:
+https://chaudhary-umair-ahmad.github.io/OLX-Design-System/design-system.json). Read it first:
 it lists every token, CSS component, live component capture, template, screen, flow
 and asset, with file paths.
 

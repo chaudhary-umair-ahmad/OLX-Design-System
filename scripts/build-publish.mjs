@@ -13,8 +13,9 @@ import { dirname, join } from 'node:path';
 
 const OUT = 'dist/book';
 const BUNDLE_BYTES = 6_000_000;
-// Where the book's "Open the Storybook" link goes. GitHub Pages serves the Storybook beside the book.
-const STORYBOOK_URL = process.env.BOOK_STORYBOOK_URL ?? 'https://claude.ai/artifact/HECRFGUbgvrpUDMQHkkLhy';
+// Where the book's "Open the Storybook" link goes. GitHub Pages serves the Storybook beside the
+// book and sets BOOK_STORYBOOK_URL=storybook/, so this default is only used by a standalone copy.
+const STORYBOOK_URL = process.env.BOOK_STORYBOOK_URL ?? 'https://chaudhary-umair-ahmad.github.io/OLX-Design-System/storybook/';
 
 await rm(OUT, { recursive: true, force: true });
 await mkdir(OUT, { recursive: true });

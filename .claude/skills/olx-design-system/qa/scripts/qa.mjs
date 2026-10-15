@@ -176,6 +176,7 @@ if (want('trk') && trackingFile) {
       const c = byName[e.event];
       if (!c) add('trk.catalog', 'blocker', null, `Event "${e.event}" (${e.id}) isn't in handoff/analytics/event-catalog.json. Add it through event-taxonomy (status proposed).`);
       else if (c.status === 'proposed') add('trk.proposed', 'warning', null, `Event "${e.event}" is proposed, not seen live on olx.com.pk. Say so in the summary.`);
+      else if (c.status === 'live_name') add('trk.unverified', 'warning', null, `Event "${e.event}" is a name the live GTM container triggers on, but its parameters haven't been observed. Confirm them in GTM Preview, signed in, and say so in the summary.`);
       if (!/^[a-z][a-z0-9_]{0,39}$/.test(e.event)) add('trk.name', 'blocker', null, `Event name "${e.event}" isn't snake_case ≤ 40 chars.`);
       for (const p of [...Object.keys(e.params ?? {}), ...(e.dynamic ?? [])]) if (PII.test(p)) add('trk.pii', 'blocker', null, `Event ${e.event} parameter "${p}" looks like personal data.`);
       for (const sc of e.screens ?? []) if (flowScreens.size && !flowScreens.has(sc)) add('trk.screen', 'blocker', null, `Event ${e.event} names screen "${sc}", which isn't in flows.json.`);

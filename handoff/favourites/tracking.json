@@ -1,13 +1,16 @@
 {
- "feature": "favourites", "version": 1, "tenants": ["PK"],
+ "feature": "favourites", "version": 2, "tenants": ["PK"],
  "metrics": [
   { "id": "M1", "kind": "primary", "name": "Return to a saved ad", "definition": "users who open an ad from Favourites / users who view Favourites", "events": ["ad_view"] },
-  { "id": "M2", "kind": "guardrail", "name": "Accidental removals", "definition": "remove_from_favourites followed by add_to_favourites of the same ad within a minute", "events": ["remove_from_favourites", "add_to_favourites"] }
+  { "id": "M2", "kind": "guardrail", "name": "Accidental removals", "definition": "a favourite_toggle that removes an ad followed by a favourite_toggle that re-saves the same ad within a minute. Needs the parameter that tells the two directions apart: see open_questions.", "events": ["favourite_toggle"] }
  ],
  "events": [
   { "id": "E1", "action": "open a saved ad", "event": "ad_view", "decision": "extend", "screens": ["list", "m-list"], "params": { "view_section": "favourites" }, "dynamic": ["ad_id", "price", "category_1_name"] },
-  { "id": "E2", "action": "un-heart a saved ad", "event": "remove_from_favourites", "decision": "reuse", "screens": ["list", "m-list"], "dynamic": ["ad_id"] },
-  { "id": "E3", "action": "re-heart (undo)", "event": "add_to_favourites", "decision": "reuse", "screens": ["list", "m-list"], "params": { "surface": "favourites" }, "dynamic": ["ad_id"] }
+  { "id": "E2", "action": "un-heart a saved ad", "event": "favourite_toggle", "decision": "reuse", "screens": ["list", "m-list"], "params": { "surface": "favourites" }, "dynamic": ["ad_id"] },
+  { "id": "E3", "action": "re-heart (undo)", "event": "favourite_toggle", "decision": "reuse", "screens": ["list", "m-list"], "params": { "surface": "favourites" }, "dynamic": ["ad_id"] }
  ],
- "open_questions": [ { "q": "What does OLX's live site fire when a heart is tapped? Observe it before relying on the proposed names.", "owner": "analytics owner", "blocks": "E2, E3" } ]
+ "open_questions": [
+  { "q": "favourite_toggle is one live event for both directions. Which parameter says whether the ad was saved or removed? Observe a heart tap in GTM Preview on the Mac, signed in.", "owner": "analytics owner", "blocks": "M2, E2, E3" },
+  { "q": "Does favourite_toggle accept a surface parameter, and is \"favourites\" an accepted value? E2 and E3 assume it does.", "owner": "analytics owner", "blocks": "E2, E3" }
+ ]
 }

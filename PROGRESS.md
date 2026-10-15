@@ -10,11 +10,11 @@ another Claude session. Read this first, then `README.md`.
 
 | What | Where |
 | --- | --- |
-| Repository | `iqratahir-8/OLX-Design-System` on GitHub, branch `main` |
-| Design system book | https://iqratahir-8.github.io/OLX-Design-System/ |
-| Storybook | https://iqratahir-8.github.io/OLX-Design-System/storybook/ |
-| Clickable prototype | https://iqratahir-8.github.io/OLX-Design-System/proto/ |
-| Component showcase | https://iqratahir-8.github.io/OLX-Design-System/showcase/ |
+| Repository | `chaudhary-umair-ahmad/OLX-Design-System` on GitHub, branch `main` |
+| Design system book | https://chaudhary-umair-ahmad.github.io/OLX-Design-System/ |
+| Storybook | https://chaudhary-umair-ahmad.github.io/OLX-Design-System/storybook/ |
+| Clickable prototype | https://chaudhary-umair-ahmad.github.io/OLX-Design-System/proto/ |
+| Component showcase | https://chaudhary-umair-ahmad.github.io/OLX-Design-System/showcase/ |
 | Source of truth | the live site https://www.olx.com.pk and the product codebase `ZTechGroup/maple` (private; read on the Mac, never in the cloud) |
 
 `/book/` and `/prototype/` on the live site redirect to `/` and `/proto/`.
@@ -44,13 +44,13 @@ Every push to `main` rebuilds and redeploys the site (`.github/workflows/pages.y
   - **QA gate:** `npm run qa -- --scope <feature>`. Static checks (states, tokens, Geomanist weights, copy, flows, parity, tracking) and render checks in Chromium at 1280/1440 and 360/390 (overflow, a 200-character string in user text, alt, labels, hit targets, AA contrast, rendered fonts). Writes `handoff/<feature>/qa/report.{json,html}`.
   - **Hand-off:** `npm run handoff -- --feature <feature>` builds one offline HTML file (clickable prototype, every state, specs mapped to tokens, rules with tests, copy deck, tracking, QA, open questions, sign-off). Internal only, since it embeds Geomanist; `handoff/*/dist/` is git-ignored.
   - **Real content:** `npm run fixtures` → `handoff/content/fixtures.json`, 864 listings from the captures.
-  - **Analytics:** `handoff/analytics/event-catalog.json`, with 7 live events observed in `dataLayer` (read-only, no clicks) and 5 proposed ones.
+  - **Analytics:** `handoff/analytics/event-catalog.json`, with the live GTM and GA4 ids (`GTM-W6NPB7W`, `G-YP1ZBNYRVD`), 7 events observed in `dataLayer` (read-only, no clicks) and 11 `live_name` events: names the live container triggers on, with parameters still unobserved. No proposed events are left.
   - **19 specialist guides** written for OLX (review, copy, forms, grid, type, interaction, motion, icons, imagery, image prompts set in Pakistan, inspiration, charts, token check, tracking, taxonomy, GA4 spec, funnels).
   - **Store screenshots and app icons:** OLX profiles for the store-screenshot editor (`brands/olx-pk`) and the icon generator (`products/olx-pk`, `npm run app-assets -- --out <folder>`; it needs `pip install pillow cairosvg`). Both kits were adapted from the uploaded Dubizzle hand-off skill (MIT upstream licences kept).
   - **Worked example:** `handoff/favourites/` (screens, flows, tracking, deliverable, QA: PASS WITH WARNINGS).
 - **Manifest for Claude Design and other tools.** `design-system.json` is one index of tokens (light and dark values), CSS components (classes, modifiers, elements), React wrappers, live components and their states, templates, screens, flows, assets, quality results and known gaps, all with file paths.
   - Generated from the repo with `npm run manifest`.
-  - Published at https://iqratahir-8.github.io/OLX-Design-System/design-system.json.
+  - Published at https://chaudhary-umair-ahmad.github.io/OLX-Design-System/design-system.json.
 - **Pixel check.** `npm run verify:pixels` renders every stored capture and compares it with its live screenshot. The latest results are in `audit/pixel-report.md`:
 
   | | Match | Close | Off | Not compared |
@@ -72,8 +72,9 @@ Every push to `main` rebuilds and redeploys the site (`.github/workflows/pages.y
    - the desktop sell button times out in the checker.
 3. **Matching with `maple`.** `audit/comparisons/live-vs-repo.md` covers live versus this repo. Reconciling components with the `maple` source is still pending; `docs/inventory.md` marks it "specced".
 4. **Hand-off skill follow-ups.**
-   - **GA4:** the IDs and the live event names are now known from the public tag container (`GTM-W6NPB7W`, `G-YP1ZBNYRVD`; see `handoff/analytics/gtm-container.md`), but **not yet applied** to `event-catalog.json`. Apply them: put the IDs in `tenant`, replace the 5 proposed names with the live ones (`favourite_toggle`, `chat_lead`, `phone_view`, `publish_ad`…), switch the favourites example to `favourite_toggle`, and re-run QA.
-   - Still needs the analytics owner: confirm the production property, consent defaults, key events, custom dimensions. Click-event parameters need observing in GTM Preview on the Mac, signed in.
+   - **GA4: applied on 14 Oct 2026.** The ids and consent signals are in `tenant`, the 5 proposed events were replaced by the 11 live names, the favourites example fires `favourite_toggle`, and QA was re-run (PASS WITH WARNINGS, 1 warning).
+   - **The live names' parameters are still unobserved.** The container shows which events fire, not what they send, so the 11 are `status: "live_name"` with `params: []` and QA warns `trk.unverified` when a feature uses one. Observe them in GTM Preview on the Mac, signed in (heart, Chat, Call, Sell). For favourites specifically: which parameter tells a save from a remove, since `favourite_toggle` is one event for both.
+   - Still needs the analytics owner: confirm the production property, consent defaults, key events, custom dimensions.
    - The OLX icon config is unverified: compare it with the shipping store icon, and get the 1024 px store icon for the screenshot kit.
    - Store screenshots need captures from the OLX apps; none are in the repo.
 5. **Site size.** The published site is about 710 MB, against GitHub Pages' 1 GB limit, because the screenshots now include photos. Shrink the screenshots (WebP, or a lower scale on mobile) before adding much more.
@@ -82,16 +83,12 @@ Every push to `main` rebuilds and redeploys the site (`.github/workflows/pages.y
 
 1. **Move the repo.** On GitHub, go to Settings → General → Danger zone → *Transfer ownership*, or fork it, or push a mirror:
    ```sh
-   git clone --mirror https://github.com/iqratahir-8/OLX-Design-System.git
+   git clone --mirror https://github.com/chaudhary-umair-ahmad/OLX-Design-System.git
    cd OLX-Design-System.git && git push --mirror https://github.com/<new-owner>/OLX-Design-System.git
    ```
    The repo is about 250 MB, so push over a stable connection.
-2. **GitHub Pages.** In the new repo, set Settings → Pages → *Source* to **GitHub Actions**, not "Deploy from a branch". Then run the workflow once from the Actions tab.
-3. **Update the hard-coded URLs** to the new owner:
-   - `README.md` (Pages links);
-   - `scripts/build-manifest.mjs` (the `BASE` constant), then run `npm run manifest`;
-   - `.claude/skills/olx-design-system/foundations.md` (the published `design-system.json` link);
-   - `scripts/build-publish.mjs` (the default `BOOK_STORYBOOK_URL`, a claude.ai artifact link that belongs to the old account; Pages overrides it, so it matters only for the claude.ai copy).
+2. **GitHub Pages.** In the new repo, set Settings → Pages → *Source* to **GitHub Actions**, not "Deploy from a branch". Then run the workflow once from the Actions tab. Done for `chaudhary-umair-ahmad`: the book, Storybook, prototype and `design-system.json` all serve (checked 14 Oct 2026).
+3. **The hard-coded URLs are done** for the move to `chaudhary-umair-ahmad` (14 Oct 2026): `README.md`, `scripts/build-manifest.mjs` (`BASE`) with `design-system.json` regenerated, `.claude/skills/olx-design-system/foundations.md`, `CLAUDE.md` (the PR reference) and `scripts/build-publish.mjs` (the default `BOOK_STORYBOOK_URL`, which was a claude.ai artifact link belonging to the old account and is now the new owner's Pages Storybook). For the next move, those are the files to change; `git grep <old-owner>` finds the rest.
 4. **Claude access.** Install the Claude GitHub App on the account that **owns** the repo (https://github.com/apps/claude), then reconnect GitHub at claude.ai → Settings → Connectors. Earlier, the app was installed on `iqratahir` while the repo belonged to `iqratahir-8`, which caused 403s on every push.
 5. **Cloud environment.** In the Claude Code cloud environment, set Network access to **Full**, or allow these hosts: `www.olx.com.pk`, `images.olx.com.pk`, `<owner>.github.io`. Without them, captures and checks of the live site can't run.
 6. **Mac session.** The Mac session (`claude remote-control` started in the `maple` folder) is the one that can read `maple`, use your logged-in OLX account and run Chrome. Point it at the new repo remote.
@@ -135,6 +132,12 @@ MASK_PHOTOS=1 npm run verify:pixels      # writes audit/pixel-report.md
 Newest first. One entry per change: date, what changed, why, and the PR. "Mac" marks work done in the session on the Mac (`local-build`); the rest was done in cloud sessions.
 
 ### 14 Oct 2026
+- **GA4 / GTM findings applied to the event catalogue** (#11). `handoff/analytics/event-catalog.json` now carries the ids (`GTM-W6NPB7W`, `G-YP1ZBNYRVD`), the consent signals the container references, and the retired UA id. The 5 proposed events were replaced by the 11 names the live container triggers on (`chat_lead`, `open_chat`, `phone_view`, `phone_lead`, `sms_lead`, `make_an_offer`, `favourite_toggle`, `click_sell`, `add-listing_view`, `publish_ad`, `ad-post-success_view`), each recording what it `replaces`. Why: the catalogue was telling designers to track names that don't exist on live.
+  - A third status, **`live_name`**, says the name is real but its parameters were never observed (`params: []`). The container shows which events fire, not what they send, so calling them `live` would have overstated it. New QA check `trk.unverified` warns when a feature uses one, which keeps the warning the old `trk.proposed` used to give.
+  - `handoff/favourites/tracking.json` (v2) fires `favourite_toggle` for both the un-heart and the re-heart, since live has one event for both directions. The M2 guardrail was reworded and now depends on an open question: which parameter tells a save from a remove.
+  - The `event-taxonomy`, `ga4-event-spec` and `funnel-analysis` guides, the QA `checks.md` table and the hand-off builder's status footnote were updated to match. Five live names use a hyphen (`add-listing_view`, `ad-post-success_view`, the package and payment views), which breaks the catalogue's own snake_case rule and the `trk.name` check; they are recorded as `naming.live_name_exceptions` rather than silently renamed.
+  - QA re-run: `npm run qa -- --scope favourites` → PASS WITH WARNINGS, 3 warnings down to 1 (the GA4-id warning is gone now the id is recorded).
+- **Hard-coded URLs re-pointed to `chaudhary-umair-ahmad`** (#11), finishing step 3 of the account move: `README.md`, `scripts/build-manifest.mjs` (`BASE`, with `design-system.json` regenerated), `foundations.md`, `CLAUDE.md`'s PR reference, and `scripts/build-publish.mjs`'s default `BOOK_STORYBOOK_URL`, which pointed at a claude.ai artifact owned by the old account. All four Pages URLs were checked and serve.
 - **Skill description shortened to 704 characters.** claude.ai rejects a skill whose `description` is over 1,024 characters, so the merged skill failed to upload.
 - **The two OLX skills merged into one**, `olx-design-system`, at the user's request. The old `olx-design-system/SKILL.md` is now `foundations.md` (quick questions), and the hand-off skill's folder moved in as `SKILL.md`, `stages/`, `qa/`, `deliverables/` and `specialists/`. `olx-design-handoff` no longer exists. Paths in `package.json`, `README.md`, `CLAUDE.md`, `handoff/registry.json` and the scripts were updated; `npm run qa`, `handoff` and `app-assets` were re-run from the new path.
 - **GA4 setup found and recorded** (#9, `handoff/analytics/gtm-container.md`). Read-only from the home page source and the public GTM script: container `GTM-W6NPB7W`, GA4 `G-YP1ZBNYRVD`, consent mode referenced, and about 60 event names the container listens for. Five of the catalogue's proposed names don't match live (e.g. favourites is `favourite_toggle`, contact is `chat_lead` / `phone_view`). Not applied to the catalogue yet.
