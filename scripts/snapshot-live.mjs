@@ -14,6 +14,7 @@
 // live site. Images load from OLX's servers. Fonts load from ../../fonts/ first
 // (Geomanist, committed in fonts/) and fall back to olx.com.pk.
 import { chromium, devices } from 'playwright';
+import { PNG } from 'pngjs';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { freezePage, inlineStylesheets, fontOverrides, cropPng, docShell, scrollThrough, pageParts } from './lib/capture-lib.mjs';
 
@@ -116,14 +117,34 @@ async function capture(browser, pageName, { path, steps }, vp) {
     const view = page.viewportSize();
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.waitForTimeout(400);
+
+    // Read the markup and the page height BEFORE the screenshot. `fullPage` scrolls the
+    // document to photograph it, and on an infinite list that loads more items as it goes, so
+    // the DOM afterwards is bigger than the picture. Taking the HTML afterwards stored a page
+    // with thousands of pixels of listings the PNG never showed: on the category page the
+    // markup said 16,906px against a 9,515px image. The old checker hid that by cropping the
+    // render to the image height; it does not any more, so the two have to agree here.
+    const parts = await pageParts(page);
+    const pageHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+
     const shotBuffer = await page.screenshot({ path: `${dir}/${vp}.png`, fullPage: true });
-    const size = { width: view.width, height: await page.evaluate(() => document.documentElement.scrollHeight) };
+    const dpr = viewports[vp].deviceScaleFactor ?? 1;
+    // The image is the ground truth for how tall the page was: `fullPage` sizes itself from the
+    // document as it finishes scrolling, which on a lazy list is not the height we measured a
+    // moment earlier.
+    const shotHeight = Math.round(PNG.sync.read(shotBuffer).height / dpr);
+    // If the page changed size while being photographed, no single snapshot of the markup
+    // describes the image: the content the picture shows and the content we saved are different
+    // amounts of listings. Say so and mark it, rather than storing a pair that cannot agree.
+    const unstable = Math.abs(shotHeight - pageHeight) > 2;
+    if (unstable) console.error(`  ${pageName}/${vp}: the page changed size while being photographed (markup ${pageHeight}px, image ${shotHeight}px). Marked as not comparable.`);
+    const size = { width: view.width, height: shotHeight };
     templateIndex = templateIndex.filter((t) => !(t.page === pageName && t.viewport === vp))
       // viewportHeight is the window the page was laid out in; height is the page itself.
       // The checker needs the window, since the PNG only tells it the page height.
-      .concat({ page: pageName, viewport: vp, path: path ?? '', width: size.width, height: Math.ceil(size.height), viewportHeight: view.height, dpr: viewports[vp].deviceScaleFactor ?? 1 });
+      .concat({ page: pageName, viewport: vp, path: path ?? '', width: size.width, height: Math.ceil(size.height), viewportHeight: view.height, dpr,
+                ...(unstable ? { unstable: { markupHeight: pageHeight, imageHeight: shotHeight } } : {}) });
 
-    const parts = await pageParts(page);
     const fonts = `<style data-from="local-fonts">\n${await fontOverrides(page)}\n</style>`;
     const head = `${parts.styles}\n${fonts}`;
     await writeFile(`${dir}/${vp}.html`, docShell({ ...parts, head, body: parts.body }));
@@ -200,18 +221,52 @@ async function capture(browser, pageName, { path, steps }, vp) {
         for (let a = node.parentElement; a && a !== document.body; a = a.parentElement) {
           chain.unshift({ tag: a.tagName.toLowerCase(), cls: a.getAttribute('class') ?? '', style: a.getAttribute('style') ?? '' });
         }
-        return { width: Math.round(r.width), height: Math.round(r.height), chain, html: node.outerHTML };
+        const own = getComputedStyle(node);
+        // The tallest thing inside the component. When the component's own box is taller than
+        // that, the extra height came from the page stretching it -- an ancestor was made tall
+        // by something outside this component -- so on its own it will render shorter, and
+        // correctly so. Recording it keeps that from looking like a broken capture.
+        const tallestChild = Math.max(0, ...[...node.children].map((c) => Math.round(c.getBoundingClientRect().height)));
+        return {
+          width: Math.round(r.width), height: Math.round(r.height), chain, html: node.outerHTML,
+          // An absolutely positioned component is out of flow: it draws no height in its
+          // parent and sizes itself against the nearest positioned ancestor. Standing it up
+          // on its own needs that containing block back, or it resolves against the window.
+          outOfFlow: own.position === 'absolute' || own.position === 'fixed',
+          contentHeight: tallestChild,
+        };
       });
       // Ancestors keep their classes (for selectors and variables) but not their layout.
-      const reset = 'display:block;position:static;width:auto;height:auto;min-height:0;max-width:none;margin:0;padding:0;border:0;transform:none;overflow:visible;box-shadow:none;';
+      // Keeping their `display` was tried and is much worse: a flex ancestor left holding a
+      // single child applies flex-item sizing to it, which wrecked 17 components (listing-card
+      // ~desktop went from 0.65% to 87.21%) to fix one. Flattening to a block is the safer
+      // reading of "this component, out of its page".
+      // The one exception is `position`: an out-of-flow component needs a positioned ancestor
+      // to resolve against, or it sizes itself against the window and draws no height at all.
+      const reset = `display:block;position:${info.outOfFlow ? 'relative' : 'static'};width:auto;height:auto;min-height:0;max-width:none;margin:0;padding:0;border:0;transform:none;overflow:visible;box-shadow:none;`;
       const open = info.chain.map((a) => `<div class="${a.cls}" style="${a.style ? a.style.replace(/"/g, '&quot;') + ';' : ''}${reset}">`).join('');
       const close = '</div>'.repeat(info.chain.length);
-      const body = `<div style="width:${info.width}px">${open}${info.html}${close}</div>`;
+      // An out-of-flow component cannot give the wrapper a height, so the wrapper is given the
+      // box the component had on the page. That is the containing block it actually resolved
+      // against, not an invented size -- but it does mean its height matches live by
+      // construction, which is why the index records `outOfFlow`.
+      const outer = info.outOfFlow
+        ? `width:${info.width}px;height:${info.height}px;position:relative`
+        : `width:${info.width}px`;
+      const body = `<div style="${outer}">${open}${info.html}${close}</div>`;
       await writeFile(`${cdir}/${vp}.html`, docShell({
         title: `${name} (${vp}) – OLX live component`,
         htmlAttrs: parts.htmlAttrs, bodyAttrs: parts.bodyAttrs, head: componentHead, body,
       }));
-      found.push({ name, page: pageName, viewport: vp, width: rect.width, height: rect.height, rect, ...(direct ? { capturedDirectly: true } : {}) });
+      // Only meaningful for a single-row flex component, where the row's height is its tallest
+      // item; a column stacks, so a smaller tallest child is normal and not a stretch.
+      const rowFlex = /flex/.test(await el.evaluate((n) => getComputedStyle(n).display))
+        && !/column/.test(await el.evaluate((n) => getComputedStyle(n).flexDirection));
+      // Out-of-flow components already get their page box pinned on the wrapper above, so
+      // they render at the captured size and this does not apply to them.
+      const stretched = !info.outOfFlow && rowFlex && info.contentHeight > 0 && info.height - info.contentHeight > 2;
+      if (stretched) console.error(`  ${pageName}/${vp}/${name}: the page stretches this to ${info.height}px; on its own it is ${info.contentHeight}px, so the stored HTML renders shorter than the capture.`);
+      found.push({ name, page: pageName, viewport: vp, width: rect.width, height: rect.height, rect, ...(direct ? { capturedDirectly: true } : {}), ...(info.outOfFlow ? { outOfFlow: true } : {}), ...(stretched ? { stretchedByPage: { pageHeight: info.height, ownHeight: info.contentHeight } } : {}) });
     }
     console.log(`captured ${pageName}/${vp} (${found.length} components)`);
     return found;

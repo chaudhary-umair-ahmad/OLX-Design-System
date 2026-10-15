@@ -7,12 +7,12 @@
       "page": "ad-detail",
       "viewport": "desktop",
       "width": 820,
-      "height": 545,
+      "height": 91,
       "rect": {
         "x": 80,
         "y": 1117,
         "width": 820,
-        "height": 545
+        "height": 91
       }
     },
     {
@@ -91,6 +91,10 @@
         "y": 5432,
         "width": 1280,
         "height": 173
+      },
+      "stretchedByPage": {
+        "pageHeight": 172,
+        "ownHeight": 147
       }
     },
     {
@@ -98,12 +102,12 @@
       "page": "category-listing",
       "viewport": "desktop",
       "width": 288,
-      "height": 225,
+      "height": 233,
       "rect": {
         "x": 97,
         "y": 1278,
         "width": 288,
-        "height": 225
+        "height": 233
       }
     },
     {
@@ -114,11 +118,15 @@
       "height": 28,
       "rect": {
         "x": 208,
-        "y": 9684,
+        "y": 9666,
         "width": 76,
         "height": 28
       },
-      "capturedDirectly": true
+      "capturedDirectly": true,
+      "stretchedByPage": {
+        "pageHeight": 28,
+        "ownHeight": 21
+      }
     },
     {
       "name": "breadcrumb",
@@ -141,7 +149,7 @@
       "height": 27,
       "rect": {
         "x": 16,
-        "y": 9986,
+        "y": 9968,
         "width": 358,
         "height": 27
       },
@@ -233,9 +241,13 @@
       "height": 49,
       "rect": {
         "x": 940,
-        "y": 509,
+        "y": 439,
         "width": 420,
         "height": 49
+      },
+      "stretchedByPage": {
+        "pageHeight": 48,
+        "ownHeight": 24
       }
     },
     {
@@ -246,9 +258,13 @@
       "height": 64,
       "rect": {
         "x": 0,
-        "y": 2180,
+        "y": 600,
         "width": 390,
         "height": 64
+      },
+      "stretchedByPage": {
+        "pageHeight": 64,
+        "ownHeight": 40
       }
     },
     {
@@ -787,6 +803,10 @@
         "y": 226,
         "width": 381,
         "height": 37
+      },
+      "stretchedByPage": {
+        "pageHeight": 36,
+        "ownHeight": 26
       }
     },
     {
@@ -794,12 +814,12 @@
       "page": "ad-detail",
       "viewport": "desktop",
       "width": 820,
-      "height": 460,
+      "height": 459,
       "rect": {
         "x": 80,
-        "y": 1701,
+        "y": 1247,
         "width": 820,
-        "height": 460
+        "height": 459
       }
     },
     {
@@ -810,7 +830,7 @@
       "height": 351,
       "rect": {
         "x": 0,
-        "y": 1020,
+        "y": 1014,
         "width": 390,
         "height": 351
       }
@@ -823,7 +843,7 @@
       "height": 171,
       "rect": {
         "x": 80,
-        "y": 2200,
+        "y": 1745,
         "width": 820,
         "height": 171
       }
@@ -836,7 +856,7 @@
       "height": 236,
       "rect": {
         "x": 16,
-        "y": 1390,
+        "y": 1384,
         "width": 358,
         "height": 236
       }
@@ -878,7 +898,8 @@
         "y": 8,
         "width": 104,
         "height": 48
-      }
+      },
+      "outOfFlow": true
     },
     {
       "name": "sell-button",
@@ -898,12 +919,12 @@
       "page": "ad-detail",
       "viewport": "desktop",
       "width": 420,
-      "height": 148,
+      "height": 142,
       "rect": {
         "x": 940,
         "y": 282,
         "width": 420,
-        "height": 148
+        "height": 142
       }
     },
     {
@@ -911,12 +932,12 @@
       "page": "ad-detail",
       "viewport": "mobile",
       "width": 386,
-      "height": 149,
+      "height": 143,
       "rect": {
         "x": 4,
         "y": 814,
         "width": 386,
-        "height": 149
+        "height": 143
       }
     },
     {
@@ -924,25 +945,12 @@
       "page": "ad-detail",
       "viewport": "desktop",
       "width": 420,
-      "height": 276,
+      "height": 206,
       "rect": {
         "x": 940,
         "y": 282,
         "width": 420,
-        "height": 276
-      }
-    },
-    {
-      "name": "show-phone-button",
-      "page": "ad-detail",
-      "viewport": "desktop",
-      "width": 420,
-      "height": 49,
-      "rect": {
-        "x": 940,
-        "y": 445,
-        "width": 420,
-        "height": 49
+        "height": 206
       }
     },
     {

@@ -52,6 +52,13 @@ if (want('templates')) {
   for (const t of index.templates) {
     const base = `templates/${t.page}/${t.viewport}`;
     if (!existsSync(`${base}.html`) || !existsSync(`${base}.png`)) continue;
+    // A page that loads more content while being photographed has no markup snapshot that
+    // matches its image, so comparing them only ever measures the difference in how much
+    // loaded. Same treatment as a scroll state.
+    if (t.unstable) {
+      targets.push({ group: 'templates', id: `${t.page}~${t.viewport}`, skip: `the page loads more content while being photographed (markup ${t.unstable.markupHeight}px, image ${t.unstable.imageHeight}px), so no static snapshot matches it` });
+      continue;
+    }
     targets.push({ group: 'templates', id: `${t.page}~${t.viewport}`, html: `${base}.html`, png: `${base}.png`, width: t.width, height: t.height, viewportHeight: t.viewportHeight, dpr: t.dpr ?? 1, fullPage: true });
   }
 }

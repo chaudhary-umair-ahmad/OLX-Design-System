@@ -5,17 +5,19 @@
     {
       "page": "ad-detail",
       "viewport": "desktop",
-      "path": "/item/samsung-s25-pta-100-orignal-stock-iid-1112212726",
+      "path": "/item/apple-iphone-7-plus-5000-iid-1118460214",
       "width": 1440,
-      "height": 2912,
+      "height": 2457,
+      "viewportHeight": 900,
       "dpr": 1
     },
     {
       "page": "ad-detail",
       "viewport": "mobile",
-      "path": "/item/samsung-s25-pta-100-orignal-stock-iid-1112212726",
+      "path": "/item/apple-iphone-7-plus-5000-iid-1118460214",
       "width": 390,
-      "height": 2244,
+      "height": 2238,
+      "viewportHeight": 664,
       "dpr": 3
     },
     {
@@ -23,7 +25,7 @@
       "viewport": "desktop",
       "path": "/mobile-phones_c1453",
       "width": 1440,
-      "height": 16653,
+      "height": 9515,
       "viewportHeight": 900,
       "dpr": 1
     },
@@ -32,7 +34,7 @@
       "viewport": "mobile",
       "path": "/mobile-phones_c1453",
       "width": 390,
-      "height": 10613,
+      "height": 6307,
       "viewportHeight": 664,
       "dpr": 3
     },
@@ -59,7 +61,8 @@
       "viewport": "mobile",
       "path": "/",
       "width": 390,
-      "height": 4102,
+      "height": 664,
+      "viewportHeight": 664,
       "dpr": 3
     },
     {
@@ -67,7 +70,8 @@
       "viewport": "mobile",
       "path": "/",
       "width": 390,
-      "height": 11077,
+      "height": 664,
+      "viewportHeight": 664,
       "dpr": 3
     },
     {
@@ -75,7 +79,8 @@
       "viewport": "desktop",
       "path": "/items/q-iphone",
       "width": 1440,
-      "height": 13252,
+      "height": 16249,
+      "viewportHeight": 900,
       "dpr": 1
     },
     {
@@ -83,7 +88,8 @@
       "viewport": "mobile",
       "path": "/items/q-iphone",
       "width": 390,
-      "height": 8502,
+      "height": 10501,
+      "viewportHeight": 664,
       "dpr": 3
     }
   ]
